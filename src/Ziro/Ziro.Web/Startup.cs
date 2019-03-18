@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ziro.Business.Services;
+using Ziro.Core.Business.Services;
+using Ziro.Web.Infrastructure.Middleware;
 
 namespace Ziro.Web
 {
@@ -23,13 +26,14 @@ namespace Ziro.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddTransient<IUserService, UserService>();
+
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
 				options.CheckConsentNeeded = context => true;
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
-
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
@@ -49,6 +53,8 @@ namespace Ziro.Web
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
+			app.UseMiddleware<TestMiddleware>();
+			app.UseMiddleware<DataAccessMiddleware>();
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(

@@ -4,12 +4,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Ziro.Core.Business.Services;
 using Ziro.Web.Models;
 
 namespace Ziro.Web.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly IUserService _userService;
+		
+		public HomeController(IUserService userService)
+		{
+			_userService = userService;
+		}
+
 		public IActionResult Index()
 		{
 			return View();
@@ -17,7 +25,8 @@ namespace Ziro.Web.Controllers
 
 		public IActionResult About()
 		{
-			ViewData["Message"] = "Your application description page.";
+			var user = _userService.GetUser(new Guid());
+			ViewData["Message"] = $"Your application description page. User: {user.Email}";
 
 			return View();
 		}
