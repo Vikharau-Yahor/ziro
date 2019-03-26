@@ -1,0 +1,9 @@
+{
+	"Logging": {
+		"LogLevel": {
+			"Default": "Warning"
+		}
+	},
+	"AllowedHosts": "*",
+	"ConnectionString": "Server=(local);initial catalog=Ziro;Integrated Security=true"
+}

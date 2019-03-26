@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using NHibernate.Cfg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace Ziro.Web.Infrastructure.Middleware
 			this._next = next;
 		}
 
-		public async Task InvokeAsync(HttpContext context)
+		public async Task InvokeAsync(HttpContext context, ISystemSettings settings)
 		{
-			var a = 1;
-
+			var connectionString = settings.ConnectionString;
+			//var config = new Configuration().Configure()
+			//	.AddAssembly("Ziro.Persistence");
+			//var sessionFactory = config.BuildSessionFactory();
 			await _next.Invoke(context);
 
 			var t = 1;

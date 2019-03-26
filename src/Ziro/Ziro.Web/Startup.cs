@@ -8,17 +8,23 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Ziro.Business.Services;
 using Ziro.Core.Business.Services;
+using Ziro.Web.Infrastructure;
 using Ziro.Web.Infrastructure.Middleware;
 
 namespace Ziro.Web
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+		public Startup(IHostingEnvironment env)
 		{
-			Configuration = configuration;
+			var builder = new ConfigurationBuilder()
+				.SetBasePath(env.ContentRootPath)
+				.AddJsonFile("system-settings.json");
+
+			Configuration = builder.Build();
 		}
 
 		public IConfiguration Configuration { get; }
@@ -26,6 +32,11 @@ namespace Ziro.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			// add configuration
+			services.AddOptions();
+			services.Configure<SystemSettings>(Configuration);
+
+			services.AddSingleton<ISystemSettings>(x => x.GetService<IOptions<SystemSettings>>().Value);
 			services.AddTransient<IUserService, UserService>();
 
 			services.Configure<CookiePolicyOptions>(options =>
