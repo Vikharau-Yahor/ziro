@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,8 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Driver;
+using NHibernate.Mapping.ByCode;
 using Ziro.Business.Services;
 using Ziro.Core.Business.Services;
+using Ziro.Core.DataAccess.Repositories;
+using Ziro.Persistence;
+using Ziro.Persistence.Mappings;
+using Ziro.Persistence.Repositories;
 using Ziro.Web.Infrastructure;
 using Ziro.Web.Infrastructure.Middleware;
 
@@ -35,10 +45,31 @@ namespace Ziro.Web
 			// add configuration
 			services.AddOptions();
 			services.Configure<SystemSettings>(Configuration);
-
 			services.AddSingleton<ISystemSettings>(x => x.GetService<IOptions<SystemSettings>>().Value);
-			services.AddTransient<IUserService, UserService>();
 
+			//nhibernate
+			services.AddSingleton<ISessionFactory>(x =>
+			{
+				var connectionString = x.GetService<ISystemSettings>().ConnectionString;
+				var nhConfiguration = new Configuration().DataBaseIntegration(db =>
+				{
+					db.ConnectionString = connectionString;
+					db.Dialect<MsSql2012Dialect>();
+					db.Driver<Sql2008ClientDriver>();
+				})
+				.SetNamingStrategy(new ZiroNamingStrategy());
+
+				var mapper = new ModelMapper();
+				mapper.AddMappings(Assembly.GetAssembly(typeof(UserMap)).GetExportedTypes());
+				var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+				nhConfiguration.AddMapping(mapping);
+				return nhConfiguration.BuildSessionFactory();
+			});
+			services.AddScoped<NHibernate.ISession>(x => x.GetService<ISessionFactory>().OpenSession());
+
+			//other services
+			services.AddTransient<IUserService, UserService>();
+			services.AddTransient<IUserRepository, UserRepository>();
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -64,8 +95,8 @@ namespace Ziro.Web
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
-			app.UseMiddleware<TestMiddleware>();
 			app.UseMiddleware<DataAccessMiddleware>();
+			app.UseMiddleware<TestMiddleware>();
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(

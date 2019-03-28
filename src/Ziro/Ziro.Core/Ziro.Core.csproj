@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Ziro.Domain\Ziro.Domain.csproj" />
   </ItemGroup>
 

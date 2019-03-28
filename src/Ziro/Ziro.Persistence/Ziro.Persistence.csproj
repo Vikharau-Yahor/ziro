@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <PackageReference Include="NHibernate" Version="5.2.4" />
   </ItemGroup>
 
 </Project>
