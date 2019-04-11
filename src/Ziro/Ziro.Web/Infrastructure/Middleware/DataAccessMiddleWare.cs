@@ -17,7 +17,7 @@ namespace Ziro.Web.Infrastructure.Middleware
 			this._next = next;
 		}
 
-		public async Task InvokeAsync(HttpContext context, NHibernate.ISession session /*ISystemSettings settings*/)
+		public async Task InvokeAsync(HttpContext context, NHibernate.ISession session)
 		{
 			var transaction = session.BeginTransaction();
 			await _next.Invoke(context);

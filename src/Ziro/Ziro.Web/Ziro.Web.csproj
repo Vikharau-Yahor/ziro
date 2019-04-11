@@ -7,13 +7,22 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="NHibernate" Version="5.2.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ziro.Authentication\Ziro.Authentication.csproj" />
     <ProjectReference Include="..\Ziro.Business\Ziro.Business.csproj" />
+    <ProjectReference Include="..\Ziro.Core.Web\Ziro.Core.Web.csproj" />
     <ProjectReference Include="..\Ziro.Core\Ziro.Core.csproj" />
     <ProjectReference Include="..\Ziro.Persistence\Ziro.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Account\AccessDenied.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Ziro.Core.Enums;
 
 namespace Ziro.Core.DTO
 {
@@ -8,5 +7,6 @@ namespace Ziro.Core.DTO
 	{
 		public Guid Id { get; set; }
 		public string Email { get; set; }
+		public Roles Role { get; set; }
 	}
 }

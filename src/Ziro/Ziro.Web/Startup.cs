@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
+using Ziro.Authentication;
 using Ziro.Business.Services;
 using Ziro.Core.Business.Services;
 using Ziro.Core.DataAccess.Repositories;
@@ -23,6 +25,7 @@ using Ziro.Persistence.Mappings;
 using Ziro.Persistence.Repositories;
 using Ziro.Web.Infrastructure;
 using Ziro.Web.Infrastructure.Middleware;
+
 
 namespace Ziro.Web
 {
@@ -67,17 +70,15 @@ namespace Ziro.Web
 			});
 			services.AddScoped<NHibernate.ISession>(x => x.GetService<ISessionFactory>().OpenSession());
 
+			//authentication
+			services.AddAuthentication("/Account/Login", "/Account/AccessDenied");
+
+			//mvc
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
 			//other services
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IUserRepository, UserRepository>();
-			services.Configure<CookiePolicyOptions>(options =>
-			{
-				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
-				options.CheckConsentNeeded = context => true;
-				options.MinimumSameSitePolicy = SameSiteMode.None;
-			});
-
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,9 +97,13 @@ namespace Ziro.Web
 			app.UseCookiePolicy();
 
 			app.UseMiddleware<DataAccessMiddleware>();
-			app.UseMiddleware<TestMiddleware>();
+			app.UseAuthentication();
 			app.UseMvc(routes =>
 			{
+				routes.MapRoute(
+					name: "areas",
+					template: "{area:exists}/{controller=Home}/{action=Index}");
+
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");

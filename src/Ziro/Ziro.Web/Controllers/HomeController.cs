@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ziro.Core.Business.Services;
+using Ziro.Core.Enums;
 using Ziro.Web.Models;
 
 namespace Ziro.Web.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		private readonly IUserService _userService;
 		
@@ -23,6 +22,7 @@ namespace Ziro.Web.Controllers
 			return View();
 		}
 
+		[Authorize(Roles = nameof(Roles.Administrator))]
 		public IActionResult About()
 		{
 			var user = _userService.GetUser(new Guid());

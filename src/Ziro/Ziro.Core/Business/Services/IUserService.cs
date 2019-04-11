@@ -6,5 +6,6 @@ namespace Ziro.Core.Business.Services
 	public interface IUserService
 	{
 		UserDTO GetUser(Guid id);
+		UserDTO GetUser(string email, string password);
 	}
 }
