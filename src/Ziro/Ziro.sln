@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ziro.Business", "Ziro.Busin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{82ED40AA-ADA4-4C53-9100-1B5505ADC9F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziro.Authentication", "Ziro.Authentication\Ziro.Authentication.csproj", "{86765B2B-94C6-40EE-875B-9EAEA72FBD3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ziro.Authentication", "Ziro.Authentication\Ziro.Authentication.csproj", "{86765B2B-94C6-40EE-875B-9EAEA72FBD3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3B560913-3457-42C2-9DC1-D9DF0F0FE625}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziro.Core.Web", "Ziro.Core.Web\Ziro.Core.Web.csproj", "{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ziro.Core.Web", "Ziro.Core.Web\Ziro.Core.Web.csproj", "{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
