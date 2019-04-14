@@ -1,0 +1,32 @@
+﻿@using System
+@using System.Globalization
+@using System.Linq
+@using System.Net
+@using Microsoft.AspNetCore.Diagnostics
+@using Microsoft.AspNetCore.Diagnostics.RazorViews
+
+@functions
+{
+	public new ErrorVm Model { get; set; }
+}
+
+@{
+	Layout = null;
+	ViewData["Title"] = "Internal server error";
+}
+
+
+<h1>Internal Server Error occured</h1>
+<hr />
+
+@{
+		var exception = Model.Exception;
+		while (exception != null)
+		{
+		<h2>@exception.Message</h2>
+		<span>@exception.StackTrace</span>
+		<hr />
+		<br />
+		exception = exception.InnerException;
+		}
+	}

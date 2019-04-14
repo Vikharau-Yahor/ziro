@@ -20,9 +20,22 @@ namespace Ziro.Web.Infrastructure.Middleware
 		public async Task InvokeAsync(HttpContext context, NHibernate.ISession session)
 		{
 			var transaction = session.BeginTransaction();
-			await _next.Invoke(context);
-			transaction.Commit();
-			session.Close();
+			try
+			{
+				await _next.Invoke(context);
+			}
+			catch(Exception)
+			{
+				if (transaction.IsActive)
+					transaction.Rollback();
+				throw;
+			}
+			finally
+			{
+				if (transaction.IsActive)
+					transaction.Commit();
+				session.Close();
+			}
 		}
 	}
 }

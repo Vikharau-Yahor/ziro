@@ -19,12 +19,11 @@ using Ziro.Persistence.Mappings;
 using Ziro.Persistence.Repositories;
 using Ziro.Web.Infrastructure;
 using Ziro.Web.Infrastructure.Middleware;
-using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.Core.Helpers;
 using React.AspNet;
 using Microsoft.AspNetCore.Http;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.ChakraCore;
+using Ziro.Web.Infrastructure.Extensions.Statrup;
 
 namespace Ziro.Web
 {
@@ -87,15 +86,8 @@ namespace Ziro.Web
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-			else
-			{
-				app.UseExceptionHandler("/Home/Error");
-			}
-
+			app.UseExceptionHandling(@"/Error/InternalServerError", !env.IsDevelopment());
+			app.UseMiddleware<ExceptionMiddleWare>();
 			app.UseReact(config => { });
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
