@@ -24,6 +24,8 @@ using Microsoft.AspNetCore.Http;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.ChakraCore;
 using Ziro.Web.Infrastructure.Extensions.Statrup;
+using System.Net;
+using Ziro.Core.Web.Extensions;
 
 namespace Ziro.Web
 {
@@ -86,6 +88,17 @@ namespace Ziro.Web
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
+			app.UseStatusCodePages(async context =>
+			{
+				var statusCode = context.HttpContext.Response.StatusCode;
+
+				if (statusCode != (int)HttpStatusCode.NotFound)
+					return;
+
+				if (!context.HttpContext.IsApiRequest())
+					context.HttpContext.Response.Redirect(@"/Error/NotFound");
+			});
+
 			app.UseExceptionHandling(@"/Error/InternalServerError", !env.IsDevelopment());
 			app.UseMiddleware<ExceptionMiddleWare>();
 			app.UseReact(config => { });
