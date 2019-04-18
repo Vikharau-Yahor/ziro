@@ -26,6 +26,10 @@ using JavaScriptEngineSwitcher.ChakraCore;
 using Ziro.Web.Infrastructure.Extensions.Statrup;
 using System.Net;
 using Ziro.Core.Web.Extensions;
+using FluentValidation.AspNetCore;
+using System;
+using Ziro.Web.Validators;
+using Ziro.Web.Validators.Account;
 
 namespace Ziro.Web
 {
@@ -79,11 +83,17 @@ namespace Ziro.Web
 
 			//mvc
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+			services.AddMvc()
+				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
 			//other services
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IUserRepository, UserRepository>();
+		}
+
+		private int BaseValidator<T>()
+		{
+			throw new NotImplementedException();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)

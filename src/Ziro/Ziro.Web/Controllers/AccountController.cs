@@ -35,6 +35,8 @@ namespace Ziro.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Login(LoginVm vm)
 		{
+			if (!ModelState.IsValid) return View(vm);
+
 			var user = _userService.GetUser(vm.Email, vm.Password);
 
 			if (user != null)
