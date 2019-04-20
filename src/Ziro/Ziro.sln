@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3B560913-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ziro.Core.Web", "Ziro.Core.Web\Ziro.Core.Web.csproj", "{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{175DCC2B-0FC9-4F16-A82E-208C445D7A85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSchemaGenerator", "DBSchemaGenerator\DBSchemaGenerator.csproj", "{26240F7C-16B8-418D-AB09-A78ECF417153}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB8DF8C3-B050-4039-B8CA-692D58C97FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26240F7C-16B8-418D-AB09-A78ECF417153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26240F7C-16B8-418D-AB09-A78ECF417153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26240F7C-16B8-418D-AB09-A78ECF417153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26240F7C-16B8-418D-AB09-A78ECF417153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{AA430049-92E5-43B0-BAD2-9D804EF48802} = {3B560913-3457-42C2-9DC1-D9DF0F0FE625}
 		{86765B2B-94C6-40EE-875B-9EAEA72FBD3A} = {82ED40AA-ADA4-4C53-9100-1B5505ADC9F0}
 		{DB8DF8C3-B050-4039-B8CA-692D58C97FA1} = {3B560913-3457-42C2-9DC1-D9DF0F0FE625}
+		{26240F7C-16B8-418D-AB09-A78ECF417153} = {175DCC2B-0FC9-4F16-A82E-208C445D7A85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9536321-B308-4AD5-9044-B92FD86B20B7}

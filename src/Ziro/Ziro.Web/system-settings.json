@@ -5,6 +5,6 @@
 		}
 	},
 	"AllowedHosts": "*",
-	//"ConnectionString": "Server=(local);initial catalog=Ziro;Integrated Security=true"
-	"ConnectionString": "Data Source=SQL6001.site4now.net;Initial Catalog=DB_A45FDA_ziro;User Id=DB_A45FDA_ziro_admin;Password=feDD634hT;"
+	"ConnectionString": "Server=(local);initial catalog=Ziro;Integrated Security=true"
+	//"ConnectionString": "Data Source=SQL6001.site4now.net;Initial Catalog=DB_A45FDA_ziro;User Id=DB_A45FDA_ziro_admin;Password=feDD634hT;"
 }
