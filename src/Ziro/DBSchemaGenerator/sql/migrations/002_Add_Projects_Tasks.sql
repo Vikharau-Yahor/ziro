@@ -14,4 +14,4 @@ BEGIN
 	INSERT INTO Ziro_DbMigrations VALUES(@MigrationNumber, @MigrationName)
 END
 ELSE 
-      PRINT N'Migration ' | @MigrationName | N' was skipped';
+      PRINT N'Migration ' + @MigrationName + N' was skipped';
