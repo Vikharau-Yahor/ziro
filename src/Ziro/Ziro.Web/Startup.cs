@@ -62,9 +62,10 @@ namespace Ziro.Web
 					db.ConnectionString = connectionString;
 					db.Dialect<MsSql2012Dialect>();
 					db.Driver<Sql2008ClientDriver>();
+					
 				})
 				.SetNamingStrategy(new ZiroNamingStrategy());
-
+				var s = new ConventionModelMapper();
 				var mapper = new ModelMapper();
 				mapper.AddMappings(Assembly.GetAssembly(typeof(UserMap)).GetExportedTypes());
 				var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
@@ -89,6 +90,8 @@ namespace Ziro.Web
 			//other services
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IUserRepository, UserRepository>();
+			services.AddTransient<ITaskRepository, TaskRepository>();
+			services.AddTransient<IProjectRepository, ProjectRepository>();
 		}
 
 		private int BaseValidator<T>()

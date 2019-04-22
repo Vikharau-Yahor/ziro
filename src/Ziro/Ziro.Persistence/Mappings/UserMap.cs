@@ -4,7 +4,7 @@ using Ziro.Domain.Entities;
 
 namespace Ziro.Persistence.Mappings
 {
-	public class UserMap : ClassMapping<User>
+	public class UserMap : BaseEntityMap<User>
 	{
 		public UserMap()
 		{
@@ -21,6 +21,14 @@ namespace Ziro.Persistence.Mappings
 				m.Length(255);
 				m.NotNullable(notnull: true);
 			});
+
+			Set(a => a.Projects,
+			c => {
+				c.Cascade(Cascade.Persist);
+				c.Key(k => k.Column(FKColumnName(nameof(User))));
+				c.Table(MToMTableName(nameof(Project), nameof(User)));
+			},
+			r => r.ManyToMany(m => m.Column(FKColumnName(nameof(Project)))));
 
 			Property(x => x.Role, m => m.NotNullable(notnull: true));
 		}

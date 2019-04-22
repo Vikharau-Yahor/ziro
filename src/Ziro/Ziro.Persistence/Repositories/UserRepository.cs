@@ -40,11 +40,5 @@ namespace Ziro.Persistence.Repositories
 
 			return result;
 		}
-
-		//public void AddNewUser()
-		//{
-		//	var user = new User { Email = "testUser@mail.com", Password = "2342ksd" };
-		//	var query = _session.Save(user);
-		//}
 	}
 }
