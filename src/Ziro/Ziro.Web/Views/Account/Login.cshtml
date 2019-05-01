@@ -1,71 +1,16 @@
-﻿@model Ziro.Web.Models.Account.LoginVm
-
-@{
+﻿@{
 	ViewData["Title"] = "Login";
 }
- Test Ajax authentication
-		@section Scripts{
-		<script>
-		$("#testApi").on("click", function () {
-			$.ajax(
-				{
-					method: "POST",
-					url: "/api/Account/Login",
-					data: {
-						email: "testUser@mail.com", password: "523"
-					},
-					success: function (data) {
-						alert(JSON.stringify(data));
-					},
-					error: function (data) {
-						alert(JSON.stringify(data));
-					}
-				}
-			);
-			});
-			$("#testApi2").on("click", function () {
-				$.ajax(
-					{
-						method: "POST",
-						url: "/api/Account/Login2",
-						data: {
-							email: "testUser@mail.com", password: "523"
-						},
-						success: function (data) {
-							alert(JSON.stringify(data));
-						},
-						error: function (data) {
-							alert(JSON.stringify(data));
-						}
-					}
-				);
-			});
-		</script>
-	}
 
-<h2>Login</h2>
-<hr />
-<div class="row">
-	<div class="col-md-4">
-		<form asp-action="Login">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				<label asp-for="Email" class="control-label"></label>
-				<input asp-for="Email" class="form-control" />
-				<span asp-validation-for="Email" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Password" class="control-label"></label>
-				<input asp-for="Password" class="form-control" />
-				<span asp-validation-for="Password" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Save" class="btn btn-default" />
-
-				<input id="testApi" type="button" value="LoginAPI" class="btn btn-default" />
-				<input id="testApi2" type="button" value="LoginAPIViewModel" class="btn btn-default" />
-			</div>
-		</form>
-	</div>
-</div>
-
+@section PreLoadSection{
+	<link href="~/components/Authorization/authorization.css" rel="stylesheet" />
+}
+@section PostLoadSection{
+	@*<script src="~/components/Authorization/index.jsx"></script>*@
+	@*<script src="/dist/runtime.js"></script>*@
+	<script src="/dist/bundle.js"></script>
+	<script src="/dist/components.bundle.js"></script>
+	<script src="/dist/main.bundle.js"></script>
+	<script src="/dist/vendor.bundle.js"></script>
+	@*<script src="/dist/components.bundle.js"></script>*@
+}

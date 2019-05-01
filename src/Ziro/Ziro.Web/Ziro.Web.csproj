@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\react\**" />
+    <Content Remove="wwwroot\react\**" />
+    <EmbeddedResource Remove="wwwroot\react\**" />
+    <None Remove="wwwroot\react\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.2.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.0.9" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.9" />
@@ -28,6 +35,16 @@
     <Content Update="Views\Account\AccessDenied.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\expose-components.js" />
   </ItemGroup>
 
 </Project>

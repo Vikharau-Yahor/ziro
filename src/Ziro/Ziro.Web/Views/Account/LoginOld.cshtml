@@ -1,0 +1,51 @@
+﻿@model Ziro.Web.Models.Account.LoginVm
+
+@{
+	ViewData["Title"] = "Login";
+}
+@*// Test Ajax authentication
+	@section Scripts{
+	<script>
+	$("#testId").on("click", function () {
+		$.ajax(
+			{
+				method: "POST",
+				url: "/api/Account/Login",
+				data: {
+					email: "testUser@mail.com", password: "523"
+				},
+				success: function (data) {
+					alert(JSON.stringify(data));
+				},
+				error: function (data) {
+					alert(JSON.stringify(data));
+				}
+			}
+		);
+	});
+	</script>
+}*@
+
+<h2>Login</h2>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Login">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password" class="control-label"></label>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</form>
+	</div>
+</div>
+

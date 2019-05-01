@@ -94,11 +94,6 @@ namespace Ziro.Web
 			services.AddTransient<IProjectRepository, ProjectRepository>();
 		}
 
-		private int BaseValidator<T>()
-		{
-			throw new NotImplementedException();
-		}
-
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			app.UseStatusCodePages(async context =>
@@ -114,8 +109,17 @@ namespace Ziro.Web
 
 			app.UseExceptionHandling(@"/Error/InternalServerError", !env.IsDevelopment());
 			app.UseMiddleware<ExceptionMiddleWare>();
-			app.UseReact(config => { });
 			app.UseStaticFiles();
+			app.UseReact(config =>
+			{
+				config
+					.SetReuseJavaScriptEngines(true)
+					.SetLoadBabel(false)
+					.SetLoadReact(false)
+					.AddScriptWithoutTransform("~/dist/runtime.js")
+					.AddScriptWithoutTransform("~/dist/vendor.bundle.js")
+					.AddScriptWithoutTransform("~/dist/components.bundle.js");
+			});
 			app.UseCookiePolicy();
 
 			app.UseMiddleware<DataAccessMiddleware>();

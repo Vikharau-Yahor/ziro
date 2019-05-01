@@ -2,8 +2,8 @@ import React,{Component} from 'react'
 import { BrowserRouter, Route, Link } from "react-router-dom";
 //import createBrowserHistory from 'history/createBrowserHistory'
 import { createBrowserHistory } from 'history';
-import Authorization from '../Authorization'
-import Home from '../Home'
+import Authorization from '../Authorization/index.jsx'
+import Home from '../Home.jsx'
 
 const history = createBrowserHistory();
 
