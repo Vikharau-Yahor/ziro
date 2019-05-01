@@ -21,6 +21,7 @@ const styles = theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         width: 400,
+        marginTop: '5%',
         marginLeft: 'auto',
         marginRight: 'auto',
         //spacing.unit = 8
@@ -58,7 +59,6 @@ class Authorization extends Component {
         const { classes } = this.props;
         return (
             <div className="container">
-                <h2>Authorization page</h2>
                 <Paper className={classes.paper}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />

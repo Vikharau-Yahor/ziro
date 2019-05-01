@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.profile__wrap {
+  display: grid;
+  grid-template-columns: 200px 1fr 105px;
+  margin-top: 5%; }
+
+button span {
+  text-transform: none;
+  letter-spacing: 1px; }
+
+button .material-icons {
+  margin-left: 5px;
+  font-size: 20px; }

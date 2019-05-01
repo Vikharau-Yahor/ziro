@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+///// sass examples
+//$color: red;
+
+///mixins
+// @mixin border-radius($radius) {
+//     -webkit-border-radius: $radius;
+//        -moz-border-radius: $radius;
+//         -ms-border-radius: $radius;
+//             border-radius: $radius;
+//   }
+  
+//   .box { @include border-radius(10px); }
+////extends
+// %message-shared {
+//     border: 1px solid #ccc;
+//     padding: 10px;
+//     color: #333;
+//   }
+  
+//   .message {
+//     @extend %message-shared;
+//   }
+  
+//   .success {
+//     @extend %message-shared;
+//     border-color: green;
+//  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #fafafa;
+}
+
+ul, li {
+    list-style: none;
+  }
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.wrapper {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+}
+
+main {
+
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  //background: #202020;
+  padding: 20px 0;
+  .container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 20px;
+    //box-shadow: 1px 0 5px rgba(0, 0, 0, .35);
+  }
+  .logo {
+    font-size: 1.75em;
+    span {
+      font-size: 2.5rem;
+      color: red;
+    }
+  }
+}
+
+.menu {
+  display: flex;
+  margin-left: 50px;
+}
+.menu__item {
+  margin-right: 30px;
+  a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.125em;
+  }
+}
+
+.profile-wrap {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  .short-img {
+    width: 100%;
+    border-radius: 50%;
+  }
+}
+
+
+
+footer {
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  .container {
+    border-top: 1px solid #d1d1d1;
+    padding-top: 20px;
+  }
+}

@@ -1,0 +1,71 @@
+.task__block {
+    padding: 20px 30px;
+}
+
+.task__name {
+    font-weight: 100;
+    .task__id {
+        margin-right: 25px;
+    }
+}
+
+.task__status-block {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.task__status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+.task__status.s0 {
+    background: rgb(173, 173, 173);
+}
+.task__status.s1 {
+    background: rgb(2, 163, 42);
+}
+.task__status.s2 {
+    background: rgb(36, 14, 230);
+}
+
+.task__creator {
+    padding: 0 6px;
+    color: rgb(63, 125, 219);
+}
+
+.task__description-block {
+
+}
+
+.task__creator-img-wrap {
+    width: 50px;
+    height: 50px;
+}
+
+.task__creator-img {
+    width: 100%;
+}
+
+.task__creation-date {
+    padding: 0 6px;
+}
+
+.task-actions__block {
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+.task-action {
+    display: flex;
+}
+
+.task-action__author {
+    display: flex;
+}
+.task-action__author-img {
+    width: 20px;
+    height: 20px;
+}
+
