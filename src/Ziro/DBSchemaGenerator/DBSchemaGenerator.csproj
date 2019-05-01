@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Ziro.Persistence\Ziro.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="GeneratedSql\" />
-  </ItemGroup>
-
 </Project>

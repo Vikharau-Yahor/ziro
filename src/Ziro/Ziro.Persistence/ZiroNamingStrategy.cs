@@ -4,7 +4,9 @@ namespace Ziro.Persistence
 {
 	public class ZiroNamingStrategy : INamingStrategy
 	{
+		private const string TableNameMToMTemplate = "Ziro_{0}_{1}";
 		private const string TableNameTemplate = "Ziro_{0}";
+		private const string ForeignKeyColumnTemplate = "{0}Id";
 
 		private readonly INamingStrategy _defaultStrategy = DefaultNamingStrategy.Instance;
 
@@ -38,6 +40,16 @@ namespace Ziro.Persistence
 		public string TableName(string tableName)
 		{
 			return _defaultStrategy.TableName(tableName);
+		}
+
+		public string TableNameMToM(string entityFirst, string entitySecond)
+		{
+			return string.Format(TableNameMToMTemplate, entityFirst, entitySecond);
+		}
+
+		public string ForeignKeyColumn(string propertyName)
+		{
+			return string.Format(ForeignKeyColumnTemplate, propertyName);
 		}
 	}
 }

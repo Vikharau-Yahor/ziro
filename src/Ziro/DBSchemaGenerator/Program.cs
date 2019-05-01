@@ -15,7 +15,7 @@ namespace DBSchemaGenerator
 	{
 		private static string connectionString = "Server=(local);initial catalog=Ziro;Integrated Security=true";
 		private static string schemaDBScriptName = "ZiroDB.sql";
-		private static string path = @"E:\Education\zaochka\DP\dev\ziro\src\Ziro\DBSchemaGenerator\GeneratedSql\";
+		private static string path = @"E:\Education\zaochka\DP\dev\ziro\src\Ziro\DBSchemaGenerator\sql\deploy\";
 
 		static void Main(string[] args)
 		{
