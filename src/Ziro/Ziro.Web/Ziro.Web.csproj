@@ -39,12 +39,7 @@
 
   <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\dist\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\expose-components.js" />
   </ItemGroup>
 
 </Project>

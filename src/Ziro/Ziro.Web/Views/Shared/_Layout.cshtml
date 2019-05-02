@@ -6,7 +6,12 @@
 	<meta name="viewport"
 		  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
 	<meta name="theme-color" content="#000000" />
-	<link href="~/components/App.css" rel="stylesheet" />
+	@*<link href="~/react-dev/components/Task/task.css" rel="stylesheet" />
+	<link href="~/react-dev/components/Tasks/tasks.css" rel="stylesheet" />
+	<link href="~/react-dev/components/Team/team.css" rel="stylesheet" />
+	<link href="~/react-dev/components/Profile/profile.css" rel="stylesheet" />*@
+	@*<link href="~/react-dev/components/Layout/App.css" rel="stylesheet" />*@
+	@*<link href="~/react-dev/components/Authorization/authorization.css" rel="stylesheet" />*@
 	@RenderSection("PreLoadSection", required: false)
 </head>
 <body>
@@ -20,6 +25,11 @@
 	<script src="~/components/App.jsx"></script>
 	<script src="~/components/Header/index.jsx"></script>
 	<script src="~/components/Footer/index.jsx"></script>*@
+	<script src="/dist/bundle.js"></script>
+	<script src="/dist/components.bundle.js"></script>
+	<script src="/dist/main.bundle.js"></script>
+	<script src="/dist/vendor.bundle.js"></script>
+	
 	@RenderSection("PostLoadSection", required: false)
 
 </body>

@@ -1,0 +1,3 @@
+Webpach bundling:
+1. open cmd in Ziro.Web folder
+2. execute: npm run build

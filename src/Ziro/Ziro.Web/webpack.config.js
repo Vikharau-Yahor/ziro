@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	entry: './wwwroot/index.jsx',
+	entry: './wwwroot/react-dev/index.jsx',
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'wwwroot/dist')
@@ -28,6 +28,22 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 			},
+			{
+				test: /\.css$/,
+				use: [ 'style-loader', 'css-loader' ]
+			},
+			{
+				test: /\.(gif|png|jpe?g|svg)$/i,
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							bypassOnDebug: true, // webpack@1.x
+							disable: true, // webpack@2.x and newer
+						}
+					}]
+			}
 		],
 	},
 };

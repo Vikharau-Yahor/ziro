@@ -29,7 +29,7 @@ namespace Ziro.Web.Areas.api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Login(string email, string password)
+		public async Task<IActionResult> Login([FromBody]string email, [FromBody]string password)
 		{
 			// replace by fluent validation
 			var errors = new List<string>();
@@ -57,7 +57,7 @@ namespace Ziro.Web.Areas.api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Login2(LoginRequest creds)
+		public async Task<IActionResult> Login2([FromBody]LoginRequest creds)
 		{
 			// replace by fluent validation
 			var errors = new List<string>();
