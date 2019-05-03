@@ -71,7 +71,7 @@ class Authorization extends Component {
 	handleClick(e) {
 		e.preventDefault();
 		console.log('The link was clicked.');
-		fetch("http://localhost:57060/api/Account/Login2", {
+		fetch("http://localhost:49763/api/Account/Login2", {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
