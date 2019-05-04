@@ -9,11 +9,11 @@ import Footer from './Footer/index.jsx'
 class App extends Component {
   render() {
     return (
-        <div className="wrapper">
+        <>
           <Header/>
           <Content/>
           <Footer/>
-      </div>
+      </>
     );
   }
 }
