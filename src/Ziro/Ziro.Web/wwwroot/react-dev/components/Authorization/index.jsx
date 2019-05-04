@@ -15,6 +15,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 
+
+import AjaxData from '../../AjaxData.jsx';
+import {fetchData} from '../../utils.js';
+
+
 const styles = theme => ({
     paper: {
         display: 'flex',
@@ -58,7 +63,8 @@ class Authorization extends Component {
 			email: 'test@mail.com',
 			password: '123'
 		};
-		this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.successLogin = this.successLogin.bind(this);
 	}
 
 	handleEmailChange(e) {
@@ -66,29 +72,27 @@ class Authorization extends Component {
 	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value });
-	}
+    }
+    
+    successLogin(response)
+    {
+        var responseText = JSON.stringify(response);
+        this.setState({ email: '' });
+        alert(responseText);
+    }
+
+    errorLogin(error)
+    {
+        alert(error);
+    }
 
 	handleClick(e) {
-		e.preventDefault();
-		console.log('The link was clicked.');
-		fetch("http://localhost:49763/api/Account/Login2", {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				email: this.state.email,
-				password: this.state.password
-			})
-		})
-		.then((response) => response.text())
-		.then((responseText) => {
-			alert(responseText);
-		})
-		.catch((error) => {
-			alert(error);
-		});
+        e.preventDefault();
+        var requestData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        fetchData('api/Account/Login2', 'POST', requestData, this.successLogin, this.errorLogin);
 	}
 
     render() {
