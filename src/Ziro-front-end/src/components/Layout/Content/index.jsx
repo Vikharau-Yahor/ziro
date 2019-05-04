@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import Tasks from '../../Tasks'
-import Task from '../../Task'
-import Team from '../../Team'
-import Authorization from '../../Authorization'
-import Profile from '../../Profile'
-import NotFound from '../../NotFound'
+import Tasks from '../../Tasks/index.jsx'
+import Task from '../../Task/index.jsx'
+import Team from '../../Team/index.jsx'
+import Authorization from '../../Authorization/index.jsx'
+import Profile from '../../Profile/index.jsx'
+import NotFound from '../../NotFound/index.jsx'
 
 class Content extends Component {
     render() {

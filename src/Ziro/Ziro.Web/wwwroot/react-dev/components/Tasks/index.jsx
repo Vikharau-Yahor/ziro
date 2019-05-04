@@ -9,7 +9,6 @@ import Icon from '@material-ui/core/Icon';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { blue, red, yellow, purple, green } from '@material-ui/core/colors';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import './tasks.css'

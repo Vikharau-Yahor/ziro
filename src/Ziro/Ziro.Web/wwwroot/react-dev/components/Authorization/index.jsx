@@ -14,9 +14,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-
-
-import AjaxData from '../../AjaxData.jsx';
 import {fetchData} from '../../utils.js';
 
 

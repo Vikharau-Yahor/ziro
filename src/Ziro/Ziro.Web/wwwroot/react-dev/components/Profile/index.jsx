@@ -52,7 +52,7 @@ class Profile extends Component {
             <Paper className={`${classes.paper} profile__wrap`}>
                 <div className="profile__image-block col">
                     <div className={classes.ava__wrap}>
-                        <img className={classes.ava} src={ava} alt="user"/>
+                        <img className={classes.ava} src={ava} alt="user avatar"/>
                     </div>
                     <Button variant="contained" className={`${classes.customCss} profile__btn`}>Редактировать
                     <Icon>edit_icon</Icon>                        

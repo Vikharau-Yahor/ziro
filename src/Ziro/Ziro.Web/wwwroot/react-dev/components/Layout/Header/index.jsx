@@ -24,7 +24,7 @@ class Header extends Component {
                 </ul> 
               </div>
               <div className="profile-wrap">
-                <Link to ="/profile"><img className="short-img" src={ava}/></Link>
+                <Link to ="/profile"><img className="short-img" src={ava} alt="avatar"/></Link>
               </div>
             </div>
         </header>

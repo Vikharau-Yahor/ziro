@@ -4,6 +4,7 @@ import Tasks from '../../Tasks/index.jsx'
 import Task from '../../Task/index.jsx'
 import Team from '../../Team/index.jsx'
 import Authorization from '../../Authorization/index.jsx'
+import AdminPanel from '../../AdminPanel/index.jsx'
 import Profile from '../../Profile/index.jsx'
 import NotFound from '../../NotFound/index.jsx'
 
@@ -18,7 +19,7 @@ class Content extends Component {
                     <Route path="/authorization" component={Authorization} />
 
                     <Route path="/task" component={Task} />
-
+                    <Route path="/adminpanel" component={AdminPanel} />
                     <Route component={NotFound} />
                 </Switch>
             </main>
