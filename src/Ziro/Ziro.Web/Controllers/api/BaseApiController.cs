@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ziro.Core.Business.Services;
 using Ziro.Core.Enums;
-using Ziro.Web.Areas.api.Models;
+using Ziro.Web.Areas.Models.api;
 using Ziro.Web.Models;
 
-namespace Ziro.Web.Areas.api.Controllers
+namespace Ziro.Web.Controllers.api
 {
-	[Area("api")]
+	[ApiController]
+	[Route("api/[controller]/[action]")]
 	[Authorize(Roles = nameof(Roles.User))]
-	public class BaseApiController : Controller
+	public class BaseApiController : ControllerBase
 	{
 		protected JsonResult SuccessResult()
 		{
@@ -28,6 +29,11 @@ namespace Ziro.Web.Areas.api.Controllers
 			var response = new BaseJsonResponse { Success = false, Errors = errorsList };
 
 			return Json(response);
+		}
+
+		protected JsonResult Json(object response)
+		{
+			return new JsonResult(response);
 		}
 	}
 }

@@ -86,7 +86,15 @@ namespace Ziro.Web
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddMvc()
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
+				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>())
+				.ConfigureApiBehaviorOptions(options =>
+				{
+					options.SuppressConsumesConstraintForFormFileParameters = true;
+					options.SuppressInferBindingSourcesForParameters = true;
+					options.SuppressModelStateInvalidFilter = true;
+					options.SuppressMapClientErrors = true;
+					options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
+				});
 			//other services
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IUserRepository, UserRepository>();
@@ -126,10 +134,6 @@ namespace Ziro.Web
 			app.UseAuthentication();
 			app.UseMvc(routes =>
 			{
-				routes.MapRoute(
-					name: "areas",
-					template: "{area:exists}/{controller=Home}/{action=Index}");
-
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");

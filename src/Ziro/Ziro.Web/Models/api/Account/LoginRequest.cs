@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ziro.Web.Areas.api.Models.Account
+namespace Ziro.Web.Areas.Models.api.Account
 {
 	public class LoginRequest
 	{
