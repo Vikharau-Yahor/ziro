@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Ziro.Core.Business.Services;
 using Ziro.Core.Enums;
 using Ziro.Web.Areas.Models.api;
-using Ziro.Web.Models;
 
 namespace Ziro.Web.Controllers.api
 {
@@ -19,14 +18,20 @@ namespace Ziro.Web.Controllers.api
 	{
 		protected JsonResult SuccessResult()
 		{
-			var response =  new BaseJsonResponse { Success = true };
+			var response =  new BaseJsonResponse<EmptyData>();
+			return Json(response);
+		}
+
+		protected JsonResult SuccessResult<T>(T data) where T : class
+		{
+			var response = new BaseJsonResponse<T>(data);
 			return Json(response);
 		}
 
 		protected JsonResult FailedResult(IEnumerable<string> errors)
 		{
 			var errorsList = errors.ToList();
-			var response = new BaseJsonResponse { Success = false, Errors = errorsList };
+			var response = new BaseJsonResponse<EmptyData> { Errors = errorsList };
 
 			return Json(response);
 		}
