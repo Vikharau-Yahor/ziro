@@ -3,5 +3,6 @@
 	public interface ISystemSettings
 	{
 		string ConnectionString { get; }
+		bool UseCustomErrors { get; }
 	}
 }

@@ -30,6 +30,8 @@ using FluentValidation.AspNetCore;
 using System;
 using Ziro.Web.Validators;
 using Ziro.Web.Validators.Account;
+using Ziro.Web.Models.api;
+using Newtonsoft.Json;
 
 namespace Ziro.Web
 {
@@ -93,7 +95,7 @@ namespace Ziro.Web
 					options.SuppressInferBindingSourcesForParameters = true;
 					options.SuppressModelStateInvalidFilter = true;
 					options.SuppressMapClientErrors = true;
-					options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
+					options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = false;
 				});
 			//other services
 			services.AddTransient<IUserService, UserService>();
@@ -108,15 +110,27 @@ namespace Ziro.Web
 			{
 				var statusCode = context.HttpContext.Response.StatusCode;
 
-				if (statusCode != (int)HttpStatusCode.NotFound)
-					return;
+				if (context.HttpContext.IsApiRequest())
+				{
+					string responseContent = null;
 
-				if (!context.HttpContext.IsApiRequest())
-					context.HttpContext.Response.Redirect(@"/Error/NotFound");
+					if (statusCode == (int)HttpStatusCode.NotFound)
+						responseContent = JsonConvert.SerializeObject(ErrorModel.CreateNotFound());
+					else if (statusCode == (int)HttpStatusCode.Unauthorized)
+						responseContent = JsonConvert.SerializeObject(ErrorModel.CreateNotAuthenicated());
+					else if (statusCode == (int)HttpStatusCode.Forbidden)
+						responseContent = JsonConvert.SerializeObject(ErrorModel.CreateForbidden());
+
+					if (responseContent != null)
+					{
+						context.HttpContext.Response.Clear();
+						await context.HttpContext.Response.WriteAsync(responseContent);
+					}
+				}
 			});
 
-			app.UseExceptionHandling(@"/Error/InternalServerError", !env.IsDevelopment());
-			app.UseMiddleware<ExceptionMiddleWare>();
+			app.UseExceptionHandling(@"/Error/InternalServerError");
+			
 			app.UseStaticFiles();
 			app.UseReact(config =>
 			{

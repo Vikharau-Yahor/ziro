@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Newtonsoft.Json;
+using Ziro.Web.Models.api;
 
 namespace Ziro.Web.Infrastructure.Middleware
 {
@@ -18,24 +20,24 @@ namespace Ziro.Web.Infrastructure.Middleware
 		private ITempDataProvider _tempDataProvider;
 		private IServiceProvider _serviceProvider;
 		private static string _internalErrorPath;
-		private static bool _useCustomPage;
+		private static bool _useCustomErrors;
 
-		public static void SetOnce(string internalErrorPath, bool useCustomPage)
+		public static void SetOnce(string internalErrorPath)
 		{
 			if (!string.IsNullOrWhiteSpace(_internalErrorPath)) return;
 
 			_internalErrorPath = internalErrorPath;
-			_useCustomPage = useCustomPage;
 		}
 
-		public ExceptionMiddleWare(RequestDelegate next, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
+		public ExceptionMiddleWare(RequestDelegate next, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider, ISystemSettings settings)
 		{
 			_next = next;
 			_tempDataProvider = tempDataProvider;
 			_serviceProvider = serviceProvider;
+			_useCustomErrors = settings.UseCustomErrors;
 		}
 
-		public async Task InvokeAsync(HttpContext context, IRazorViewEngine viewEngine)
+		public async Task InvokeAsync(HttpContext context, IRazorViewEngine viewEngine, ISystemSettings settings)
 		{
 			try
 			{
@@ -57,17 +59,19 @@ namespace Ziro.Web.Infrastructure.Middleware
 			context.Response.Clear();
 			context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-			if (_useCustomPage)	return;
+			var error = new ErrorModel();
+			error.Error = _useCustomErrors ? "Internal Server Error" : ex.ToString();
+			error.StatusCode = (int)HttpStatusCode.InternalServerError;
+			var errorJson = JsonConvert.SerializeObject(error);
 
-			var errorString = ex.ToString();
-			await context.Response.WriteAsync(errorString);
+			await context.Response.WriteAsync(errorJson);
 		}
 
 		private async Task ProcessException(HttpContext context, Exception ex, IRazorViewEngine viewEngine)
 		{
 			context.Response.Clear();
 
-			if (_useCustomPage)
+			if (_useCustomErrors)
 			{
 				context.Response.Redirect(_internalErrorPath);
 				return;
@@ -85,81 +89,5 @@ namespace Ziro.Web.Infrastructure.Middleware
 			httpContext.RequestServices = _serviceProvider;
 			return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
 		}
-
-
-
-
-		//private Task DisplayCompilationException(
-		//	HttpContext context,
-		//	ICompilationException compilationException)
-		//{
-		//	var model = new CompilationErrorPageModel
-		//	{
-		//		Options = _options,
-		//	};
-
-		//	var errorPage = new CompilationErrorPage
-		//	{
-		//		Model = model
-		//	};
-
-		//	if (compilationException.CompilationFailures == null)
-		//	{
-		//		return errorPage.ExecuteAsync(context);
-		//	}
-
-		//	foreach (var compilationFailure in compilationException.CompilationFailures)
-		//	{
-		//		if (compilationFailure == null)
-		//		{
-		//			continue;
-		//		}
-
-		//		var stackFrames = new List<StackFrameSourceCodeInfo>();
-		//		var exceptionDetails = new ExceptionDetails
-		//		{
-		//			StackFrames = stackFrames,
-		//			ErrorMessage = compilationFailure.FailureSummary,
-		//		};
-		//		model.ErrorDetails.Add(exceptionDetails);
-		//		model.CompiledContent.Add(compilationFailure.CompiledContent);
-
-		//		if (compilationFailure.Messages == null)
-		//		{
-		//			continue;
-		//		}
-
-		//		var sourceLines = compilationFailure
-		//				.SourceFileContent?
-		//				.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-
-		//		foreach (var item in compilationFailure.Messages)
-		//		{
-		//			if (item == null)
-		//			{
-		//				continue;
-		//			}
-
-		//			var frame = new StackFrameSourceCodeInfo
-		//			{
-		//				File = compilationFailure.SourceFilePath,
-		//				Line = item.StartLine,
-		//				Function = string.Empty
-		//			};
-
-		//			if (sourceLines != null)
-		//			{
-		//				_exceptionDetailsProvider.ReadFrameContent(frame, sourceLines, item.StartLine, item.EndLine);
-		//			}
-
-		//			frame.ErrorDetails = item.Message;
-
-		//			stackFrames.Add(frame);
-		//		}
-		//	}
-
-		//	return errorPage.ExecuteAsync(context);
-		//}
-
 	}
 }

@@ -15,7 +15,7 @@ namespace Ziro.Web.Controllers.api
 			return Json(data);
 		}
 
-		[Authorize(Roles = nameof(Roles.User))]
+		[Authorize(Roles = nameof(Roles.Administrator))]
 		public IActionResult TestAdmin()
 		{
 			var data = new TestDataResponse { Data = "TestData available for ADMINISTRATOR only", Success = true};
@@ -29,6 +29,14 @@ namespace Ziro.Web.Controllers.api
 			var data = new TestDataResponse { Data = "TestData available for USER only", Success = true };
 
 			return Json(data);
+		}
+
+		[AllowAnonymous]
+		public IActionResult TestError()
+		{
+			throw new System.Exception("error: connection to database is failed");
+
+			return Json(null);
 		}
 	}
 }

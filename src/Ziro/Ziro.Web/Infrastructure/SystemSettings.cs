@@ -3,5 +3,6 @@
 	public class SystemSettings : ISystemSettings
 	{
 		public string ConnectionString { get; set; }
+		public bool UseCustomErrors { get; set; }
 	}
 }

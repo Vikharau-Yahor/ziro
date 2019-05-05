@@ -5,9 +5,9 @@ namespace Ziro.Web.Infrastructure.Extensions.Statrup
 {
 	public static class ExceptionExtensions
 	{
-		public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder, string internalErrorPath, bool useCustomPage)
+		public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder, string internalErrorPath)
 		{
-			ExceptionMiddleWare.SetOnce(internalErrorPath, useCustomPage);
+			ExceptionMiddleWare.SetOnce(internalErrorPath);
 			return builder.UseMiddleware<ExceptionMiddleWare>();
 		}
 	}
