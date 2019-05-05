@@ -21,6 +21,9 @@ class Header extends Component {
                   <li className="menu__item">
                       <Link to ="/authorization">Authorization</Link>
                   </li>
+                  <li className="menu__item">
+                      <Link to ="/adminpanel">Adminka</Link>
+                  </li>
                 </ul> 
               </div>
               <div className="profile-wrap">

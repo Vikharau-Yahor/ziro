@@ -1,6 +1,7 @@
 
 export function fetchData(url, httpMethod, requestData, successFunc, errorFunc) {
-    fetch(`http://localhost:49763/${url}`, {
+   //fetch(`http://ziroweb.azurewebsites.net/${url}`, { 
+   fetch(`http://localhost:49763/${url}`, {
         method: httpMethod,
         headers: {
             'Accept': 'application/json',

@@ -1,0 +1,29 @@
+.grid__item {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   & > div {
+      margin: 0;
+   }
+}
+
+.upload__item {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   & > div {
+      min-height: auto;
+      padding: 10px;
+   }
+   .upload__text {
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 1rem;
+   }
+   .upload__tip {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+   }
+   p {
+      display: none;
+   }
+}

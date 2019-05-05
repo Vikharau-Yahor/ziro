@@ -1,0 +1,22 @@
+.grid__item {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .grid__item > div {
+    margin: 0; }
+
+.upload__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; }
+  .upload__item > div {
+    min-height: auto;
+    padding: 10px; }
+  .upload__item .upload__text {
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 1rem; }
+  .upload__item .upload__tip {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px; }
+  .upload__item p {
+    display: none; }
