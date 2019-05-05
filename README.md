@@ -6,4 +6,7 @@ Projects manangement and task tracking system
 * src - contains project implementation (code, modules, resources and etc)
 
 ## References
-* Used ASP.Net Core 2.1 - https://github.com/aspnet/Security/tree/release/2.2
+* Api documentation - https://github.com/Vikharau-Yahor/ziro/blob/develop/src/Ziro/README.md
+
+## Technologies
+* ASP.Net Core 2.2 - https://github.com/aspnet/Security/tree/release/2.2
