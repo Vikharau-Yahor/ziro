@@ -15,7 +15,11 @@ namespace Ziro.Persistence.Mappings
 				m.Length(255);
 				m.NotNullable(notnull: true);
 			});
-
+			Property(x => x.ShortName, m =>
+			{
+				m.Length(5);
+				m.NotNullable(notnull: true);
+			});
 			Property(x => x.Description, m =>
 			{
 				m.Length(4000);
