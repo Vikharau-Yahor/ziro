@@ -49,7 +49,6 @@ Role: not required
 
 ***Request***:
 
-Data:
 ```sh  
 {  
   "email":"test@dom.com",   
@@ -70,11 +69,11 @@ Role: not required
 
 ***Request***:
 
-Data: null
+```sh 
+null
+```
 
 ***Response***:
-
-Errors: no
 
 Data: null
 
@@ -84,13 +83,10 @@ Role: not required
 
 ***Request***:
 
-Data:
 ```sh  
 null
 ```  
 ***Response***: 
-
-Errors: no
 
 Data:
 
@@ -107,7 +103,6 @@ Role: User
 
 ***Request***:
 
-Data:
 ```sh  
 null
 ```  
@@ -128,7 +123,6 @@ Role: Admin
 
 ***Request***:
 
-Data:
 ```sh  
 null
 ```  
@@ -149,7 +143,6 @@ Role: not required
 
 ***Request***:
 
-Data:
 ```sh  
 null
 ```  
