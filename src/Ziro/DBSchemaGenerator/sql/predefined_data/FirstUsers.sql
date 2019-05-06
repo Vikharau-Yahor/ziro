@@ -20,4 +20,15 @@ INSERT INTO [dbo].[Ziro_User]
            '1111',
            1)
 
+INSERT INTO [dbo].[Ziro_User]
+           ([Id]
+           ,[Email]
+           ,[PasswordHash]
+           ,[Role])
+     VALUES
+           ('6B2F9976-6A3C-4AF8-A9CC-D0921741CE87',
+           'admin@mail.com',
+           'admin',
+           0)
+
 

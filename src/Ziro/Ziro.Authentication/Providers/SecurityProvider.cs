@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace Ziro.Authentication.Providers
 
 		public async Task LogoutAsync(HttpContext httpContext)
 		{
+			httpContext.Response.Cookies.Delete("role");
+			httpContext.Response.Cookies.Delete("email");
 			await httpContext.SignOutAsync(SettingsDefault.AuthSchemeName);
 		}
 	}

@@ -46,7 +46,7 @@ namespace Ziro.Web.Controllers.api.Account
 			{
 				await _authenticationProvider.SignInAsync(HttpContext, creds.Email, user.Role.ToString());
 
-				return SuccessResult();
+				return SuccessResult(new { role = user.Role.ToString()});
 			}
 
 			errors.Add("Email or Password are incorret");

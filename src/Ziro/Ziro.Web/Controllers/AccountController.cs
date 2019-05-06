@@ -42,7 +42,7 @@ namespace Ziro.Web.Controllers
 			if (user != null)
 			{
 				await _authenticationProvider.SignInAsync(HttpContext, vm.Email, user.Role.ToString());
-
+				
 				return RedirectToAction("Index", "Home");
 			}
 
