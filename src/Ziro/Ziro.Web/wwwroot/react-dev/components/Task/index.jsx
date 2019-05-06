@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import './task.css'
 import '../Tasks/tasks.css'
-
+import { isUserAuthenticated } from '../../utils.js'
 
 const data = [ {
     'id': 'C-11',
@@ -30,7 +30,11 @@ class Task extends Component {
         super(props);
         this.state = {
             data: data
-        }
+		}
+		if (!isUserAuthenticated()) {
+			this.props.history.push('/authorization');
+			return;
+		}
     }
     render() {
         return (

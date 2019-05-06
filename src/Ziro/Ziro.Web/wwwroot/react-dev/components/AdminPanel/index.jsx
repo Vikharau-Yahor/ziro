@@ -14,6 +14,7 @@ import { DropzoneArea } from 'material-ui-dropzone'
 import { DropzoneDialog } from 'material-ui-dropzone';
 import withStyles from '@material-ui/core/styles/withStyles';
 import './adminpanel.css'
+import { isUserAuthenticated } from '../../utils.js'
 
 const styles = theme => ({
    root: {
@@ -48,7 +49,13 @@ const styles = theme => ({
 
 class AdminPanel extends Component {
    constructor(props) {
-      super(props);
+	   super(props);
+
+	   if (!isUserAuthenticated()) {
+		   this.props.history.push('/authorization');
+		   return;
+	   }
+
       this.state = {
          files: []
       };

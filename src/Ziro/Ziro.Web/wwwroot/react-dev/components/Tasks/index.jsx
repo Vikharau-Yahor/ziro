@@ -12,6 +12,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import './tasks.css'
+import { isUserAuthenticated } from '../../utils.js'
 
 const styles = theme => ({
     paper: {
@@ -59,7 +60,11 @@ class Tasks extends Component {
         super(props);
         this.state = {
             data: data
-        }
+		}
+		if (!isUserAuthenticated()) {
+			this.props.history.push('/authorization');
+			return;
+		}
     }
 
         render() {

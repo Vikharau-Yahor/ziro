@@ -28,7 +28,8 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "js-cookie": "2.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",

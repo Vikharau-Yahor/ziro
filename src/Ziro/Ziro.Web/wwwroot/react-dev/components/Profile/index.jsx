@@ -11,6 +11,7 @@ import { blue, red, yellow, purple, green } from '@material-ui/core/colors';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ava from '../../img/ava_e-v.jpg'
 import './profile.css'
+import { isUserAuthenticated } from '../../utils.js'
 
 const styles = theme => ({
     paper: {
@@ -42,9 +43,13 @@ const styles = theme => ({
 
 
 class Profile extends Component {
-    //constructor(props) {
-        //super(props)
-    //}    
+	constructor(props) {
+		super(props);
+		if (!isUserAuthenticated()) {
+			this.props.history.push('/authorization');
+			return;
+		}
+	}
     render() {
         const { classes } = this.props;
         return (

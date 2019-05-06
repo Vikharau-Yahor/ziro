@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import './team.css'
-
+import { isUserAuthenticated } from '../../utils.js'
 
 const styles = theme => ({
     paper: {
@@ -14,6 +14,14 @@ const styles = theme => ({
 });
 
 class Team extends Component {
+	constructor(props) {
+		super(props);
+		if (!isUserAuthenticated()) {
+			this.props.history.push('/authorization');
+			return;
+		}
+	}
+
     render(){
         const { classes } = this.props;
         return(

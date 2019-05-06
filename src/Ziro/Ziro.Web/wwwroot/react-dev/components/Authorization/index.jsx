@@ -17,9 +17,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { Redirect } from 'react-router';
-import { fetchData } from '../../utils.js';
-
+import { fetchPostData, setCookies, isCurRoleUser, isCurRoleAdmin } from '../../utils.js';
+import CookieEventManager  from '../../events.js'
 
 const styles = theme => ({
    paper: {
@@ -61,9 +60,9 @@ class Authorization extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         email: 'test@mail.com',
-         password: '123',
-         showPassword: false,
+		email: 'testUser@mail.com',
+        password: '523',
+		showPassword: false
       };
       this.handleClick = this.handleClick.bind(this);
       this.successLogin = this.successLogin.bind(this);
@@ -80,17 +79,26 @@ class Authorization extends Component {
       this.setState({ password: e.target.value });
    }
 
-   successLogin(response) {
-      var responseText = JSON.stringify(response);
-      this.setState({ email: '' });
-      alert(responseText);
-      return <Redirect to="/adminpanel" />
-      
-   }
+	successLogin(response) {
+		var responseText = JSON.stringify(response);
+		this.setState({ password: '' });
+		alert(responseText);
+		if (!response.errors) {
+			setCookies(this.state.email, response.data.role);
+			if (isCurRoleUser()) {
+				this.props.history.push('/');
+			}
+			else if (isCurRoleAdmin()) {
+				this.props.history.push('/adminpanel');
+			}
+			CookieEventManager.invokeCookieChanged();
+		}	
+	}
 
    errorLogin(error) {
       alert(error);
    }
+
 
    handleClick(e) {
       e.preventDefault();
@@ -98,7 +106,7 @@ class Authorization extends Component {
          email: this.state.email,
          password: this.state.password
       };
-      fetchData('api/account/login', 'POST', requestData, this.successLogin, this.errorLogin);
+	  fetchPostData('api/account/login', requestData, this.successLogin, this.errorLogin);
    }
 
    render() {
