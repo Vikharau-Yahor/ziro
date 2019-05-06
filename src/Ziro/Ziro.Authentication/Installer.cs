@@ -18,6 +18,8 @@ namespace Ziro.Authentication
 			});
 
 			services.AddTransient<IAuthenticationProvider, SecurityProvider>();
+			services.AddSingleton<IAuthenticatedUserProvider, AuthenticatedUserProvider>();
+
 			services.AddAuthentication(SettingsDefault.AuthSchemeName)
 			  .AddCookieWithApiSupport(options =>
 			  {

@@ -10,15 +10,16 @@ namespace Ziro.Authentication.Providers
 {
 	public class SecurityProvider : IAuthenticationProvider
 	{
-		public async Task SignInAsync(HttpContext httpContext, string email, string role)
+		public async Task SignInAsync(HttpContext httpContext, string email, string role, Guid userId)
 		{
 			var claims = new List<Claim>
 			{
-				new Claim(ClaimsIdentity.DefaultNameClaimType, email),
-				new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+				new Claim(SettingsDefault.EmailClaimType, email),
+				new Claim(SettingsDefault.RoleClaimType, role),
+				new Claim(SettingsDefault.UserIdClaimType, userId.ToString(), nameof(Guid))
 			};
 
-			ClaimsIdentity id = new ClaimsIdentity(claims, SettingsDefault.AuthType, ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+			ClaimsIdentity id = new ClaimsIdentity(claims, SettingsDefault.AuthType, SettingsDefault.EmailClaimType, SettingsDefault.RoleClaimType);
 			await httpContext.SignInAsync(SettingsDefault.AuthSchemeName, new ClaimsPrincipal(id));
 		}
 

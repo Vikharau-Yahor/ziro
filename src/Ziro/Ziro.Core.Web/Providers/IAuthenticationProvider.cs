@@ -8,7 +8,7 @@ namespace Ziro.Core.Web.Providers
 {
 	public interface IAuthenticationProvider
 	{
-		Task SignInAsync(HttpContext httpContext, string email, string role);
+		Task SignInAsync(HttpContext httpContext, string email, string role, Guid userId);
 		Task LogoutAsync(HttpContext httpContext);
 	}
 }

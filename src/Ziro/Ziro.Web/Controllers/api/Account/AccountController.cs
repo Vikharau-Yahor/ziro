@@ -15,7 +15,7 @@ namespace Ziro.Web.Controllers.api.Account
 		private readonly IUserService _userService;
 		private readonly IAuthenticationProvider _authenticationProvider;
 
-		public AccountController(IUserService userService, IAuthenticationProvider authenticationProvider)
+		public AccountController(IUserService userService, IAuthenticationProvider authenticationProvider, IAuthenticatedUserProvider authenticatedUserProvider): base(authenticatedUserProvider)
 		{
 			_userService = userService;
 			_authenticationProvider = authenticationProvider;
@@ -44,7 +44,7 @@ namespace Ziro.Web.Controllers.api.Account
 
 			if (user != null)
 			{
-				await _authenticationProvider.SignInAsync(HttpContext, creds.Email, user.Role.ToString());
+				await _authenticationProvider.SignInAsync(HttpContext, creds.Email, user.Role.ToString(), user.Id);
 
 				return SuccessResult(new { role = user.Role.ToString()});
 			}

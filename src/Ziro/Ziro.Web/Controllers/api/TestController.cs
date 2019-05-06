@@ -1,13 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using Ziro.Core.Enums;
+using Ziro.Core.Web.Providers;
 using Ziro.Web.Areas.Models.api.Test;
 
 namespace Ziro.Web.Controllers.api
 {
 	public class TestController : BaseApiController
 	{
+		public TestController(IAuthenticatedUserProvider authenticatedUserProvider) : base(authenticatedUserProvider)
+		{	}
+
 		[AllowAnonymous]
 		public IActionResult TestAnonym()
 		{
