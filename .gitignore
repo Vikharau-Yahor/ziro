@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 # React generated budles
-src/Ziro/Ziro\.Web/wwwroot/dist/
+wwwroot/dist/*

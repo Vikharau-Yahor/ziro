@@ -138,9 +138,9 @@ namespace Ziro.Web
 					.SetReuseJavaScriptEngines(true)
 					.SetLoadBabel(false)
 					.SetLoadReact(false)
-					.AddScriptWithoutTransform("~/dist/runtime.js")
+					.AddScriptWithoutTransform("~/dist/bundle.js")
 					.AddScriptWithoutTransform("~/dist/vendor.bundle.js")
-					.AddScriptWithoutTransform("~/dist/components.bundle.js");
+					.AddScriptWithoutTransform("~/dist/main.bundle.js");
 			});
 			app.UseCookiePolicy();
 
