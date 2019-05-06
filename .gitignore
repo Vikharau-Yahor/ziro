@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 # React generated budles
-wwwroot/dist/*
+**/wwwroot/dist/
