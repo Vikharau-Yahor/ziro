@@ -44,11 +44,10 @@ Examples:
 ## Provided API
 In next descriptions Data or Response data means "data" field of response (see response structure in **Common API response structure chapter**) 
 ### Authentication API urls
-#### 1) POST api/account/login - for user authentication
-Role: Anonym
+#### 1) POST api/account/login - user authentication
+Role: not required
 
 ***Request***:
-
 
 Data:
 ```sh  
@@ -59,8 +58,6 @@ Data:
 ```  
 ***Response***: 
 
-Errors: possible validation errors
-
 Headers: cookies
 
 Data:
@@ -68,8 +65,8 @@ Data:
 ```sh 
 null
 ```
-#### 2) GET api/account/logout - for user sign out (remove user coockies)
-Role: Anonym
+#### 2) GET api/account/logout - user logout (remove user coockies)
+Role: not required
 
 ***Request***:
 
@@ -83,7 +80,7 @@ Data: null
 
 ### Test API urls
 #### 1) GET api/test/testanonym - test request (no any authorization required)
-Role: Anonym
+Role: not required
 
 ***Request***:
 
@@ -116,8 +113,6 @@ null
 ```  
 ***Response***: 
 
-Errors: no
-
 Data:
 
 ```sh 
@@ -139,8 +134,6 @@ null
 ```  
 ***Response***: 
 
-Errors: no
-
 Data:
 
 ```sh 
@@ -152,7 +145,7 @@ Data:
 }
 ```
 #### 4) GET api/test/testerror - test request (no authorization required)
-Role: Anonym
+Role: not required
 
 ***Request***:
 
