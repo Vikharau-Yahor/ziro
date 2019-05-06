@@ -148,9 +148,15 @@ namespace Ziro.Web
 			app.UseAuthentication();
 			app.UseMvc(routes =>
 			{
-				routes.MapRoute(
-					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
+				routes.MapRoute("authorize",
+					"authorization",
+					new { controller = "Home", action = "Index" }
+				);
+
+				routes.MapRoute("default",
+					"{controller}/{action}/{id?}",
+					new { controller = "Home", action = "Index" }
+				);
 			});
 		}
 	}

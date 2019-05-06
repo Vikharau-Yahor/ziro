@@ -17,6 +17,7 @@ namespace Ziro.Web.Controllers
 			_userService = userService;
 		}
 
+		[AllowAnonymous]
 		public IActionResult Index()
 		{
 			return View();
