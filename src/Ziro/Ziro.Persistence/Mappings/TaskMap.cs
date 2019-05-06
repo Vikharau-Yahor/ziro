@@ -11,6 +11,7 @@ namespace Ziro.Persistence.Mappings
 			Id(x => x.Id, m => m.Generator(Generators.Guid));
 			Property(x => x.Number, m => m.NotNullable(notnull: true));
 			Property(x => x.Type, m => m.NotNullable(notnull: true));
+			Property(x => x.Status, m => m.NotNullable(notnull: true));
 			Property(x => x.Title, m =>
 			{
 				m.Length(400);

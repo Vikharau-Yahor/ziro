@@ -9,6 +9,7 @@ namespace Ziro.Domain.Entities
 		public virtual Guid Id { get; set; }
 		public virtual int Number { get; set; }
 		public virtual byte Type { get; set; }
+		public virtual byte Status { get; set; }
 		public virtual string Title { get; set; }
 		public virtual string Description { get; set; }
 		public virtual byte Priority { get; set; }

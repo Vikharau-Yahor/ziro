@@ -17,6 +17,7 @@ BEGIN
 	ALTER TABLE Ziro_Task 
 	ADD Number INT NOT NULL CONSTRAINT DC_Ziro_Task_Number_Temp DEFAULT 1111,
 		[Type] TINYINT NOT NULL CONSTRAINT DC_Ziro_Task_Type_Temp DEFAULT 0,
+		[Status] TINYINT NOT NULL CONSTRAINT DC_Ziro_Task_Status_Temp DEFAULT 0,
 		[Description] NVARCHAR(MAX) NULL, 
 		[Priority] TINYINT NOT NULL CONSTRAINT DC_Ziro_Task_Priority_Temp DEFAULT 0,
 		EstimatedTime FLOAT(53) NULL, 
@@ -27,6 +28,7 @@ BEGIN
 		OwnerId UNIQUEIDENTIFIER NULL;
 	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_Number_Temp
 	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_Type_Temp
+	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_Status_Temp
 	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_Priority_Temp
 	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_CreationDate_Temp
 	ALTER TABLE Ziro_Task DROP CONSTRAINT DC_Ziro_Task_LastUpdateDate_Temp
