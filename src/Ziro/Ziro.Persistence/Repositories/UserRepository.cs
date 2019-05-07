@@ -1,8 +1,13 @@
 ﻿using NHibernate;
+using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 using Ziro.Core.DataAccess.Repositories;
 using Ziro.Domain.Entities;
+using Ziro.Core.DTO;
+using NHibernate.SqlCommand;
+using System.Linq;
+using NHibernate.Transform;
 
 namespace Ziro.Persistence.Repositories
 {
@@ -15,6 +20,19 @@ namespace Ziro.Persistence.Repositories
 			_session = session;
 		}
 
+		public UserProfileDTO GetProfile(Guid id)
+		{
+			Position positionAlias = null;
+			var query = _session.QueryOver<User>()
+				.JoinAlias(x => x.Position, () => positionAlias, JoinType.LeftOuterJoin)
+				.Where(x => x.Id == id);
+			query = mapOnProfile(query);
+
+			var result = query.SingleOrDefault<UserProfileDTO>();
+			
+			return result;
+		}
+
 		public User Get(Guid id)
 		{
 			var query = _session.QueryOver<User>().Where(x => x.Id == id);
@@ -23,6 +41,7 @@ namespace Ziro.Persistence.Repositories
 
 			return result;
 		}
+
 
 		public User Get(string email, string password)
 		{
@@ -39,6 +58,25 @@ namespace Ziro.Persistence.Repositories
 			var result = query.List<User>();
 
 			return result;
+		}
+
+
+		private IQueryOver<User, User> mapOnProfile(IQueryOver<User, User> query)
+		{
+			Position positionAlias = null;
+			UserProfileDTO resultDTO = null;
+			return query.SelectList(list => list
+				.Select(x => x.Id).WithAlias(() => resultDTO.Id)
+				.Select(x => x.Name).WithAlias(() => resultDTO.Name)
+				.Select(x => x.Email).WithAlias(() => resultDTO.Email)
+				.Select(x => x.LastName).WithAlias(() => resultDTO.LastName)
+				.Select(x => x.Skype).WithAlias(() => resultDTO.Skype)
+				.Select(x => x.PhoneNumber).WithAlias(() => resultDTO.PhoneNumber)
+				.Select(x => x.DateOfBirth).WithAlias(() => resultDTO.DateOfBirth)
+				.Select(x => positionAlias.Name).WithAlias(() => resultDTO.Position)
+				.Select(x => positionAlias.Id).WithAlias(() => resultDTO.PositionId)
+			)
+			.TransformUsing(Transformers.AliasToBean<UserProfileDTO>());
 		}
 	}
 }

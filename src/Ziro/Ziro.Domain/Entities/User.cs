@@ -13,7 +13,7 @@ namespace Ziro.Domain.Entities
 		public virtual string LastName { get; set; }
 		public virtual string Skype { get; set; }
 		public virtual string PhoneNumber { get; set; }
-		public virtual DateTime DateOfBirth { get; set; }
+		public virtual DateTime? DateOfBirth { get; set; }
 		public virtual Position Position{ get; set; }
 		public virtual ISet<Project> Projects { get; set; }
 	}

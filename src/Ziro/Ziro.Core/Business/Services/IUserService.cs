@@ -7,5 +7,6 @@ namespace Ziro.Core.Business.Services
 	{
 		UserDTO GetUser(Guid id);
 		UserDTO GetUser(string email, string password);
+		UserProfileDTO GetUserProfile(Guid id);
 	}
 }

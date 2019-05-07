@@ -28,6 +28,11 @@ namespace Ziro.Business.Services
 			return result?.ToDTO();
 		}
 
+		public UserProfileDTO GetUserProfile(Guid id)
+		{
+			var result = _userRepository.GetProfile(id);
+			return result;
+		}
 		//example
 		//public void Test()
 		//{
