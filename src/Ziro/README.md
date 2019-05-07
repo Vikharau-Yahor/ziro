@@ -324,3 +324,34 @@ null
   "4":"Блокирующий"
 }
 ```
+### Projects API
+#### 1) GET api/project/getCurrentProjects - get current user projects
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "projects":
+  [
+    {
+      "id":"15a09976-6a3c-4af8-a9cc-d0921741ce87",
+      "name":"Twitter",
+      "shortName":"TWIT",
+      "description":"Социальная сеть для публичного обмена сообще...."
+    },
+    {
+      "id":"15f09976-6a3c-4af8-a9cc-d0921741ce87",
+      "name":"Facebook",
+      "shortName":"FB",
+      "description":"Популярная с публикации, выставлять оценки страница....."
+    }
+  ]
+}
+```
