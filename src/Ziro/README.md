@@ -6,12 +6,12 @@
 Server sends 200 (Ok) if response processed successfully and all erros where handled.
 
 Structure:
-
-	{
-		"errors":[],   
-		"data":{}
-	}
-	
+```
+{
+  "errors":[],   
+  "data":{}
+}
+```	
 errors - (array of strings) any validation or other business errors
 
 data - (object) response data (depends on requested api method)
@@ -25,11 +25,12 @@ Examples:
 Server sends error object if some negative situation occured.
 
 Structure:
-
-	{
-		"StatusCode": 0,
-		"Error":""
-	}
+```
+{
+  "StatusCode": 0,
+  "Error":""
+}
+```
 
 All possible situations and their status codes:
 * 404 - not Found
@@ -90,7 +91,8 @@ null
 ***Response***: 
 
 ```sh 
-"data": {
+"data": 
+{
   "info":"TestData available for All",
   "someBool":true,
   "someArray":[1,23,54],
@@ -108,7 +110,8 @@ null
 ***Response***: 
 
 ```sh 
-"data": {
+"data": 
+{
   "info":"TestData available for USER only",
   "someBool":true,
   "someArray":[1,23,54],
@@ -126,7 +129,7 @@ null
 ***Response***: 
 
 ```sh 
-"data":
+"data": 
 {
   "info":"TestData available for Admin only",
   "someBool":true,
