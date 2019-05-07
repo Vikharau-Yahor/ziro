@@ -103,6 +103,7 @@ namespace Ziro.Web
 			// Services
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<ITaskService, TaskService>();
+			services.AddTransient<IProjectService, ProjectService>();
 			// Repositories
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<ITaskRepository, TaskRepository>();

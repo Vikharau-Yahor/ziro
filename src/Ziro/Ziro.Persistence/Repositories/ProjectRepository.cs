@@ -21,6 +21,17 @@ namespace Ziro.Persistence.Repositories
 
 			var result = query.SingleOrDefault();
 			return result;
-		}	
+		}
+
+		public IEnumerable<Project> GetAll(Guid userId)
+		{
+			User userAlias = null;
+			var query = _session.QueryOver<Project>()
+				.JoinAlias(x => x.Users, () => userAlias)
+				.Where(x => userAlias.Id == userId);
+
+			var result = query.List();
+			return result;
+		}
 	}
 }

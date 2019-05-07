@@ -7,5 +7,6 @@ namespace Ziro.Core.DataAccess.Repositories
 	public interface IProjectRepository
 	{
 		Project Get(Guid Id);
+		IEnumerable<Project> GetAll(Guid userId);
 	}
 }
