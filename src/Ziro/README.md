@@ -42,7 +42,8 @@ Examples:
 * {"StatusCode":500,"Error":"System.Exception: error: test server error\r\n..................."}
 
 ## Provided API
-In next descriptions Data or Response data means "data" field of response (see response structure in **Common API response structure chapter**) 
+All API return response:
+``` { "errors":[], "data":{}} ```
 ### Authentication API
 #### 1) POST api/account/login - user authentication
 Role: not required
@@ -89,8 +90,7 @@ null
 ***Response***: 
 
 ```sh 
-"data":
-{
+"data": {
   "info":"TestData available for All",
   "someBool":true,
   "someArray":[1,23,54],
@@ -108,8 +108,7 @@ null
 ***Response***: 
 
 ```sh 
-"data":
-{
+"data": {
   "info":"TestData available for USER only",
   "someBool":true,
   "someArray":[1,23,54],
@@ -161,17 +160,17 @@ null
 ```sh 
 "data":
 {
-	"id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
-	"name":"Сергей",
-	"lastName":"Шикайло",
-	"email":"testUser@mail.com",
-	"skype":null,
-	"phoneNumber":null,
-	"position":
-	{
-		"id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
-		"name":"Software Engineeer"
-	},
-	"dateOfBirth":"1994-03-11T00:00:00"
+  "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+  "name":"Сергей",
+  "lastName":"Шикайло",
+  "email":"testUser@mail.com",
+  "skype":null,
+  "phoneNumber":null,
+  "position":  
+  {
+    "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+    "name":"Software Engineeer"
+  },
+  "dateOfBirth":"11.03.1994"  // format: dd.MM.yyyy
 }
 ```
