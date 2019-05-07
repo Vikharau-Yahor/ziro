@@ -43,7 +43,7 @@ Examples:
 
 ## Provided API
 In next descriptions Data or Response data means "data" field of response (see response structure in **Common API response structure chapter**) 
-### Authentication API urls
+### Authentication API
 #### 1) POST api/account/login - user authentication
 Role: not required
 
@@ -59,10 +59,8 @@ Role: not required
 
 Headers: cookies
 
-Data:
-
 ```sh 
-null
+"data": null
 ```
 #### 2) GET api/account/logout - user logout (remove user coockies)
 Role: not required
@@ -75,9 +73,11 @@ null
 
 ***Response***:
 
-Data: null
+```sh 
+"data": null
+```
 
-### Test API urls
+### Test API
 #### 1) GET api/test/testanonym - test request (no any authorization required)
 Role: not required
 
@@ -88,9 +88,8 @@ null
 ```  
 ***Response***: 
 
-Data:
-
 ```sh 
+"data":
 {
   "info":"TestData available for All",
   "someBool":true,
@@ -108,9 +107,8 @@ null
 ```  
 ***Response***: 
 
-Data:
-
 ```sh 
+"data":
 {
   "info":"TestData available for USER only",
   "someBool":true,
@@ -128,9 +126,8 @@ null
 ```  
 ***Response***: 
 
-Data:
-
 ```sh 
+"data":
 {
   "info":"TestData available for Admin only",
   "someBool":true,
@@ -149,3 +146,32 @@ null
 ***Response***: 
 
 Internal server error (see response structure in **Failure response** chapter)
+
+### User API
+#### 1) GET api/user/getProfile - get current user profile
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+	"id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+	"name":"Сергей",
+	"lastName":"Шикайло",
+	"email":"testUser@mail.com",
+	"skype":null,
+	"phoneNumber":null,
+	"position":
+	{
+		"id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+		"name":"Software Engineeer"
+	},
+	"dateOfBirth":"1994-03-11T00:00:00"
+}
+```
