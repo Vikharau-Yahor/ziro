@@ -3,14 +3,14 @@ INSERT INTO [dbo].[Ziro_Position]
            ,[Name])
      VALUES
            ('93409976-6A3C-4AF8-A9CC-D0921741CE87'
-           ,'Software Engineeer')
+           ,'Инженер-программист')
 
 INSERT INTO [dbo].[Ziro_Position]
            ([Id]
            ,[Name])
      VALUES
            ('77409976-AA3C-4AF8-A9CC-D0921741CE87'
-           ,'Project Manager')
+           ,'Менеджер проекта')
 
 INSERT INTO [dbo].[Ziro_User]
            ([Id]
