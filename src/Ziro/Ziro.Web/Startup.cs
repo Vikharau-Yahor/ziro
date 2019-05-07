@@ -99,12 +99,15 @@ namespace Ziro.Web
 					options.SuppressMapClientErrors = true;
 					options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = false;
 				});
-			//other services
+			#region Other 
+			// Services
 			services.AddTransient<IUserService, UserService>();
+			services.AddTransient<ITaskService, TaskService>();
+			// Repositories
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<ITaskRepository, TaskRepository>();
 			services.AddTransient<IProjectRepository, ProjectRepository>();
-
+			#endregion
 			services.AddSingleton<IResourceProvider, ResourceProvider>();
 		}
 
