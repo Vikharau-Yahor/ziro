@@ -32,6 +32,8 @@ using Ziro.Web.Validators;
 using Ziro.Web.Validators.Account;
 using Ziro.Web.Models.api;
 using Newtonsoft.Json;
+using Ziro.Core.Web.Providers;
+using Ziro.Web.Providers;
 
 namespace Ziro.Web
 {
@@ -102,6 +104,8 @@ namespace Ziro.Web
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<ITaskRepository, TaskRepository>();
 			services.AddTransient<IProjectRepository, ProjectRepository>();
+
+			services.AddSingleton<IResourceProvider, ResourceProvider>();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
