@@ -265,3 +265,62 @@ Role: User
    }
 }
 ```
+#### 3) GET api/task/getAvailableStatuses - get all available task statuses ("number": "name")
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "0":"Открыто",
+  "1":"Выполняется",
+  "3":"Тестирование",
+  "4":"Завершено",
+  "2":"Верификация"
+}
+```
+#### 4) GET api/task/getAvailableTypes - get all available task types ("number": "name")
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "0":"Задача",
+  "3":"Под-задача",
+  "2":"Нововведение",
+  "1":"Дефект"
+}
+```
+#### 5) GET api/task/getavailablePriorities - get all available task priorities ("number": "name")
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "0":"Тривиальный",
+  "1":"Низкий",
+  "2":"Высокий",
+  "3":"Критический",
+  "4":"Блокирующий"
+}
+```
