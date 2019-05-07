@@ -177,3 +177,91 @@ null
   "dateOfBirth":"11.03.1994"  // format: dd.MM.yyyy
 }
 ```
+
+### Tasks API
+#### 1) GET api/task/getCurrentTasks - get current user tasks
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "tasks":
+  [
+    {
+      "id":"22f09976-6a3c-4af8-a9cc-d0921741ce87",
+      "number":"TWIT-1",
+      "typeNum":1,
+      "type":"Нововведение",
+      "statusNum":0,
+      "status":"Открыто",
+      "title":"Исправление порядка сортировки комментариев",
+      "description":"Комментарии должны быть отсортир...",
+      "priorityNum":2,
+      "priority":"Высокий",
+      "projectName":"Twitter"
+    },
+    {
+      "id":"a5f39976-6a3c-4af8-a9cc-d0921741ce87",
+      "number":"TWIT-2",
+      "typeNum":0,
+      "type":"Дефект",
+      "statusNum":1,
+      ................
+    }
+  ]
+}
+```
+#### 2) POST api/task/getTaskDetails - get task details by task id
+Role: User
+
+***Request***:
+
+```sh  
+{
+  taskId: '{F8839976-6A3C-4AF8-A9CC-D0921741CE87}'
+}
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "id":"f8839976-6a3c-4af8-a9cc-d0921741ce87",
+  "number":"FB-1",
+  "typeNum":2,
+  "type":"Под-задача",
+  "statusNum":0,
+  "status":"Открыто",
+  "title":"[Документация] Подготовить документы для заказчика",
+  "description":"- Описать проблемы, \r\n\t\t  ...",
+  "priorityNum":3,
+  "priority":"Критический",
+  "estimatedTime":40,
+  "spentTime":65,
+  "creationDate":"01.05.2019",
+  "lastUpdateDate":"05.05.2019",
+  "project":
+  {
+    "id":"15f09976-6a3c-4af8-a9cc-d0921741ce87",
+    "name":"Facebook",
+    "shortName":"FB"
+   },
+   "assignee":
+   {
+     "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
+     "fullName":"Ургант Максим"
+   },
+   "owner":
+   {
+     "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
+     "fullName":"Ургант Максим"
+   }
+}
+```
