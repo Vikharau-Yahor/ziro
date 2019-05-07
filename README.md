@@ -17,6 +17,3 @@ User creds:
 
 ## Technologies
 * ASP.Net Core 2.2 - https://github.com/aspnet/Security/tree/release/2.2
-
-## Ziro Web hosting
-http://ziroweb.azurewebsites.net/
