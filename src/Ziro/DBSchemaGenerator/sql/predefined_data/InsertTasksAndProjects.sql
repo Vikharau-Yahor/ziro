@@ -1,14 +1,35 @@
 -- projects
-INSERT INTO [dbo].[Ziro_Project]
+INSERT INTO [dbo].[Ziro_Project]           
+			([Id]
+           ,[Name]
+           ,[ShortName]
+           ,[Description])
 VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
            'Twitter','TWIT','Социальная сеть для публичного обмена сообщениями при помощи веб-интерфейса, SMS, средств мгновенного обмена сообщениями или сторонних программ-клиентов для пользователей интернета любого возраста')
 
 INSERT INTO [dbo].[Ziro_Project]
+			([Id]
+           ,[Name]
+           ,[ShortName]
+           ,[Description])
 VALUES('15F09976-6A3C-4AF8-A9CC-D0921741CE87',
            'Facebook','FB','Популярная социальная сеть в качестве продвижения товаров или услуг компаний. Facebook предоставляет пользователям возможность оставлять отзывы, так как подписчики могут комментировать публикации, выставлять оценки страницам брендов, чтобы их могли видеть другие. Facebook может ссылаться на страницу продукта в Twitter, а также отправлять напоминания о событиях')
 
 -- tasks
-INSERT INTO [dbo].[Ziro_Task]
+INSERT INTO [dbo].[Ziro_Task]([Id]
+           ,[Number]
+           ,[Type]
+           ,[Status]
+           ,[Title]
+           ,[Description]
+           ,[Priority]
+           ,[EstimatedTime]
+           ,[SpentTime]
+           ,[CreationDate]
+           ,[LastUpdateDate]
+           ,[ProjectId]
+           ,[AssigneeId]
+           ,[OwnerId])
 VALUES('22F09976-6A3C-4AF8-A9CC-D0921741CE87',
 			1, --number
 			1, --type
@@ -25,7 +46,20 @@ VALUES('22F09976-6A3C-4AF8-A9CC-D0921741CE87',
 		   'A32F9976-6A3C-4AF8-A9CC-D0921741CE87' -- owner
 		   )
 
-INSERT INTO [dbo].[Ziro_Task]
+INSERT INTO [dbo].[Ziro_Task] ([Id]
+           ,[Number]
+           ,[Type]
+           ,[Status]
+           ,[Title]
+           ,[Description]
+           ,[Priority]
+           ,[EstimatedTime]
+           ,[SpentTime]
+           ,[CreationDate]
+           ,[LastUpdateDate]
+           ,[ProjectId]
+           ,[AssigneeId]
+           ,[OwnerId])
 VALUES('A5F39976-6A3C-4AF8-A9CC-D0921741CE87',
 			2, --number
 			0, --type
@@ -44,7 +78,20 @@ VALUES('A5F39976-6A3C-4AF8-A9CC-D0921741CE87',
 		   '93A09976-6A3C-4AF8-A9CC-D0921741CE87' -- owner
 		   )
 
-INSERT INTO [dbo].[Ziro_Task]
+INSERT INTO [dbo].[Ziro_Task]([Id]
+           ,[Number]
+           ,[Type]
+           ,[Status]
+           ,[Title]
+           ,[Description]
+           ,[Priority]
+           ,[EstimatedTime]
+           ,[SpentTime]
+           ,[CreationDate]
+           ,[LastUpdateDate]
+           ,[ProjectId]
+           ,[AssigneeId]
+           ,[OwnerId])
 VALUES('F8839976-6A3C-4AF8-A9CC-D0921741CE87',
 			1, --number
 			2, --type
@@ -66,12 +113,15 @@ VALUES('F8839976-6A3C-4AF8-A9CC-D0921741CE87',
 		   )
 
 -- project to users
-INSERT INTO [dbo].[Ziro_Project_User]
+INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
+           ,[UserId])
 VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
            '93A09976-6A3C-4AF8-A9CC-D0921741CE87')
-INSERT INTO [dbo].[Ziro_Project_User]
+INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
+           ,[UserId])
 VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
            'A32F9976-6A3C-4AF8-A9CC-D0921741CE87')
-INSERT INTO [dbo].[Ziro_Project_User]
+INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
+           ,[UserId])
 VALUES('15F09976-6A3C-4AF8-A9CC-D0921741CE87',
            'A32F9976-6A3C-4AF8-A9CC-D0921741CE87')
