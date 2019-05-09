@@ -11,5 +11,9 @@ namespace Ziro.Web.Models.api.Project
 		public string Name { get; set; }
 		public string ShortName { get; set; }
 		public string Description { get; set; }
+
+		public int TasksTotalCount { get; set; }
+		public int TasksInProgressCount { get; set; }
+		public int TasksOpenCount { get; set; }
 	}
 }

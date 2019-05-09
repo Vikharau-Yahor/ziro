@@ -107,7 +107,8 @@ namespace Ziro.Web
 			// Repositories
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<ITaskRepository, TaskRepository>();
-			services.AddTransient<IProjectRepository, ProjectRepository>();
+			services.AddTransient<IProjectRepository, ProjectRepository>(); 
+			services.AddTransient<IProjectViewRepository, ProjectViewRepository>();
 			#endregion
 			services.AddSingleton<IResourceProvider, ResourceProvider>();
 		}

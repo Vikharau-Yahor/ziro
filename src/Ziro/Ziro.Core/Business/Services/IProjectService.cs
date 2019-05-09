@@ -7,6 +7,6 @@ namespace Ziro.Core.Business.Services
 {
 	public interface IProjectService
 	{
-		IList<ProjectDTO> GetProjects(Guid userId);
+		IList<ProjectViewDTO> GetProjects(Guid userId);
 	}
 }

@@ -11,16 +11,16 @@ namespace Ziro.Business.Services
 	public class ProjectService : IProjectService
 	{
 		private readonly IProjectRepository _projectRepository;
-
-		public ProjectService(IProjectRepository projectRepository)
+		private readonly IProjectViewRepository _projectViewRepository;
+		public ProjectService(IProjectRepository projectRepository, IProjectViewRepository projectViewRepository)
 		{
 			_projectRepository = projectRepository;
+			_projectViewRepository = projectViewRepository;
 		}
 
-		public IList<ProjectDTO> GetProjects(Guid userId)
+		public IList<ProjectViewDTO> GetProjects(Guid userId)
 		{
-			var entities = _projectRepository.GetAll(userId);
-			var result = entities.Select(x => x.ToDTO()).ToList();
+			var result = _projectViewRepository.Get(userId).ToList();
 			return result;
 		}
 	}

@@ -5,6 +5,7 @@ using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Ziro.Persistence;
 using Ziro.Persistence.Mappings;
@@ -44,7 +45,9 @@ namespace DBSchemaGenerator
 			.SetNamingStrategy(new ZiroNamingStrategy());
 
 			var mapper = new ModelMapper();
-			mapper.AddMappings(Assembly.GetAssembly(typeof(UserMap)).GetExportedTypes());
+			var exlcudedTypes = new Type[] { typeof(ProjectViewMap) };
+			var types = Assembly.GetAssembly(typeof(UserMap)).GetExportedTypes().Where(x=> !exlcudedTypes.Contains(x));
+			mapper.AddMappings(types);
 			var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
 			nhConfiguration.AddMapping(mapping);
 			return nhConfiguration;
