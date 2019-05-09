@@ -262,6 +262,39 @@ Role: User
    {
      "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
      "fullName":"Ургант Максим"
+   },
+   "comments":
+   [{
+      "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+      "author":
+      {
+        "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+        "fullName":"Шикайло Сергей"
+      },
+      "text":"Необходимо обсудить детали",
+      "leavingDate":"11.04.2019"
+    },
+    {
+      "id":"1275eb07-ec2f-4fef-aeb3-70e9e5868f41",
+      .....
+    }
+  }],
+  "logWorks":
+  [{
+     "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+     "author":
+     {
+       "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+       "fullName":"Шикайло Сергей"
+     },
+     "text":"Обсуждение задачи",
+     "leavingDate":"12.04.2019",
+     "spentTimeHours":1.5
+   },
+   {
+     "id":"1575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+     "author":
+     ......
    }
 }
 ```
@@ -309,6 +342,39 @@ Role: User
    {
      "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
      "fullName":"Ургант Максим"
+   },
+   "comments":
+   [{
+      "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+      "author":
+      {
+        "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+        "fullName":"Шикайло Сергей"
+      },
+      "text":"Необходимо обсудить детали",
+      "leavingDate":"11.04.2019"
+    },
+    {
+      "id":"1275eb07-ec2f-4fef-aeb3-70e9e5868f41",
+      .....
+    }
+  }],
+  "logWorks":
+  [{
+     "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+     "author":
+     {
+       "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+       "fullName":"Шикайло Сергей"
+     },
+     "text":"Обсуждение задачи",
+     "leavingDate":"12.04.2019",
+     "spentTimeHours":1.5
+   },
+   {
+     "id":"1575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+     "author":
+     ......
    }
 }
 ```
