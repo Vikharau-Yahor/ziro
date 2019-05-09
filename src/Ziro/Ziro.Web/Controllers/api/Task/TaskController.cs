@@ -86,7 +86,7 @@ namespace Ziro.Web.Controllers.api
 			var taskId = request.TaskId;
 			var task = _taskService.GetDetails(taskId);
 			var response = task.ToTaskDetails(_resourceProvider);
-
+			response.Comments = new List<TaskDetailsComment>();
 			return SuccessResult(response);
 		}
 

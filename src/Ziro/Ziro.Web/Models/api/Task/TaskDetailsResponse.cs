@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ziro.Web.Models.api.Task
 {
 	public class TaskDetailsResponse
 	{
+		public TaskDetailsResponse()
+		{
+			Comments = new List<TaskDetailsComment>();
+			LogWorks = new List<TaskDetailsLogWork>();
+		}
+
 		public Guid Id { get; set; }
 		public string Number { get; set; }
 		public byte TypeNum { get; set; }
@@ -21,6 +28,25 @@ namespace Ziro.Web.Models.api.Task
 		public TaskProject Project { get; set; }
 		public TaskUser Assignee { get; set; }
 		public TaskUser Owner { get; set; }
+		public IList<TaskDetailsComment> Comments { get; set; }
+		public IList<TaskDetailsLogWork> LogWorks { get; set; }
+	}
+
+	public class TaskDetailsComment
+	{
+		public Guid Id { get; set; }
+		public TaskUser Author { get; set; }
+		public string Text { get; set; }
+		public string LeavingDate { get; set; }
+	}
+
+	public class TaskDetailsLogWork
+	{
+		public Guid Id { get; set; }
+		public TaskUser Author { get; set; }
+		public string Text { get; set; }
+		public string LeavingDate { get; set; }
+		public double SpentTimeHours { get; set; }
 	}
 
 	public class TaskUser

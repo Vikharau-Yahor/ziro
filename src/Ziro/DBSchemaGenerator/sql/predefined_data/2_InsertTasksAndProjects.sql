@@ -120,6 +120,10 @@ VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
 INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
            ,[UserId])
 VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
+           'F4CC4000-7DDC-4CB9-B09E-1E6879F48CF3')
+INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
+           ,[UserId])
+VALUES('15A09976-6A3C-4AF8-A9CC-D0921741CE87',
            'A32F9976-6A3C-4AF8-A9CC-D0921741CE87')
 INSERT INTO [dbo].[Ziro_Project_User]([ProjectId]
            ,[UserId])

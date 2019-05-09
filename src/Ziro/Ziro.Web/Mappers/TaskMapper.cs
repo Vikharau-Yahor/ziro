@@ -55,7 +55,9 @@ namespace Ziro.Web.Mappers
 				LastUpdateDate = dto.LastUpdateDate.ToResponseDate(),
 				Project = new TaskProject(dto.ProjectId, dto.ProjectName, dto.ShortProjectName),
 				Assignee = new TaskUser(dto.AssigneeId, dto.AssigneeName, dto.AssigneeLastName),
-				Owner = new TaskUser(dto.OwnerId, dto.OwnerName, dto.OwnerLastName)
+				Owner = new TaskUser(dto.OwnerId, dto.OwnerName, dto.OwnerLastName),
+				Comments = dto.Comments.Select(x => x.ToCommentResponse()).ToList(),
+				LogWorks = dto.LogWorks.Select(x => x.ToLogWorkResponse()).ToList()
 			};
 
 			return result;

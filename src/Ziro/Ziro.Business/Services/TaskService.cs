@@ -12,10 +12,14 @@ namespace Ziro.Business.Services
 	public class TaskService : ITaskService
 	{
 		private readonly ITaskRepository _taskRepository;
+		private readonly ICommentRepository _commentRepository;
+		private readonly ILogWorkRepository _logWorkRepository;
 
-		public TaskService(ITaskRepository taskRepository)
+		public TaskService(ITaskRepository taskRepository, ICommentRepository commentRepository, ILogWorkRepository logWorkRepository)
 		{
 			_taskRepository = taskRepository;
+			_commentRepository = commentRepository;
+			_logWorkRepository = logWorkRepository;
 		}
 
 		public IList<ShortTaskDTO> GetShort(Guid userId)
@@ -27,6 +31,11 @@ namespace Ziro.Business.Services
 		public TaskDetailsDTO GetDetails(Guid id)
 		{
 			var result = _taskRepository.GetDetails(id);
+			var comments = _commentRepository.GetAll(id);
+			var logWorks = _logWorkRepository.GetAll(id);
+			result.Comments = comments.OrderBy(x => x.LeavingDate).ToList();
+			result.LogWorks = logWorks.OrderBy(x => x.LeavingDate).ToList();
+			result.SpentTime = logWorks.Sum(x => x.SpentTimeHours);
 			return result;
 		}
 

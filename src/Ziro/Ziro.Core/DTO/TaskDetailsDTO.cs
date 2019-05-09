@@ -26,6 +26,8 @@ namespace Ziro.Core.DTO
 		public Guid OwnerId { get; set; }
 		public string OwnerName { get; set; }
 		public string OwnerLastName { get; set; }
+		public IList<LogWorkDTO> LogWorks { get; set; }
+		public IList<CommentDTO> Comments { get; set; }
 		public string FullNumber => string.Format(Consts.TaskNumberTemplate, this.ShortProjectName, this.Number);
 	}
 }
