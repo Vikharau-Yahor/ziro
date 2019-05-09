@@ -391,13 +391,18 @@ null
       "id":"15a09976-6a3c-4af8-a9cc-d0921741ce87",
       "name":"Twitter",
       "shortName":"TWIT",
-      "description":"Социальная сеть для публичного обмена сообще...."
+      "description":"Социальная сеть для публичного обмена сообще....",
+      "tasksTotalCount":2,
+      "tasksInProgressCount":1,
+      "tasksOpenCount":1
     },
     {
       "id":"15f09976-6a3c-4af8-a9cc-d0921741ce87",
       "name":"Facebook",
       "shortName":"FB",
-      "description":"Популярная с публикации, выставлять оценки страница....."
+      "description":"Популярная с публикации, выставлять оценки страница.....",
+      "tasksTotalCount":2,
+      .....
     }
   ]
 }
