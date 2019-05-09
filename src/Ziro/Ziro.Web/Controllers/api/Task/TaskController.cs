@@ -90,5 +90,16 @@ namespace Ziro.Web.Controllers.api
 			return SuccessResult(response);
 		}
 
+		[Authorize(Roles = nameof(Roles.User))]
+		[HttpPost]
+		public IActionResult GetTaskDetailsByNumber([FromBody]GetTaskDetailsRequestByNumber request)
+		{
+			var taskId = request.TaskNumber;
+			var task = _taskService.GetDetails(taskId);
+			var response = task.ToTaskDetails(_resourceProvider);
+
+			return SuccessResult(response);
+		}
+
 	}
 }

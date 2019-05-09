@@ -10,5 +10,6 @@ namespace Ziro.Core.DataAccess.Repositories
 		Task Get(Guid Id);
 		IEnumerable<ShortTaskDTO> GetShort(Guid userId);
 		TaskDetailsDTO GetDetails(Guid id);
+		TaskDetailsDTO GetDetails(int number, string projectShortName);
 	}
 }

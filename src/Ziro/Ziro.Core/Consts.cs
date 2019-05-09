@@ -2,6 +2,7 @@
 {
 	public class Consts
 	{
-		public const string TaskNumberTemplate = "{0}-{1}";
+		public const string TaskNumberSeparator = "-";
+		public const string TaskNumberTemplate = "{0}" + TaskNumberSeparator + "{1}";
 	}
 }

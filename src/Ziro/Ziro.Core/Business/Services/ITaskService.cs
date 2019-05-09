@@ -8,5 +8,6 @@ namespace Ziro.Core.Business.Services
 	{
 		IList<ShortTaskDTO> GetShort(Guid userId);
 		TaskDetailsDTO GetDetails(Guid id);
+		TaskDetailsDTO GetDetails(string taskNumber);
 	}
 }

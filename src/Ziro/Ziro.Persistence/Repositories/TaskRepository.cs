@@ -43,6 +43,23 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
+		public TaskDetailsDTO GetDetails(int number, string projectShortName)
+		{
+			Project projectAlias = null;
+			User assigneeAlias = null;
+			User ownerAlias = null;
+
+			var query = _session.QueryOver<Task>()
+				.JoinAlias(x => x.Project, () => projectAlias, JoinType.InnerJoin)
+				.JoinAlias(x => x.Assignee, () => assigneeAlias, JoinType.InnerJoin)
+				.JoinAlias(x => x.Owner, () => ownerAlias, JoinType.InnerJoin)
+				.Where(x => x.Number == number && projectAlias.ShortName == projectShortName);
+			query = mapOnTaskDetails(query);
+			var result = query.SingleOrDefault<TaskDetailsDTO>();
+
+			return result;
+		}
+
 		public IEnumerable<ShortTaskDTO> GetShort(Guid userId)
 		{
 			Project projectAlias = null;
