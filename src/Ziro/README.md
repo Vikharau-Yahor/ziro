@@ -265,7 +265,54 @@ Role: User
    }
 }
 ```
-#### 3) GET api/task/getAvailableStatuses - get all available task statuses ("number": "name")
+#### 3) POST api/task/getTaskDetailsByNumber - get task details by task number (FB-1, TWIT-234, and etc)
+Role: User
+
+***Request***:
+
+```sh  
+{
+  taskNumber: 'FB-1'
+}
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "id":"f8839976-6a3c-4af8-a9cc-d0921741ce87",
+  "number":"FB-1",
+  "typeNum":2,
+  "type":"Под-задача",
+  "statusNum":0,
+  "status":"Открыто",
+  "title":"[Документация] Подготовить документы для заказчика",
+  "description":"- Описать проблемы, \r\n\t\t  ...",
+  "priorityNum":3,
+  "priority":"Критический",
+  "estimatedTime":40,
+  "spentTime":65,
+  "creationDate":"01.05.2019",
+  "lastUpdateDate":"05.05.2019",
+  "project":
+  {
+    "id":"15f09976-6a3c-4af8-a9cc-d0921741ce87",
+    "name":"Facebook",
+    "shortName":"FB"
+   },
+   "assignee":
+   {
+     "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
+     "fullName":"Ургант Максим"
+   },
+   "owner":
+   {
+     "id":"a32f9976-6a3c-4af8-a9cc-d0921741ce87",
+     "fullName":"Ургант Максим"
+   }
+}
+```
+#### 4) GET api/task/getAvailableStatuses - get all available task statuses ("number": "name")
 Role: User
 
 ***Request***:
@@ -285,7 +332,7 @@ null
   "2":"Верификация"
 }
 ```
-#### 4) GET api/task/getAvailableTypes - get all available task types ("number": "name")
+#### 5) GET api/task/getAvailableTypes - get all available task types ("number": "name")
 Role: User
 
 ***Request***:
@@ -304,7 +351,7 @@ null
   "1":"Дефект"
 }
 ```
-#### 5) GET api/task/getavailablePriorities - get all available task priorities ("number": "name")
+#### 6) GET api/task/getavailablePriorities - get all available task priorities ("number": "name")
 Role: User
 
 ***Request***:
