@@ -45,6 +45,11 @@ namespace Ziro.Business.Services
 			var projectShortName = split[0];
 			var number = Int32.Parse(split[1]);
 			var result = _taskRepository.GetDetails(number, projectShortName);
+			var comments = _commentRepository.GetAll(result.Id);
+			var logWorks = _logWorkRepository.GetAll(result.Id);
+			result.Comments = comments.OrderBy(x => x.LeavingDate).ToList();
+			result.LogWorks = logWorks.OrderBy(x => x.LeavingDate).ToList();
+			result.SpentTime = logWorks.Sum(x => x.SpentTimeHours);
 			return result;
 		}
 	}
