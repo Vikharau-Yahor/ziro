@@ -17,6 +17,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import {indigo, blueGrey} from '@material-ui/core/colors';
+
 import { fetchPostData, setCookies, isCurRoleUser, isCurRoleAdmin } from '../../utils.js';
 import CookieEventManager  from '../../events.js'
 
@@ -34,7 +36,7 @@ const styles = theme => ({
    },
    avatar: {
       margin: theme.spacing.unit,
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: indigo[400],
    },
    form: {
       //width: '92%', // Fix IE 11 issue.
@@ -49,22 +51,26 @@ const styles = theme => ({
    remember: {
       display: 'flex'
    },
+   eye: {
+      color: blueGrey[300]
+   },
    submit: {
       display: 'flex',
       width: '50%',
       margin: `${theme.spacing.unit * 3}px auto 0`,
-   },
+   }
 });
+
 
 class Authorization extends Component {
    constructor(props) {
       super(props);
       this.state = {
-		email: 'testUser@mail.com',
-        password: '523',
-		showPassword: false
+		   email: 'testUser@mail.com',
+         password: '523',
+		   showPassword: false
       };
-      this.handleClick = this.handleClick.bind(this);
+      //this.handleClick = this.handleClick.bind(this);
       this.successLogin = this.successLogin.bind(this);
    }
 
@@ -80,9 +86,9 @@ class Authorization extends Component {
    }
 
 	successLogin(response) {
-		var responseText = JSON.stringify(response);
-		this.setState({ password: '' });
-		alert(responseText);
+      //var responseText = JSON.stringify(response);
+      //alert(responseText);
+		this.setState({ password: '' });		
 		if (!response.errors) {
 			setCookies(this.state.email, response.data.role);
 			if (isCurRoleUser()) {
@@ -99,8 +105,8 @@ class Authorization extends Component {
       alert(error);
    }
 
-
-   handleClick(e) {
+   //handleClick(e) {
+   handleClick = (e) => {
       e.preventDefault();
       var requestData = {
          email: this.state.email,
@@ -119,7 +125,7 @@ class Authorization extends Component {
                </Avatar>
                <Typography color="textPrimary" component="h1" variant="h5">Вход</Typography>
                <form className={`${classes.form} authorization-form`} action="">
-                  <FormControl error margin="normal" required fullWidth>
+                  <FormControl margin="normal" required fullWidth>
                      <InputLabel htmlFor="email">Email</InputLabel>
                      <Input id="email" type="email" name="email" autoComplete="email" autoFocus value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
                      <Typography className={classes.errorMessage} component="span" variant="p">error</Typography>
@@ -138,6 +144,7 @@ class Authorization extends Component {
                              <IconButton
                                aria-label="Toggle password visibility"
                                onClick={this.handleClickShowPassword}
+                               className={classes.eye}
                              >
                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                              </IconButton>
@@ -150,7 +157,7 @@ class Authorization extends Component {
                      control={<Checkbox value="remember" color="primary" />}
                      label="Запомнить"
                   />
-                  <Button variant="contained" color="primary" onClick={this.handleClick} className={classes.submit}>Войти</Button>
+                     <Button variant="contained" color="primary" onClick={this.handleClick} className={classes.submit}>Войти</Button>
                </form>
             </Paper>
          </div>

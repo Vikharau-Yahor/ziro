@@ -19,6 +19,7 @@
     "@material-ui/icons": "^3.0.2",
     "@types/date-fns": "^2.6.0",
     "date-fns": "^1.30.1",
+    "js-cookie": "2.2.0",
     "material-ui-dropzone": "^2.3.5",
     "material-ui-pickers": "^2.2.4",
     "node-sass": "^4.11.0",
@@ -28,8 +29,7 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
-    "js-cookie": "2.2.0"
+    "react-scripts": "2.1.8"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",

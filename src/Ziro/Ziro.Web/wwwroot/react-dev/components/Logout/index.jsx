@@ -7,7 +7,7 @@ class Logout extends Component {
       super(props);
 	  this.errorLogout = this.errorLogout.bind(this);
 	  this.successLogout = this.successLogout.bind(this);
-	  fetchGetData('api/account/logout', null, this.successLogout, this.errorLogout);
+	  fetchGetData('api/account/logout', this.successLogout, this.errorLogout);
    }
 
 	successLogout(response) {		

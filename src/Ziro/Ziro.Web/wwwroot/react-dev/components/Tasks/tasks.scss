@@ -1,40 +1,107 @@
 .tasks__block {
-    width: 300px;
     background: #f6f6f6;
+    padding: 30px;
 }
 
 .tasks__item {
     display: block;
     border-bottom: 1px solid #ccc;
-    padding: 10px 25px;
+    padding: 20px 25px;
 }
 
 .item__header {
-    display: flex;
+   display: flex;
+   align-items: center;
 }
 
-.task__status-icon {
-    margin-right: 20px;
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-}
-.task__status-icon.s0 {
-    background: rgb(173, 173, 173);
-}
-.task__status-icon.s1 {
-    background: rgb(2, 163, 42);
-}
-.task__status-icon.s2 {
-    background: rgb(36, 14, 230);
+// .item__status-icon {
+//     margin-right: 20px;
+//     width: 20px;
+//     height: 20px;
+//     border-radius: 5px;
+// }
+// .item__status-icon.s0 {
+//     background: rgb(173, 173, 173);
+// }
+// .item__status-icon.s1 {
+//     background: rgb(2, 163, 42);
+// }
+// .item__status-icon.s2 {
+//     background: rgb(36, 14, 230);
+// }
+
+.item__status, .item__type {
+   padding: 5px 10px;
+   border-radius: 5px;
+   text-align: center;
+   color: #fff;
+   background: rgba(63, 125, 219, .8);
 }
 
-.task__id {
+// .item__status_s0 {
+//    background: rgba(173, 173, 173, .8)
+// }
+// .item__status_s1 {
+//    background: rgba(2, 250, 64, .8)
+// }
+// .item__status_s2 {
+//    background: rgba(7, 102, 253, .8)
+// }
+// .item__status_s3 {
+//    background: rgba(240, 236, 0, .8)
+// }
+// .item__status_s4 {
+//    background: rgba(1, 170, 43, .8)
+// }
+
+// .item__type {
+//    background: rgba(63, 125, 219, .8);
+// }
+
+
+.item__priority-icon {
+   margin-right: 20px;
+   width: 20px;
+   height: 20px;
+   border-radius: 5px;
+}
+
+.item__priority-icon.p0,
+.item__priority-icon.p1 {
+   background: rgb(201, 201, 201);
+}
+.item__priority-icon.p2 {
+   background: rgb(240, 236, 0);
+}
+.item__priority-icon.p3 {
+   background: rgb(243, 44, 44);
+}
+.item__priority-icon.p4 {
+   background: rgb(153, 0, 0);
+}
+
+.item__number {
+   font-size: 1.25em;
     color: rgb(63, 125, 219);
     font-weight: 600;
 }
 
-.item__name {
-    margin-top: 5px;
+.item__name{
     color: #333;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.item__description {
+   color: #333;
+}
+
+.item__state {
+   display: flex;
+   align-items: center;
+   margin: 15px 0;
+   span {
+      margin-right: 15px;
+   }
 }

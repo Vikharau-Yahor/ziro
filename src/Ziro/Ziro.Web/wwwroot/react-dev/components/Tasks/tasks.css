@@ -1,34 +1,59 @@
 .tasks__block {
-  width: 300px;
-  background: #f6f6f6; }
+  background: #f6f6f6;
+  padding: 30px; }
 
 .tasks__item {
   display: block;
   border-bottom: 1px solid #ccc;
-  padding: 10px 25px; }
+  padding: 20px 25px; }
 
 .item__header {
-  display: flex; }
+  display: flex;
+  align-items: center; }
 
-.task__status-icon {
+.item__status, .item__type {
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  background: rgba(63, 125, 219, 0.8); }
+
+.item__priority-icon {
   margin-right: 20px;
   width: 20px;
   height: 20px;
   border-radius: 5px; }
 
-.task__status-icon.s0 {
-  background: #adadad; }
+.item__priority-icon.p0,
+.item__priority-icon.p1 {
+  background: #c9c9c9; }
 
-.task__status-icon.s1 {
-  background: #02a32a; }
+.item__priority-icon.p2 {
+  background: #f0ec00; }
 
-.task__status-icon.s2 {
-  background: #240ee6; }
+.item__priority-icon.p3 {
+  background: #f32c2c; }
 
-.task__id {
+.item__priority-icon.p4 {
+  background: #990000; }
+
+.item__number {
+  font-size: 1.25em;
   color: #3f7ddb;
   font-weight: 600; }
 
 .item__name {
-  margin-top: 5px;
+  color: #333;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-left: 20px; }
+
+.item__description {
   color: #333; }
+
+.item__state {
+  display: flex;
+  align-items: center;
+  margin: 15px 0; }
+  .item__state span {
+    margin-right: 15px; }

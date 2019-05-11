@@ -21,7 +21,7 @@ class Content extends Component {
                     <Route path="/authorization" component={Authorization} />
 					<Route path="/logout" component={Logout} />
 
-                    <Route path="/task" component={Task} />
+                    <Route path="/task/:task_number" component={Task} />
                     <Route path="/adminpanel" component={AdminPanel} />
                     <Route component={NotFound} />
                 </Switch>

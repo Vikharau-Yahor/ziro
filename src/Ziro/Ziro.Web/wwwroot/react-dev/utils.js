@@ -16,7 +16,7 @@ export function fetchPostData(url, requestData, successFunc, errorFunc) {
     .catch(error => errorFunc(error));
 }
 
-export function fetchGetData(url, requestData, successFunc, errorFunc) {
+export function fetchGetData(url, successFunc, errorFunc) {
 	fetch(`${website}/${url}`, {
 		method: 'GET',
 		headers: {

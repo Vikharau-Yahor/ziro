@@ -1,98 +1,79 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import AddIcon from '@material-ui/icons/Add';
-import SvgIcon from '@material-ui/core/SvgIcon';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-
 import './tasks.css'
-import { isUserAuthenticated } from '../../utils.js'
+import { fetchGetData, isUserAuthenticated } from '../../utils.js'
 
 const styles = theme => ({
-    paper: {
-        overflowX: 'auto',        
-    }    
+   paper: {
+      overflowX: 'auto',
+   }
 });
 
 
-const data = [ {
-        'id': 'C-11',
-        'status_id': 's0',
-        'priority': 'normal',
-        'name': 'fix color submit button'
-    },
-    {
-        'id': 'C-21',
-        'status_id': 's1',
-        'priority': 'critical',
-        'name': 'Need to fix links in the DB' 
-    },
-    {
-        'id': 'C-31',
-        'status_id': 's2', 
-        'priority': 'normal',
-        'name': 'change information on home page' 
-    }
-  ]
-
-// class Tasks extends Component {
-//     render() {
-//         const { classes } = this.props;
-//         return (
-//             <div className="container">
-//                 <Typography color="textPrimary" component="h1" variant="h4">Current tasks</Typography>
-//                 <Paper className={classes.paper}>
-//                     <TasksTable data={data} />
-//                 </Paper>
-//             </div>
-//         )
-//     }
-// }
-
 class Tasks extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: data
-		}
-		if (!isUserAuthenticated()) {
-			this.props.history.push('/authorization');
-			return;
-		}
-    }
+   constructor(props) {
+      super(props);
+      this.state = {
+         tasks: []
+      }
+      if (!isUserAuthenticated()) {
+         this.props.history.push('/authorization');
+         return;
+      }
+      fetchGetData('api/task/getCurrentTasks', this.successGetData, this.errorGetData);
+   }
 
-        render() {
-        const { classes } = this.props;
-        return (
-            <div className="container">
-                <div className="tasks__block">
-                    {data.map((elem, index) =>
-                    <Link to ="/task" className="tasks__item" key={index}>
-                        <div className="item__header">
-                            <div className={`${elem.status_id} task__status-icon`}>{elem.status}</div>
-                            <div className="task__id">{elem.id}</div>
-                        </div>
-                        {/* <div className="item__description"> */}
-                        <p className="item__name">{elem.name}</p>
-                        {/* </div> */}
-                    </Link>
-                    )}
-                </div>
+   successGetData = (response) => {
+      //var responseText = JSON.stringify(response.data.tasks);
+      //alert(responseText);
+      var tasks = response.data.tasks;
+      if (!response.errors) {
+         this.setState({
+            tasks: tasks
+         })
+      }
+   }
+
+   errorGetData = (error) => {
+      alert(error);
+   }
+
+   render() {
+      //const { classes } = this.props;
+      return (
+         <div className="container flex">
+            <div className="filter__block">
+               <p>Фильтры</p>
+               <Icon>filter_list</Icon>
             </div>
-        )
-    }
+            <Paper className="tasks__block">
+               {this.state.tasks.map((elem, index) =>
+                  <Link to={`/task/${elem.number}`} params={{ id: elem.id }} className="tasks__item" key={index}>
+                     <div className="item__header">                        
+                        <div className="item__number">{elem.number}</div>
+                        <p className="item__name">{elem.title}</p>
+                     </div>
+                     <div className="item__state">                        
+                        <span className={`p${elem.priorityNum} item__priority-icon`}></span>
+                        <span className={`item__status item__status_s${elem.statusNum}`}>{elem.status}</span>
+                        <span className="item__type">{elem.type}</span>                                                
+                     </div>
+                     <p className="item__description">{elem.description}</p>
+                  </Link>
+               )}
+            </Paper>
+         </div>
+      )
+   }
 }
 
-
-
 Tasks.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+   classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Tasks)

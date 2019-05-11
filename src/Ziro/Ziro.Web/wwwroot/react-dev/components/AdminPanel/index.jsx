@@ -1,17 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { DropzoneArea } from 'material-ui-dropzone'
-import { DropzoneDialog } from 'material-ui-dropzone';
 import withStyles from '@material-ui/core/styles/withStyles';
 import './adminpanel.css'
 import { isUserAuthenticated } from '../../utils.js'
@@ -106,16 +103,6 @@ class AdminPanel extends Component {
                      <Grid className="grid__item" item xs={12} sm={6}>
                         <TextField
                            required
-                           id="patronymic"
-                           name="patronymic"
-                           label="Отчество"
-                           fullWidth
-                           autoComplete="patronymic"
-                        />
-                     </Grid>
-                     <Grid className="grid__item" item xs={12} sm={6}>
-                        <TextField
-                           required
                            id="email"
                            name="email"
                            label="Email"
@@ -125,24 +112,12 @@ class AdminPanel extends Component {
                         />
                      </Grid>
                      <Grid className="grid__item" item xs={12} sm={6}>
-                        <TextField
-                           required
+                        <TextField                           
                            id="skype"
                            name="skype"
                            label="Skype"
                            fullWidth
                            autoComplete="skype"
-                        />
-                     </Grid>
-                     <Grid className="grid__item" item xs={12} sm={6}>
-                        <TextField
-                           required
-                           id="phone"
-                           name="phone"
-                           label="Контактный телефон"
-                           type="phone"
-                           fullWidth
-                           autoComplete="phone"
                         />
                      </Grid>
                      <Grid className="grid__item" item xs={12} sm={6}>
@@ -170,25 +145,6 @@ class AdminPanel extends Component {
                               <MenuItem value={105}>IOS developer</MenuItem>
                            </Select>
                         </FormControl>
-                     </Grid>
-                     <Grid className="grid__item" item xs={12} sm={6}>
-                        <TextField
-                           required
-                           id="date"
-                           label="Дата рождения"
-                           type="date"
-                           fullWidth
-                           InputLabelProps={{
-                              shrink: true,
-                           }}
-                        />
-                     </Grid>
-                     <Grid className="grid__item upload__item" item xs={12} sm={6}>
-                     <Typography className="upload__text" component="h6" variant="h6">Выберите фото профиля</Typography>
-                     <Typography className="upload__tip" component="span" variant="h6">Перетяните изображение сюда или кликните</Typography>
-                        <DropzoneArea
-                           onChange={this.handleUpload.bind(this)}
-                        />
                      </Grid>
                      <Grid className="grid__item" item xs={12}>
                         <Button type="submit" variant="contained" color="primary">Сохранить</Button>
