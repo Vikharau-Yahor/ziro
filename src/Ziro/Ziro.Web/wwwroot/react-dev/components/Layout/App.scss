@@ -50,22 +50,26 @@ a, a:hover {
   text-decoration: none;
 }
 
+p {
+   font-size: 1.125em;
+}
+
 #root {
-    height: 100%;
     min-height: 100%;
     position: relative;
     padding-bottom: 80px;
     box-sizing: border-box;
 }
 
-main {
-
-}
 
 .container {
   width: 80%;
   margin: 0 auto;
   height: 100%;
+}
+
+.container.flex {
+   display: flex;
 }
 
 header {
@@ -80,7 +84,8 @@ header {
     font-size: 1.75em;
     span {
       font-size: 2.5rem;
-      color: red;
+      color: #3f51b5;
+      font-weight: 900;
     }
   }
 }
