@@ -198,6 +198,49 @@ File
   "FileDownloadName": ''
 }
 ```
+#### 3) GET api/user/getTeamMembers - get current users colleguas
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+[
+  {
+    "projectId":"15a09976-6a3c-4af8-a9cc-d0921741ce87",
+    "projectName":"Twitter",
+    "members":
+    [
+      {
+        "id":"f4cc4000-7ddc-4cb9-b09e-1e6879f48cf3",
+        "name":"Дарья",
+        "lastName":"Шевченко",
+        "email":"qa@mail.com",
+        "phoneNumber":"8029-365-33-15",
+        "position":"Тестировщик"
+      },
+      {
+        "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+        "name":"Сергей",
+        "lastName":"Шикайло",
+        "email":"testUser@mail.com",
+        "phoneNumber":null,
+        "position":"Инженер-программист"
+      }
+    ]
+  },
+  {
+    "projectId":"77a09976-6a3c-4af8-a9cc-d0921741ce87",
+    "projectName":"Facebook",
+    ......
+  }
+]
+```
 ### Tasks API
 #### 1) GET api/task/getCurrentTasks - get current user tasks
 Role: User
