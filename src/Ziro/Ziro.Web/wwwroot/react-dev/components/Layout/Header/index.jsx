@@ -43,10 +43,13 @@ class UserMenu extends Component {
             <div className="menu-wrap">
                <ul className="menu">
                   <li className="menu__item" >
-                     <Link to="/">Tasks</Link>
+                     <Link to="/">Задачи</Link>
                   </li>
                   <li className="menu__item">
-                     <Link to="/team">Team</Link>
+                     <Link to="/projects">Проекты</Link>
+                  </li>
+                  <li className="menu__item">
+                     <Link to="/team">Команды</Link>
                   </li>
                </ul>
             </div>
@@ -64,7 +67,13 @@ class AdminMenu extends Component {
          <div className="menu-wrap">
             <ul className="menu">
                <li className="menu__item">
-                  <Link to="/adminpanel">Adminka</Link>
+                  <Link to="/projects">Проекты</Link>
+               </li>
+               <li className="menu__item">
+                  <Link to="/adminpanel">Пользователи</Link>
+               </li>
+               <li className="menu__item">
+                  <Link to="/logout">Выйти</Link>
                </li>
             </ul>
          </div>
@@ -78,7 +87,7 @@ class LoginMenu extends Component {
          <div className="menu-wrap">
             <ul className="menu">
                <li className="menu__item">
-                  <Link to="/authorization">Authorization</Link>
+                  <Link to="/authorization">Авторизация</Link>
                </li>
             </ul>
          </div>

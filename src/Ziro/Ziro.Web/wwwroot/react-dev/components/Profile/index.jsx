@@ -6,9 +6,8 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import withStyles from '@material-ui/core/styles/withStyles';
 import './profile.css'
-import { isUserAuthenticated } from '../../utils.js'
+import { isUserAuthenticated, fetchGetData, getRandomNumber } from '../../utils.js'
 import EditForm from './ProfileEditForm.jsx'
-import { fetchGetData, getRandomNumber } from '../../utils.js';
 
 const styles = theme => ({
    paper: {
@@ -29,7 +28,6 @@ const styles = theme => ({
    editBtn: {
       marginTop: '10px'
    }
-
 });
 
 

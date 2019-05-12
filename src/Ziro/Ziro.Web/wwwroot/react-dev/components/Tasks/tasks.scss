@@ -8,6 +8,9 @@
     border-bottom: 1px solid #ccc;
     padding: 20px 25px;
 }
+.tasks__item:last-child {
+   border-bottom: 0;
+}
 
 .item__header {
    display: flex;
@@ -50,7 +53,7 @@
 }
 
 .item__name{
-    color: #4d5169;;
+    color: #4d5169;
     font-size: 1.25em;
     font-weight: 600;
     margin-left: 20px;

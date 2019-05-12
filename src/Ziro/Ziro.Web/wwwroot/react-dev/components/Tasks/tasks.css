@@ -7,6 +7,9 @@
   border-bottom: 1px solid #ccc;
   padding: 20px 25px; }
 
+.tasks__item:last-child {
+  border-bottom: 0; }
+
 .item__header {
   display: flex;
   align-items: center; }
