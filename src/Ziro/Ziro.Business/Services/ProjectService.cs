@@ -12,6 +12,7 @@ namespace Ziro.Business.Services
 	{
 		private readonly IProjectRepository _projectRepository;
 		private readonly IProjectViewRepository _projectViewRepository;
+
 		public ProjectService(IProjectRepository projectRepository, IProjectViewRepository projectViewRepository)
 		{
 			_projectRepository = projectRepository;

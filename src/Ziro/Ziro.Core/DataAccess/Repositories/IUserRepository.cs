@@ -11,5 +11,6 @@ namespace Ziro.Core.DataAccess.Repositories
 		User Get(Guid Id);
 		User Get(string email, string password);
 		IEnumerable<User> GetUsers();
+		IEnumerable<UserInfoDTO> GetColleguasInfos(Guid userId, Guid[] userProjectsIds);
 	}
 }

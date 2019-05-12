@@ -4,16 +4,19 @@ using Ziro.Core.DataAccess.Repositories;
 using Ziro.Core.DTO;
 using Ziro.Core.Mappers;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Ziro.Business.Services
 {
 	public class UserService: IUserService
 	{
 		private readonly IUserRepository _userRepository;
+		private readonly IProjectRepository _projectRepository;
 
-		public UserService(IUserRepository userRepository)
+		public UserService(IUserRepository userRepository, IProjectRepository projectRepository)
 		{
 			_userRepository = userRepository;
+			_projectRepository = projectRepository;
 		}
 
 		public UserDTO GetUser(Guid id)
@@ -31,6 +34,13 @@ namespace Ziro.Business.Services
 		public UserProfileDTO GetUserProfile(Guid id)
 		{
 			var result = _userRepository.GetProfile(id);
+			return result;
+		}
+
+		public IList<UserInfoDTO> GetTeamMembersInfos(Guid userId)
+		{
+			var userProjectsIds = _projectRepository.GetIds(userId).ToArray();
+			var result = _userRepository.GetColleguasInfos(userId, userProjectsIds).ToList();
 			return result;
 		}
 	}

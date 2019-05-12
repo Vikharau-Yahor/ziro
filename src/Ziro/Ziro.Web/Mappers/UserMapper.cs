@@ -30,5 +30,26 @@ namespace Ziro.Web.Mappers
 
 			return result;
 		}
+
+		internal static IList<TeamResponse> ToTeams(this IList<UserInfoDTO> dtos)
+		{
+			var groupedInfos = dtos.GroupBy(x => x.ProjectId);
+			var result = groupedInfos.Select(gr => new TeamResponse
+			{
+				ProjectId = gr.Key,
+				ProjectName = dtos.First(x => x.ProjectId == gr.Key).ProjectName,
+				Members = gr.Select(x => new TeamMemberResponse
+				{
+					Id = x.Id,
+					Email = x.Email,
+					Name = x.Name,
+					LastName = x.LastName,
+					PhoneNumber = x.PhoneNumber,
+					Position = x.Position
+				}).OrderBy(x => x.Name).ThenBy(x => x.LastName).ToList()
+			}).ToList();
+
+			return result;
+		}
 	}
 }

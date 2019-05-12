@@ -6,7 +6,7 @@ using Ziro.Core.DataAccess.Repositories;
 using Ziro.Domain.Entities;
 using Ziro.Core.DTO;
 using NHibernate.SqlCommand;
-using System.Linq;
+using NHibernate.Criterion;
 using NHibernate.Transform;
 
 namespace Ziro.Persistence.Repositories
@@ -60,6 +60,37 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
+		public IEnumerable<UserInfoDTO> GetColleguasInfos(Guid userId, Guid[] userProjectsIds)
+		{
+			Project projectAlias = null;
+			Position positionAlias = null;
+			var query = _session.QueryOver<User>()
+				.JoinAlias(x => x.Projects, () => projectAlias)
+				.JoinAlias(x => x.Position, () => positionAlias, JoinType.LeftOuterJoin)
+				.Where(x => x.Id != userId && projectAlias.Id.IsIn(userProjectsIds));
+			query = mapOnUserInfo(query);
+
+			var result = query.List<UserInfoDTO>();
+
+			return result;
+		}
+		private IQueryOver<User, User> mapOnUserInfo(IQueryOver<User, User> query)
+		{
+			Project projectAlias = null;
+			Position positionAlias = null;
+			UserInfoDTO resultDTO = null;
+			return query.SelectList(list => list
+				.Select(x => x.Id).WithAlias(() => resultDTO.Id)
+				.Select(x => x.Name).WithAlias(() => resultDTO.Name)
+				.Select(x => x.Email).WithAlias(() => resultDTO.Email)
+				.Select(x => x.LastName).WithAlias(() => resultDTO.LastName)
+				.Select(x => x.PhoneNumber).WithAlias(() => resultDTO.PhoneNumber)
+				.Select(x => positionAlias.Name).WithAlias(() => resultDTO.Position)
+				.Select(x => projectAlias.Id).WithAlias(() => resultDTO.ProjectId)
+				.Select(x => projectAlias.Name).WithAlias(() => resultDTO.ProjectName)
+			)
+			.TransformUsing(Transformers.AliasToBean<UserInfoDTO>());
+		}
 
 		private IQueryOver<User, User> mapOnProfile(IQueryOver<User, User> query)
 		{

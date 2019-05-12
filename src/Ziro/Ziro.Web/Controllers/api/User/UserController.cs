@@ -36,6 +36,15 @@ namespace Ziro.Web.Controllers.api
 			return SuccessResult(response);
 		}
 
+		[Authorize(Roles = nameof(Roles.User))]
+		public IActionResult GetTeamMembers()
+		{
+			var userId = CurrentUser.Id;
+			var userInfos = _userService.GetTeamMembersInfos(userId);
+			var response = userInfos.ToTeams().OrderBy(x => x.ProjectName).ToList();
+			return SuccessResult(response);
+		}
+
 		// /api/user/getAvatar?UserId=13DEA72F-7407-4463-8064-1D77532392A4
 		[Authorize(Roles = nameof(Roles.User))]
 		public IActionResult GetAvatar(UserAvaRequest request)
