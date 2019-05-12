@@ -46,6 +46,7 @@ namespace Ziro.Web.Controllers.api
 			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\PM.jpg", new Guid("A32F9976-6A3C-4AF8-A9CC-D0921741CE87"));
 			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\Programmer.jpg", new Guid("93A09976-6A3C-4AF8-A9CC-D0921741CE87"));
 			var ava = _avatarService.GetByUserId(userId);
+			if (ava == null) return new EmptyResult();
 			return File(ava.ImageData, ava.ContentType);
 		}
 
