@@ -1,3 +1,4 @@
+create table Ziro_Avatar (Id UNIQUEIDENTIFIER not null, ContentType NVARCHAR(100) not null, ImageData VARBINARY(MAX) not null, UserId UNIQUEIDENTIFIER not null, primary key (Id))
 create table Ziro_Comment (Id UNIQUEIDENTIFIER not null, Text NVARCHAR(4000) null, Date DATETIME2 not null, AuthorId UNIQUEIDENTIFIER null, TaskId UNIQUEIDENTIFIER null, primary key (Id))
 create table Ziro_LogWork (Id UNIQUEIDENTIFIER not null, Text NVARCHAR(4000) null, SpentTimeHours FLOAT(53) not null, Date DATETIME2 not null, AuthorId UNIQUEIDENTIFIER null, TaskId UNIQUEIDENTIFIER null, primary key (Id))
 create table Ziro_Position (Id UNIQUEIDENTIFIER not null, Name NVARCHAR(400) not null, primary key (Id))
@@ -5,6 +6,7 @@ create table Ziro_Project (Id UNIQUEIDENTIFIER not null, Name NVARCHAR(255) not 
 create table Ziro_Project_User (ProjectId UNIQUEIDENTIFIER not null, UserId UNIQUEIDENTIFIER not null, primary key (UserId, ProjectId))
 create table Ziro_Task (Id UNIQUEIDENTIFIER not null, Number INT not null, Type TINYINT not null, Status TINYINT not null, Title NVARCHAR(400) not null, Description NVARCHAR(MAX) null, Priority TINYINT not null, EstimatedTime FLOAT(53) null, SpentTime FLOAT(53) null, CreationDate DATETIME2 not null, LastUpdateDate DATETIME2 not null, ProjectId UNIQUEIDENTIFIER null, AssigneeId UNIQUEIDENTIFIER null, OwnerId UNIQUEIDENTIFIER null, primary key (Id))
 create table Ziro_User (Id UNIQUEIDENTIFIER not null, Email NVARCHAR(50) not null, PasswordHash NVARCHAR(255) not null, Role TINYINT not null, Name NVARCHAR(250) null, LastName NVARCHAR(250) null, Skype NVARCHAR(150) null, PhoneNumber NVARCHAR(20) null, DateOfBirth DATETIME2 null, PositionId UNIQUEIDENTIFIER null, primary key (Id))
+alter table Ziro_Avatar add constraint FK_40692529 foreign key (UserId) references Ziro_User
 alter table Ziro_Comment add constraint FK_E1D32329 foreign key (AuthorId) references Ziro_User
 alter table Ziro_Comment add constraint FK_4BEF0DEF foreign key (TaskId) references Ziro_Task
 alter table Ziro_LogWork add constraint FK_68853563 foreign key (AuthorId) references Ziro_User

@@ -15,6 +15,7 @@ namespace Ziro.Domain.Entities
 		public virtual string PhoneNumber { get; set; }
 		public virtual DateTime? DateOfBirth { get; set; }
 		public virtual Position Position{ get; set; }
+		public virtual ISet<Avatar> Avatars { get; set; }
 		public virtual ISet<Project> Projects { get; set; }
 	}
 }

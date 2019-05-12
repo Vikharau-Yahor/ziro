@@ -101,10 +101,12 @@ namespace Ziro.Web
 				});
 			#region Other 
 			// Services
+			services.AddTransient<IAvatarService, AvatarService>();
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<ITaskService, TaskService>();
 			services.AddTransient<IProjectService, ProjectService>();
 			// Repositories
+			services.AddTransient<IAvatarRepository, AvatarRepository>();
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<ITaskRepository, TaskRepository>();
 			services.AddTransient<IProjectRepository, ProjectRepository>(); 

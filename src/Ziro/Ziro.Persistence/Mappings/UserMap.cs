@@ -48,6 +48,12 @@ namespace Ziro.Persistence.Mappings
 				c.Column(FKColumnName(nameof(Position)));
 				c.NotNullable(notnull: false);
 			});
+			Set(x => x.Avatars,
+				c => {
+					c.Key(k => k.Column(FKColumnName(nameof(User))));
+					c.Inverse(true);
+				},
+				r => r.OneToMany());
 			Set(a => a.Projects,
 			c => {
 				c.Cascade(Cascade.Persist);
