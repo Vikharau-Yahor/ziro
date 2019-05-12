@@ -493,3 +493,38 @@ null
   ]
 }
 ```
+#### 2) GET api/project/getCurrentProjectsInfos - get current user projects infos
+Role: User
+
+***Request***:
+
+```sh  
+null
+```  
+***Response***: 
+
+```sh 
+"data":
+{
+  "projects":
+  [
+    {
+      "id":"15a09976-6a3c-4af8-a9cc-d0921741ce87",
+      "name":"Twitter",
+      "shortName":"TWIT",
+      "description":"Социальная сеть для публичного обмена сообще..",
+      "nonClosedTasksCount":2,
+      "totalUsersCount":3
+    },
+    {
+      "id":"15f09976-6a3c-4af8-a9cc-d0921741ce87",
+      "name":"Facebook",
+      "shortName":"FB",
+      "description":"Популярная социальная сеть в качестве продвижения товаров или услуг ..",
+      "nonClosedTasksCount":1,
+      "totalUsersCount":1
+    }
+  ]
+}
+```
+
