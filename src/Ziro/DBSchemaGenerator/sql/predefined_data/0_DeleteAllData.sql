@@ -1,4 +1,6 @@
+DELETE FROM Ziro_ProjectDocument
 DELETE FROM Ziro_Project_User
+DELETE FROM Ziro_Avatar
 DELETE FROM Ziro_LogWork
 DELETE FROM Ziro_Comment
 DELETE FROM Ziro_Task

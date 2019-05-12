@@ -23,5 +23,13 @@ namespace Ziro.Business.Services
 			var result = _projectViewRepository.Get(userId).ToList();
 			return result;
 		}
+
+		public IList<ProjectInfoDTO> GetProjectsInfos(Guid userId)
+		{
+			var userProjectsIds = _projectRepository.GetIds(userId).ToArray();
+			var projeInfos = _projectRepository.GetProjectInfos(userProjectsIds).ToList();
+
+			return projeInfos;
+		}
 	}
 }

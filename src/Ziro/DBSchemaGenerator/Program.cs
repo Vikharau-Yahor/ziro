@@ -45,7 +45,7 @@ namespace DBSchemaGenerator
 			.SetNamingStrategy(new ZiroNamingStrategy());
 
 			var mapper = new ModelMapper();
-			var exlcudedTypes = new Type[] { typeof(ProjectViewMap) };
+			var exlcudedTypes = new Type[] { typeof(ProjectViewMap), typeof(ProjectInfoViewMap) };
 			var types = Assembly.GetAssembly(typeof(UserMap)).GetExportedTypes().Where(x=> !exlcudedTypes.Contains(x));
 			mapper.AddMappings(types);
 			var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();

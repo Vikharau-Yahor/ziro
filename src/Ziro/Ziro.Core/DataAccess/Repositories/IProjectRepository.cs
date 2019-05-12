@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ziro.Core.DTO;
 using Ziro.Domain.Entities;
 
 namespace Ziro.Core.DataAccess.Repositories
@@ -8,5 +9,7 @@ namespace Ziro.Core.DataAccess.Repositories
 	{
 		Project Get(Guid Id);
 		IEnumerable<Project> GetAll(Guid userId);
+		IEnumerable<Guid> GetIds(Guid userId);
+		IEnumerable<ProjectInfoDTO> GetProjectInfos(Guid[] projectIds);
 	}
 }

@@ -20,5 +20,20 @@ namespace Ziro.Web.Mappers
 
 			return result;
 		}
+
+		internal static ProjectInfoResponse ToProjectInfoResponse(this ProjectInfoDTO dto)
+		{
+			var result = new ProjectInfoResponse
+			{
+				Id = dto.ProjectId,
+				Name = dto.ProjectName,
+				ShortName = dto.ProjectShortName,
+				Description = dto.ProjectDescription,
+				NonClosedTasksCount = dto.NonClosedTasksCount ?? 0,
+				TotalUsersCount = dto.TotalUsersCount ?? 0
+			};
+
+			return result;
+		}
 	}
 }

@@ -32,5 +32,18 @@ namespace Ziro.Web.Controllers.api
 
 			return SuccessResult(result);
 		}
+
+		[Authorize(Roles = nameof(Roles.User))]
+		public IActionResult GetCurrentProjectsInfos()
+		{
+			var userId = CurrentUser.Id;
+			var projects = _projectService.GetProjectsInfos(userId);
+			var result = new GetCurrentProjectsInfosResponse
+			{
+				Projects = projects.Select(x => x.ToProjectInfoResponse()).ToList()
+			};
+
+			return SuccessResult(result);
+		}
 	}
 }

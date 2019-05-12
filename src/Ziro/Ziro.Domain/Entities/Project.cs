@@ -12,5 +12,6 @@ namespace Ziro.Domain.Entities
 		public virtual string Description { get; set; }
 		public virtual ISet<User> Users { get; set; }
 		public virtual ISet<Task> Tasks { get; set; }
+		public virtual ISet<ProjectDocument> Documents { get; set; }
 	}
 }
