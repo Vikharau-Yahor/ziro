@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
-import ava from '../../../img/ava_e-v.jpg'
 import { isUserAuthenticated, isCurRoleUser, isCurRoleAdmin } from '../../../utils.js'
 import CookieEventManager from '../../../events.js'
+import { getRandomNumber } from '../../../utils.js';
 
 class Header extends Component {
    constructor(props) {
@@ -38,6 +37,7 @@ class Header extends Component {
 
 class UserMenu extends Component {
    render() {
+      const randomNumber = getRandomNumber(1, 5000);
       return (
          <React.Fragment>
             <div className="menu-wrap">
@@ -51,7 +51,7 @@ class UserMenu extends Component {
                </ul>
             </div>
             <div className="profile-wrap">
-               <Link to="/profile"><img className="short-img" src={ava} alt="avatar" /></Link>
+               <Link to="/profile"><img className="short-img" src={`/api/user/getAvatar?t=${randomNumber}`} alt="avatar" /></Link>
             </div>
          </React.Fragment>
       )

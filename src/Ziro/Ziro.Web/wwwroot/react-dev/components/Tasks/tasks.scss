@@ -14,22 +14,6 @@
    align-items: center;
 }
 
-// .item__status-icon {
-//     margin-right: 20px;
-//     width: 20px;
-//     height: 20px;
-//     border-radius: 5px;
-// }
-// .item__status-icon.s0 {
-//     background: rgb(173, 173, 173);
-// }
-// .item__status-icon.s1 {
-//     background: rgb(2, 163, 42);
-// }
-// .item__status-icon.s2 {
-//     background: rgb(36, 14, 230);
-// }
-
 .item__status, .item__type {
    padding: 5px 10px;
    border-radius: 5px;
@@ -37,27 +21,6 @@
    color: #fff;
    background: rgba(63, 125, 219, .8);
 }
-
-// .item__status_s0 {
-//    background: rgba(173, 173, 173, .8)
-// }
-// .item__status_s1 {
-//    background: rgba(2, 250, 64, .8)
-// }
-// .item__status_s2 {
-//    background: rgba(7, 102, 253, .8)
-// }
-// .item__status_s3 {
-//    background: rgba(240, 236, 0, .8)
-// }
-// .item__status_s4 {
-//    background: rgba(1, 170, 43, .8)
-// }
-
-// .item__type {
-//    background: rgba(63, 125, 219, .8);
-// }
-
 
 .item__priority-icon {
    margin-right: 20px;
@@ -87,7 +50,7 @@
 }
 
 .item__name{
-    color: #333;
+    color: #4d5169;;
     font-size: 1.25em;
     font-weight: 600;
     margin-left: 20px;
@@ -105,3 +68,24 @@
       margin-right: 15px;
    }
 }
+
+.filter__block {
+   width: 100%;
+}
+
+.tasks__block {
+   width: 80%;
+}
+
+.buttons__block {
+   width: 20%;
+   button {
+      float: right;
+   }
+}
+
+.grid__item.grid__item-btns {
+   display: flex;
+   justify-content: flex-end;
+}
+

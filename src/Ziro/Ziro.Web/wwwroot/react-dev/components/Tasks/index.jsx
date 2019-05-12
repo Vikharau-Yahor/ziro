@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
+import AddIcon from '@material-ui/icons/Add';
 import withStyles from '@material-ui/core/styles/withStyles';
+import {green} from '@material-ui/core/colors';
 import './tasks.css'
 import { fetchGetData, isUserAuthenticated } from '../../utils.js'
+import AddTaskForm from './AddTaskForm.jsx'
 
 const styles = theme => ({
    paper: {
       overflowX: 'auto',
+   },
+   addBtn: {
+      color: '#fff',
+      backgroundColor: green[600],
+      '&:hover': {
+         backgroundColor: green[400],
+      },
    }
 });
 
@@ -19,7 +29,8 @@ class Tasks extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         tasks: []
+         tasks: [],
+         open: false
       }
       if (!isUserAuthenticated()) {
          this.props.history.push('/authorization');
@@ -27,6 +38,12 @@ class Tasks extends Component {
       }
       fetchGetData('api/task/getCurrentTasks', this.successGetData, this.errorGetData);
    }
+  
+    handleClickOpen = () => {
+      this.setState({
+        open: true,
+      });
+    };
 
    successGetData = (response) => {
       //var responseText = JSON.stringify(response.data.tasks);
@@ -38,13 +55,17 @@ class Tasks extends Component {
          })
       }
    }
-
+    
    errorGetData = (error) => {
       alert(error);
    }
 
+   handleClose = () => {
+      this.setState({ open: false });
+    };
+
    render() {
-      //const { classes } = this.props;
+      const { classes } = this.props;
       return (
          <div className="container flex">
             <div className="filter__block">
@@ -67,6 +88,17 @@ class Tasks extends Component {
                   </Link>
                )}
             </Paper>
+            <div className="buttons__block">
+               <Button variant="contained" className={classes.addBtn} onClick={this.handleClickOpen}>
+                  <AddIcon/>
+                  Создать задачу
+               </Button>
+            </div>
+
+            <AddTaskForm
+               open={this.state.open}
+               handleClose={this.handleClose}
+            />
          </div>
       )
    }

@@ -43,7 +43,7 @@
   font-weight: 600; }
 
 .item__name {
-  color: #333;
+  color: #4d5169;
   font-size: 1.25em;
   font-weight: 600;
   margin-left: 20px; }
@@ -57,3 +57,18 @@
   margin: 15px 0; }
   .item__state span {
     margin-right: 15px; }
+
+.filter__block {
+  width: 100%; }
+
+.tasks__block {
+  width: 80%; }
+
+.buttons__block {
+  width: 20%; }
+  .buttons__block button {
+    float: right; }
+
+.grid__item.grid__item-btns {
+  display: flex;
+  justify-content: flex-end; }

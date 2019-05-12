@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 //import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import NavigationIcon from '@material-ui/icons/Navigation';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -153,7 +154,7 @@ class Task extends Component {
                      <div className="task__section task__owner-block">
                         <p className="task__owner-text">
                            <span className="task__creator">{task_d.owner.fullName}</span>открыл эту задачу
-                        <span className="task__creation-date">{task_d.creationDate}</span>- <span className="task__comments-number">{/*{task_d.comments.length}*/}1</span> комментариев</p>
+                        <span className="task__creation-date">{task_d.creationDate}</span> - <span className="task__comments-number">{task_d.comments.length}</span> комментариев</p>
                      </div>
                      <div className="task__section task__buttons-block">
                         {this.state.isOwner ?
@@ -162,7 +163,10 @@ class Task extends Component {
                                  <Icon>edit_icon</Icon>
                                  Редактировать
                               </Button>
-                              <Button variant="contained" className={`${classes.eventBtn} event__btn`}>Назначить</Button>
+                              <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
+                                 <NavigationIcon />
+                                 Назначить
+                              </Button>
                               <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
                                  <DeleteIcon />
                                  Удалить

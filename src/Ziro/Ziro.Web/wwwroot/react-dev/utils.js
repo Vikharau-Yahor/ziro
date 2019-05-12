@@ -48,3 +48,7 @@ export function isCurRoleAdmin() {
 	var role = Cookies.get('role');
 	return role === 'Administrator';
 }
+
+export function getRandomNumber(min, max) {
+   return Math.random() * (max - min) + min;
+}

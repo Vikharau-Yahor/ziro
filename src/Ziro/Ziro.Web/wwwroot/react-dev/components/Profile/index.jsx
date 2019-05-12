@@ -5,11 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ava from '../../img/ava_e-v.jpg'
 import './profile.css'
 import { isUserAuthenticated } from '../../utils.js'
 import EditForm from './ProfileEditForm.jsx'
-import { fetchGetData } from '../../utils.js';
+import { fetchGetData, getRandomNumber } from '../../utils.js';
 
 const styles = theme => ({
    paper: {
@@ -89,12 +88,13 @@ class Profile extends Component {
 
    render() {
       const { classes } = this.props;
+      const randomNumber = getRandomNumber(1, 5000);
       return (
          <div className="container">
             <Paper className={`${classes.paper} profile__wrap`}>
                <div className="profile__image-block col">
                   <div className={classes.ava__wrap}>
-                     <img className={classes.ava} src={ava} alt="user avatar" />
+                     <img className={classes.ava} src={`/api/user/getAvatar?t=${randomNumber}`} alt="user avatar" />
                   </div>
                   <Button variant="contained" color="primary" className={`${classes.editBtn} profile-edit__btn`} onClick={this.editFormSetVisibility}>
                   {this.state.isEditFormVisible ? 'Отмена' : 'Редактировать'}
