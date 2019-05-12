@@ -65,10 +65,10 @@ class AddTaskForm extends Component {
    constructor(props) {
       super(props);
 
-      if (!isUserAuthenticated()) {
-         this.props.history.push('/authorization');
-         return;
-      }
+      // if (!isUserAuthenticated()) {
+      //    this.props.history.push('/authorization');
+      //    return;
+      // }
 
       this.state = {
          files: [],
@@ -142,7 +142,7 @@ class AddTaskForm extends Component {
                open={this.props.open}
                onEntered={this.getFormData}
                aria-labelledby="dialog-title"
-               maxWidth="lg"
+               maxWidth="md"
                keepMounted
             >
                <DialogTitle className={classes.dialogTitle} id="dialog-title">Новая задача</DialogTitle>
@@ -216,14 +216,6 @@ class AddTaskForm extends Component {
                            </FormControl>
                         </Grid>
                         <Grid className="grid__item" item xs={12} sm={6}>
-                           <TextField
-                              id="estimatedTime"
-                              name="estimatedTime"
-                              label="Запланированное время"
-                              fullWidth
-                           />
-                        </Grid>
-                        <Grid className="grid__item" item xs={12} sm={6}>
                            <FormControl
                               className={classes.formControl}
                               fullWidth
@@ -244,6 +236,14 @@ class AddTaskForm extends Component {
                                  <MenuItem value="3">Шевченко Дарья</MenuItem>
                               </Select>
                            </FormControl>
+                        </Grid>
+                        <Grid className="grid__item" item xs={12} sm={6}>
+                           <TextField
+                              id="estimatedTime"
+                              name="estimatedTime"
+                              label="Запланированное время"
+                              fullWidth
+                           />
                         </Grid>
                         <Grid className="grid__item upload__item" item xs={12} sm={6}>
                            <Typography className="upload__text" component="h6" variant="h6">Прикрепить изображение</Typography>

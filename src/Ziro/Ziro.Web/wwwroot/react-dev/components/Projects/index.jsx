@@ -17,7 +17,6 @@ const styles = theme => ({
    },
    search: {
       width: '60%',
-      marginBottom: '40px'
    }
 });
 
