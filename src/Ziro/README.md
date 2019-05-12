@@ -149,7 +149,7 @@ null
 
 Internal server error (see response structure in **Failure response** chapter)
 
-### User API
+### Users API
 #### 1) GET api/user/getProfile - get current user profile
 Role: User
 
@@ -177,7 +177,27 @@ null
   "dateOfBirth":"11.03.1994"  // format: dd.MM.yyyy
 }
 ```
+#### 2) GET api/user/getAvatar - get user avatar
+Role: User
 
+***Request***:
+get avatar of certain user
+```sh  
+api/user/getAvatar?UserId=13DEA72F-7407-4463-8064-1D77532392A4
+```  
+or get avatar of current user
+```sh  
+api/user/getAvatar
+```  
+***Response***: 
+File
+```sh 
+{
+  "FileContents": []        // array of bytes,
+  "ContentType": 'image/jpeg',
+  "FileDownloadName": ''
+}
+```
 ### Tasks API
 #### 1) GET api/task/getCurrentTasks - get current user tasks
 Role: User
