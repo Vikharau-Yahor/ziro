@@ -49,7 +49,7 @@ class UserMenu extends Component {
                      <Link to="/projects">Проекты</Link>
                   </li>
                   <li className="menu__item">
-                     <Link to="/team">Команды</Link>
+                     <Link to="/teams">Команды</Link>
                   </li>
                </ul>
             </div>
@@ -67,10 +67,10 @@ class AdminMenu extends Component {
          <div className="menu-wrap">
             <ul className="menu">
                <li className="menu__item">
-                  <Link to="/projects">Проекты</Link>
+                  <Link to="/">Проекты</Link>
                </li>
                <li className="menu__item">
-                  <Link to="/adminpanel">Пользователи</Link>
+                  <Link to="/users">Пользователи</Link>
                </li>
                <li className="menu__item">
                   <Link to="/logout">Выйти</Link>

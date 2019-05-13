@@ -44,7 +44,7 @@ const styles = theme => ({
    },
 });
 
-class AdminPanel extends Component {
+class Users extends Component {
    constructor(props) {
 	   super(props);
 
@@ -62,21 +62,21 @@ class AdminPanel extends Component {
       //name: 'hai',
    };
 
-   // handleChange = event => {
-   //    this.setState({ [event.target.name]: event.target.value });
-   // };
+   handleChange = event => {
+      this.setState({ [event.target.name]: event.target.value });
+   };
 
-   // handleUpload(files) {
-   //    this.setState({
-   //       files: files
-   //    });
-   // }
+   handleUpload(files) {
+      this.setState({
+         files: files
+      });
+   }
 
    render() {
       const { classes } = this.props;
       return (
          <div className="container">
-            {/* <Paper className={classes.paper}>
+            <Paper className={classes.paper}>
                <Typography component="h1" variant="h5" align="center">Добавление нового сотрудника</Typography>
                <form className={`${classes.root} add-employee-form`} action="">
                   <Grid className="grid__container" container spacing={24}>
@@ -151,13 +151,13 @@ class AdminPanel extends Component {
                      </Grid>
                   </Grid>
                </form>
-            </Paper> */}
+            </Paper>
          </div>
       )
    }
 }
 
-AdminPanel.propTypes = {
+Users.propTypes = {
    classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(AdminPanel);
+export default withStyles(styles)(Users);

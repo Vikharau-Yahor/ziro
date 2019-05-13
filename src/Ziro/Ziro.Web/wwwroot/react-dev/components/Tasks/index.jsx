@@ -12,9 +12,9 @@ import { fetchGetData, isUserAuthenticated } from '../../utils.js'
 import AddTaskForm from './AddTaskForm.jsx'
 
 const styles = theme => ({
-   paper: {
-      overflowX: 'auto',
-   },
+   // paper: {
+   //    overflowX: 'auto',
+   // },
    addBtn: {
       color: '#fff',
       backgroundColor: green[600],
@@ -39,11 +39,15 @@ class Tasks extends Component {
       fetchGetData('api/task/getCurrentTasks', this.successGetData, this.errorGetData);
    }
   
-    handleClickOpen = () => {
+   handleClickOpen = () => {
       this.setState({
         open: true,
       });
-    };
+   };
+
+   handleClose = () => {
+      this.setState({ open: false });
+   };
 
    successGetData = (response) => {
       //var responseText = JSON.stringify(response.data.tasks);
@@ -59,10 +63,6 @@ class Tasks extends Component {
    errorGetData = (error) => {
       alert(error);
    }
-
-   handleClose = () => {
-      this.setState({ open: false });
-    };
 
    render() {
       const { classes } = this.props;

@@ -20,9 +20,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import { DropzoneArea } from 'material-ui-dropzone'
-//import blue from '@material-ui/core/colors/blue';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { fetchGetData, isUserAuthenticated } from '../../utils.js';
+import { fetchGetData } from '../../utils.js';
 
 const styles = theme => ({
    root: {
@@ -64,11 +63,6 @@ const styles = theme => ({
 class AddTaskForm extends Component {
    constructor(props) {
       super(props);
-
-      // if (!isUserAuthenticated()) {
-      //    this.props.history.push('/authorization');
-      //    return;
-      // }
 
       this.state = {
          files: [],

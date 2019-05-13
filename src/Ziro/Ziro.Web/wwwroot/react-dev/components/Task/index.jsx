@@ -53,6 +53,27 @@ class Comments extends Component {
    }
 }
 
+class ConfirmWin extends Component {
+   render() {
+      return (
+         <Dialog
+            onClose={this.handleClose}
+            //aria-labelledby="customized-dialog-title"
+            open={this.props.openDeleteDialog}
+            maxWidth="xs"
+         >
+            <DialogContent>
+               <Typography variant="body2">Вы действительно хотите удалить задачу?</Typography>
+            </DialogContent>
+            <DialogActions>
+               <Button onClick={this.handleClose} color="default">Отмена</Button>
+               <Button onClick={this.handleClose} color="primary">Да</Button>
+            </DialogActions>
+         </Dialog>
+      )
+   }
+}
+
 const styles = theme => ({
    statusBtn: {
       marginBottom: '10px'
@@ -104,7 +125,10 @@ class Task extends Component {
          },
          isOwner: true, //test field
          isActiveStatus: false,
-         value: 0
+         value: 0,
+         openEditDialog: false,
+         openAssigneeDialog: false,
+         openDeleteDialog: false
       }
       if (!isUserAuthenticated()) {
          this.props.history.push('/authorization');
@@ -156,24 +180,24 @@ class Task extends Component {
                            <span className="task__creator">{task_d.owner.fullName}</span>открыл эту задачу
                         <span className="task__creation-date">{task_d.creationDate}</span> - <span className="task__comments-number">{task_d.comments.length}</span> комментариев</p>
                      </div>
-                     <div className="task__section task__buttons-block">
-                        {this.state.isOwner ?
-                           <>
-                              <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
-                                 <Icon>edit_icon</Icon>
-                                 Редактировать
+
+                     {this.state.isOwner ?
+                        <div className="task__section task__buttons-block">
+                           <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
+                              <Icon>edit_icon</Icon>
+                              Редактировать
                               </Button>
-                              <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
-                                 <NavigationIcon />
-                                 Назначить
+                           <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
+                              <NavigationIcon />
+                              Назначить
                               </Button>
-                              <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
-                                 <DeleteIcon />
-                                 Удалить
+                           <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
+                              <DeleteIcon />
+                              Удалить
                               </Button>
-                           </>
-                           : null}
-                     </div>
+                        </div>
+                        : null}
+
                      <div className="task__section task__details-block">
                         <h2 className="section__title">Детали</h2>
                         <p className="task__status"><span className="key">Статус:</span> <span className="value">{task_d.status}</span></p>
