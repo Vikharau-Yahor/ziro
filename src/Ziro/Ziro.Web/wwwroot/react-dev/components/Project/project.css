@@ -1,0 +1,40 @@
+.project-block {
+  padding: 30px; }
+
+.project__title {
+  font-size: 1.55em;
+  color: #4d5169; }
+
+.project__short-name {
+  margin-right: 30px;
+  color: #3f7ddb; }
+
+.project__section {
+  margin-top: 40px; }
+
+.project__details-block p {
+  margin: 10px 0; }
+  .project__details-block p .key {
+    width: 200px;
+    display: inline-block;
+    color: #444; }
+  .project__details-block p .value {
+    color: #000; }
+
+.project__upload-doc-block button svg {
+  margin-left: 10px; }
+
+.upload__wrap {
+  padding: 30px 40px !important; }
+  .upload__wrap p {
+    display: none; }
+  .upload__wrap .upload__tip {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px; }
+
+.upload__wrap > div {
+  min-height: auto;
+  padding: 10px; }
+
+.upload-cancel-btn {
+  margin-right: 30px; }

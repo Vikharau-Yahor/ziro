@@ -13,6 +13,13 @@
 .projects-list {
   display: flex;
   flex-direction: column; }
+  .projects-list p {
+    color: #333; }
+  .projects-list .project__title {
+    color: #4d5169;
+    font-size: 1.25em; }
+  .projects-list .project__short-title {
+    color: #3f7ddb; }
 
 .project__item {
   border-bottom: 1px solid #ccc;
@@ -26,10 +33,3 @@
   display: flex;
   align-items: center;
   padding: 0 10px; }
-
-.project__title {
-  color: #4d5169;
-  font-size: 1.25em; }
-
-.project__short-title {
-  color: #3f7ddb; }

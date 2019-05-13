@@ -6,6 +6,7 @@ INSERT INTO [dbo].[Ziro_Position]
            ('93409976-6A3C-4AF8-A9CC-D0921741CE87'
            ,'Инженер-программист')
 
+
 INSERT INTO [dbo].[Ziro_Position]
            ([Id]
            ,[Name])

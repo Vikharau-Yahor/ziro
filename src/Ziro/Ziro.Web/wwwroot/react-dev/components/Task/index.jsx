@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-//import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+//import { DropzoneArea } from 'material-ui-dropzone'
 import withStyles from '@material-ui/core/styles/withStyles';
 import './task.css'
 import { isUserAuthenticated, fetchPostData } from '../../utils.js'
