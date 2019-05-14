@@ -57,14 +57,13 @@ class Upload extends Component {
                <DropzoneArea
                   onChange={this.handleUpload.bind(this)}
                />
-
                <DialogActions>
                   <Button onClick={this.props.handleClose} variant="contained" color="primary" className="upload-cancel-btn">
                      Отмена
-                           </Button>
+                  </Button>
                   <Button onClick={this.props.handleClose} variant="contained" color="primary">
                      Добавить
-                           </Button>
+                  </Button>
                </DialogActions>
             </DialogContent>
          </Dialog>
@@ -126,14 +125,14 @@ class Project extends Component {
                   <h2 className="section__title">Описание</h2>
                   <p className="task__description">
                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                        </p>
+                  </p>
                </div>
                <div className="project__section project__doc-block">
                   <h2 className="section__title">Документы</h2>
                   <div className="project__upload-doc-block">
                      <Button variant="contained" className={classes.addBtn} onClick={this.handleClickOpen}>
                         Добавить документ
-                                <CloudUploadIcon />
+                        <CloudUploadIcon />
                      </Button>
 
                      <Upload

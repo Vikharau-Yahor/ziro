@@ -11,10 +11,11 @@ import Tab from '@material-ui/core/Tab';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-//import { DropzoneArea } from 'material-ui-dropzone'
 import withStyles from '@material-ui/core/styles/withStyles';
 import './task.css'
 import { isUserAuthenticated, fetchPostData } from '../../utils.js'
+import AssigneeWin from './AssigneeWin.jsx'
+import EditTaskForm from './EditTaskForm.jsx';
 
 class Log extends Component {
    render() {
@@ -22,7 +23,7 @@ class Log extends Component {
          <div className="tab__content">
             {this.props.td.map((elem, index) =>
                <div className="comment__item" key={index}>
-                  <p className="comment__author">{elem.author.fullName}</p>
+                  <p className="comment__author"><img src={`/api/user/getAvatar?userId=${elem.author.id}`} alt="avatar" />{elem.author.fullName}</p>
                   <p className="comment__text">{elem.text}</p>
                   <p className="comment__text">Заняло времени: {elem.spentTimeHours} часа</p>
                   <p className="comment__date">{elem.leavingDate}</p>
@@ -43,7 +44,7 @@ class Comments extends Component {
          <div className="tab__content">
             {this.props.td.map((elem, index) =>
                <div className="comment__item" key={index}>
-                  <p className="comment__author">{elem.author.fullName}</p>
+                  <p className="comment__author"><img src={`/api/user/getAvatar?userId=${elem.author.id}`} alt="avatar" /> {elem.author.fullName}</p>
                   <p className="comment__text">{elem.text}</p>
                   <p className="comment__date">{elem.leavingDate}</p>
                </div>
@@ -57,7 +58,19 @@ class Comments extends Component {
    }
 }
 
-class ConfirmWin extends Component {
+class DeleteWin extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         //files: [],
+      };
+   }
+
+   handleDeleteTask = () => {
+      this.props.history.push('/');
+      return;
+   }
+
    render() {
       return (
          <Dialog
@@ -70,8 +83,8 @@ class ConfirmWin extends Component {
                <Typography variant="body2">Вы действительно хотите удалить задачу?</Typography>
             </DialogContent>
             <DialogActions>
-               <Button onClick={this.handleClose} color="default">Отмена</Button>
-               <Button onClick={this.handleClose} color="primary">Да</Button>
+               <Button onClick={this.props.handleCloseDeleteDialog} color="default">Отмена</Button>
+               <Button onClick={this.handleDeleteTask} color="primary">Да</Button>
             </DialogActions>
          </Dialog>
       )
@@ -127,6 +140,8 @@ class Task extends Component {
             comments: [{ author: {} }],
             logWorks: []
          },
+         //получить асигнера текущего таска из базы ???
+         currentAssignee: taskDetails.assignee,
          isOwner: true, //test field
          isActiveStatus: false,
          value: 0,
@@ -147,10 +162,9 @@ class Task extends Component {
    successGetTaskData = (response) => {
       // var responseText = JSON.stringify(response.data);
       // alert(responseText);
-      var task = response.data;
       if (!response.errors) {
          this.setState({
-            taskDetails: task
+            taskDetails: response.data
          })
       }
    }
@@ -169,12 +183,42 @@ class Task extends Component {
       this.setState({ value });
    };
 
+   handleClickAssignee = () => {
+      this.setState({ openAssigneeDialog: true });
+   };
+
+   handleCloseAssigneeDialog = currentAssignee => {
+      this.setState({ currentAssignee, openAssigneeDialog: false });
+   };
+   handleCloseEditFormDialog = () => {
+      this.setState({ openEditDialog: false });
+   };
+   handleCloseDeleteDialog = () => {
+      this.setState({ openDeleteDialog: false });
+   };
+
    render() {
       const { classes } = this.props;
       var task_d = this.state.taskDetails;
       var { value } = this.state;
       return (
          <div className="container">
+            <div className="dialog-block">
+               <AssigneeWin
+                  open={this.state.openAssigneeDialog}
+                  handleClose={this.handleCloseAssigneeDialog}
+                  value={this.state.currentAssignee}
+               />
+               <EditTaskForm
+                  open={this.state.openEditDialog}
+                  handleClose={this.handleCloseEditFormDialog}
+                  taskData={this.state.taskDetails}
+               />
+               <DeleteWin
+                  open={this.state.openDeleteDialog}
+                  handleClose={this.handleCloseDeleteDialog}
+               />
+            </div>
             <div className="task__wrap">
                <Paper className="task__block">
                   <div className="task__section-wrap">
@@ -191,7 +235,9 @@ class Task extends Component {
                               <Icon>edit_icon</Icon>
                               Редактировать
                               </Button>
-                           <Button variant="contained" className={`${classes.eventBtn} event__btn`}>
+                           <Button variant="contained" className={`${classes.eventBtn} event__btn`}
+                              onClick={this.handleClickAssignee}
+                           >
                               <NavigationIcon />
                               Назначить
                               </Button>

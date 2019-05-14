@@ -54,7 +54,6 @@ class Teams extends Component {
                   {this.state.data.map((proj, index) =>
                      <>
                         <Typography component="h1" variant="h4" className="project__name" key={index}>{proj.projectName}</Typography>
-
                         <div className="team-block">
                            {proj.members.map((member, index) =>
                               <Card className={`${classes.card} team__member`} key={index}>

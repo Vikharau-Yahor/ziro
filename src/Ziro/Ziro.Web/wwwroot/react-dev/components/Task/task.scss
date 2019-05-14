@@ -47,10 +47,6 @@ $blue: rgb(63, 125, 219);
    }
 }
 
-.status__btn {
-   //margin-right: 20px;
-}
-
 .task__details-block {
    p {
       margin: 10px 0;
@@ -131,6 +127,9 @@ $blue: rgb(63, 125, 219);
 
 .comment__author {
    color: $blue;
+   img {
+      margin-right: 25px;
+   }
 }
 
 .comment__text {
