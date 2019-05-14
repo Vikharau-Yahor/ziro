@@ -103,6 +103,8 @@
 
 .comment__author {
   color: #3f7ddb; }
+  .comment__author img {
+    margin-right: 25px; }
 
 .comment__text {
   padding: 10px 0; }

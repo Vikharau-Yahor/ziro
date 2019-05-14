@@ -140,8 +140,7 @@ class Task extends Component {
             comments: [{ author: {} }],
             logWorks: []
          },
-         //получить асигнера текущего таска из базы ???
-         currentAssignee: taskDetails.assignee,
+         currentAssignee: {},
          isOwner: true, //test field
          isActiveStatus: false,
          value: 0,
@@ -164,7 +163,8 @@ class Task extends Component {
       // alert(responseText);
       if (!response.errors) {
          this.setState({
-            taskDetails: response.data
+            taskDetails: response.data,
+            currentAssignee: response.data.assignee
          })
       }
    }
@@ -204,11 +204,11 @@ class Task extends Component {
       return (
          <div className="container">
             <div className="dialog-block">
-               <AssigneeWin
+               {/* <AssigneeWin
                   open={this.state.openAssigneeDialog}
                   handleClose={this.handleCloseAssigneeDialog}
                   value={this.state.currentAssignee}
-               />
+               /> */}
                <EditTaskForm
                   open={this.state.openEditDialog}
                   handleClose={this.handleCloseEditFormDialog}

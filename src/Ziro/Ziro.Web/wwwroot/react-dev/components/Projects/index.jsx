@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles'
-import {green} from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 import './projects.css'
 import { isUserAuthenticated, fetchGetData } from '../../utils.js'
 
@@ -98,9 +98,10 @@ class Projects extends Component {
                      <p>Человек на проекте</p>
                   </div>
                </div>
-               {this.state.projects.map((proj, index) =>
-                  <div className="projects-list">
-                     <Link to={`/project/${proj.shortName}`} className="project__item" key={index}>
+
+               <div className="projects-list">
+                  {this.state.projects.map((proj, index) =>
+                     <Link to={`/project/${proj.shortName}`} className="project__item" key={proj.id}>
                         {/* <div className="project__item"> */}
                         <div className="item__col">
                            <p className="project__title">{proj.name}</p>
@@ -119,8 +120,9 @@ class Projects extends Component {
                         </div>
                         {/* </div> */}
                      </Link>
-                  </div>
-               )}
+                  )}
+               </div>
+
             </Paper>
          </div>
       )
