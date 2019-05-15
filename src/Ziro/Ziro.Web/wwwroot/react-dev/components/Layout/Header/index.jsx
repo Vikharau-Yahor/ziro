@@ -43,13 +43,13 @@ class UserMenu extends Component {
             <div className="menu-wrap">
                <ul className="menu">
                   <li className="menu__item" >
-                     <Link to="/">Задачи</Link>
+                     <Link to="/" activeStyle={{ color: rgb(63, 125, 219) }}>Задачи</Link>
                   </li>
                   <li className="menu__item">
-                     <Link to="/projects">Проекты</Link>
+                     <Link to="/projects" activeStyle={{ color: rgb(63, 125, 219) }}>Проекты</Link>
                   </li>
                   <li className="menu__item">
-                     <Link to="/teams">Команды</Link>
+                     <Link to="/teams" activeStyle={{ color: rgb(63, 125, 219) }}>Команды</Link>
                   </li>
                </ul>
             </div>
@@ -67,10 +67,10 @@ class AdminMenu extends Component {
          <div className="menu-wrap">
             <ul className="menu">
                <li className="menu__item">
-                  <Link to="/">Проекты</Link>
+                  <Link to="/" activeStyle={{ color: rgb(63, 125, 219) }}>Проекты</Link>
                </li>
                <li className="menu__item">
-                  <Link to="/users">Пользователи</Link>
+                  <Link to="/users" activeStyle={{ color: rgb(63, 125, 219) }}>Пользователи</Link>
                </li>
                <li className="menu__item">
                   <Link to="/logout">Выйти</Link>
@@ -87,7 +87,7 @@ class LoginMenu extends Component {
          <div className="menu-wrap">
             <ul className="menu">
                <li className="menu__item">
-                  <Link to="/authorization">Авторизация</Link>
+                  <Link to="/authorization" activeStyle={{ color: rgb(63, 125, 219) }}>Авторизация</Link>
                </li>
             </ul>
          </div>
