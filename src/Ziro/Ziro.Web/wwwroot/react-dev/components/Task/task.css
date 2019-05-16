@@ -104,6 +104,7 @@
 .comment__author {
   color: #3f7ddb; }
   .comment__author img {
+    width: 30px;
     margin-right: 25px; }
 
 .comment__text {
