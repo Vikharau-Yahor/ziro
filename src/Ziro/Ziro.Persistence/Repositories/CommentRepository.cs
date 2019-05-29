@@ -29,6 +29,19 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
+        public void Save(User user, Task task, string commentText)
+        {
+            var comment = new Comment
+            {
+                Author = user,
+                Task = task,
+                Text = commentText,
+                Date = DateTime.Now
+            };
+
+            _session.Save(comment);
+        }
+
 		private IQueryOver<Comment, Comment> mapOnDTO(IQueryOver<Comment, Comment> query)
 		{
 			User userAlias = null;

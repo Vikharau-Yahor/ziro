@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Ziro.Core.DataAccess.Repositories;
 using Ziro.Core.DTO;
+using Ziro.Core.Mappers;
 using Ziro.Domain.Entities;
 
 namespace Ziro.Persistence.Repositories
@@ -36,14 +37,23 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
-		public void Save(Avatar entity, Guid userId)
+		public void Save(AvatarDTO dto)
 		{
-			var user = _session.QueryOver<User>().Where(x => x.Id == userId).SingleOrDefault();
-			if (entity != null)
-			{
-				entity.User = user;
-				_session.Save(entity);
-			}
+            var existingAvatar = GetByUserId(dto.UserId);
+            existingAvatar = existingAvatar ?? dto.ToEntity();
+
+            if (existingAvatar.Id != Guid.Empty)
+            {
+                existingAvatar.ContentType = dto.ContentType;
+                existingAvatar.ImageData = dto.ImageData;
+            }
+            else
+            {
+                existingAvatar.User = _session.QueryOver<User>().Where(x => x.Id == dto.UserId).SingleOrDefault();
+            }
+
+			_session.SaveOrUpdate(existingAvatar);
+			
 		}
 	}
 }

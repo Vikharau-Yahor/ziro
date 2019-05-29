@@ -10,6 +10,7 @@ using Ziro.Core.Web.Providers;
 using Ziro.Web.Areas.Models.api.Test;
 using Ziro.Web.Mappers;
 using Ziro.Web.Models.api.User;
+using Ziro.Web.Models.api.User.UploadAvatar;
 
 namespace Ziro.Web.Controllers.api
 {
@@ -59,7 +60,18 @@ namespace Ziro.Web.Controllers.api
 			return File(ava.ImageData, ava.ContentType);
 		}
 
-		private AvatarDTO createAva(string path, Guid userId)
+        [Authorize(Roles = nameof(Roles.User))]
+        public IActionResult UploadAvatar(UploadAvatarRequest request)
+        {
+            var userId = CurrentUser.Id;
+            var dto = request.ToDTO(userId);
+
+            _avatarService.Save(dto);
+
+            return SuccessResult();
+        }
+
+        private AvatarDTO createAva(string path, Guid userId)
 		{
 			var image = System.IO.File.OpenRead(path);
 			byte[] data = new byte[(int)image.Length];

@@ -11,6 +11,9 @@ using Ziro.Web.Areas.Models.api.Test;
 using Ziro.Web.Mappers;
 using Ziro.Web.Models.api.Task;
 using Ziro.Web.Mappers;
+using Ziro.Web.Models.api.Task.AddComment;
+using Ziro.Web.Models.api.Task.AddLogWork;
+
 namespace Ziro.Web.Controllers.api
 {
 	public class TaskController : BaseApiController
@@ -101,5 +104,29 @@ namespace Ziro.Web.Controllers.api
 			return SuccessResult(response);
 		}
 
-	}
+        [Authorize(Roles = nameof(Roles.User))]
+        [HttpPost]
+        public IActionResult AddComment([FromBody]AddCommentRequest request)
+        {
+            var userId = CurrentUser.Id;
+            var taskId = request.TaskId;
+            var commentText = request.Text;
+            _taskService.AddComment(userId, taskId, commentText);
+            //var response = task.ToTaskDetails(_resourceProvider);
+
+            return SuccessResult();
+        }
+
+        [Authorize(Roles = nameof(Roles.User))]
+        [HttpPost]
+        public IActionResult AddLogWork([FromBody]AddLogWorkRequest request)
+        {
+            var userId = CurrentUser.Id;
+            var taskId = request.TaskId;
+            _taskService.AddLogWork(userId, taskId, request.Text, request.SpentHours);
+
+            return SuccessResult();
+        }
+
+    }
 }

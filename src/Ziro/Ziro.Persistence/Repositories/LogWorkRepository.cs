@@ -29,7 +29,21 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
-		private IQueryOver<LogWork, LogWork> mapOnDTO(IQueryOver<LogWork, LogWork> query)
+        public void Save(User user, Task task, string text, double spentHours)
+        {
+            var logWork = new LogWork
+            {
+                Author = user,
+                Task = task,
+                Text = text,
+                SpentTimeHours = spentHours,
+                Date = DateTime.Now
+            };
+
+            _session.Save(logWork);
+        }
+
+        private IQueryOver<LogWork, LogWork> mapOnDTO(IQueryOver<LogWork, LogWork> query)
 		{
 			User userAlias = null;
 			LogWorkDTO resultDTO = null;

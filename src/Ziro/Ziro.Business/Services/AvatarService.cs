@@ -25,8 +25,7 @@ namespace Ziro.Business.Services
 
 		public void Save(AvatarDTO dto)
 		{
-			var entityToSave = dto.ToEntity();
-			_avatarRepository.Save(entityToSave, dto.UserId);
+			_avatarRepository.Save(dto);
 		}
 	}
 }

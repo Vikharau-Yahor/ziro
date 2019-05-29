@@ -7,7 +7,7 @@ namespace Ziro.Core.DataAccess.Repositories
 {
 	public interface IAvatarRepository
 	{
-		void Save(Avatar entity, Guid userId);
+		void Save(AvatarDTO entity);
 		Avatar Get(Guid id);
 		Avatar GetByUserId(Guid userId);
 	}

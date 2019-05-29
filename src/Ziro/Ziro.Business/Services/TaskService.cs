@@ -6,6 +6,7 @@ using Ziro.Core.Mappers;
 using System.Linq;
 using System.Collections.Generic;
 using Ziro.Core;
+using Ziro.Domain.Entities;
 
 namespace Ziro.Business.Services
 {
@@ -14,13 +15,16 @@ namespace Ziro.Business.Services
 		private readonly ITaskRepository _taskRepository;
 		private readonly ICommentRepository _commentRepository;
 		private readonly ILogWorkRepository _logWorkRepository;
+        private readonly IUserRepository _userRepository;
 
-		public TaskService(ITaskRepository taskRepository, ICommentRepository commentRepository, ILogWorkRepository logWorkRepository)
+		public TaskService(ITaskRepository taskRepository, ICommentRepository commentRepository, ILogWorkRepository logWorkRepository,
+            IUserRepository userRepository)
 		{
 			_taskRepository = taskRepository;
 			_commentRepository = commentRepository;
 			_logWorkRepository = logWorkRepository;
-		}
+            _userRepository = userRepository;
+        }
 
 		public IList<ShortTaskDTO> GetShort(Guid userId)
 		{
@@ -52,5 +56,21 @@ namespace Ziro.Business.Services
 			result.SpentTime = logWorks.Sum(x => x.SpentTimeHours);
 			return result;
 		}
-	}
+
+        public void AddComment(Guid userId, Guid taskId, string commentText)
+        {
+            var user = _userRepository.Get(userId);
+            var task = _taskRepository.Get(taskId);
+
+            _commentRepository.Save(user, task, commentText);
+        }
+
+        public void AddLogWork(Guid userId, Guid taskId, string text, double spentHours)
+        {
+            var user = _userRepository.Get(userId);
+            var task = _taskRepository.Get(taskId);
+
+            _logWorkRepository.Save(user, task, text, spentHours);
+        }
+    }
 }
