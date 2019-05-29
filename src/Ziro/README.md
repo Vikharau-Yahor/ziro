@@ -241,6 +241,25 @@ null
   }
 ]
 ```
+#### 4) POST api/user/uploadAvatar - upload and replace avatar for current user
+Role: User
+
+***Request***:
+
+```sh  
+{  
+  "Content":[],  -- array of bytes   
+  "ContentType":"image/jpeg"    -- see available image types 
+}
+```  
+ContentType - is type of image in dependence of extension, see available types here: https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_MIME-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2#image
+
+
+***Response***: 
+
+```sh 
+"data": null
+```
 ### Tasks API
 #### 1) GET api/task/getCurrentTasks - get current user tasks
 Role: User
@@ -499,6 +518,39 @@ null
   "3":"Критический",
   "4":"Блокирующий"
 }
+```
+#### 7) POST api/task/addLogWork - add log work record on behalf of current user
+Role: User
+
+***Request***:
+
+```sh  
+{  
+  "taskId":"6add3303-b9de-4fdb-b6a7-7ac716c14d0e",   
+  "text":"I did a lot yesterday"    
+  "spentHours": 5
+}
+```  
+***Response***: 
+
+```sh 
+"data": null
+```
+#### 8) POST api/task/addComment - add comment on behalf of current user
+Role: User
+
+***Request***:
+
+```sh  
+{  
+  "taskId":"7add3303-b9de-4fdb-b6a7-7ac716c14d0e",   
+  "text":"test comment text"    
+}
+```  
+***Response***: 
+
+```sh 
+"data": null
 ```
 ### Projects API
 #### 1) GET api/project/getCurrentProjects - get current user projects
