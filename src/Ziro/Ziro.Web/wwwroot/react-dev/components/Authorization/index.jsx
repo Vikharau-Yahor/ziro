@@ -98,7 +98,7 @@ class Authorization extends Component {
 				this.props.history.push('/adminpanel');
 			}
 			CookieEventManager.invokeCookieChanged();
-		}	
+		}
 	}
 
    errorLogin(error) {
@@ -127,7 +127,15 @@ class Authorization extends Component {
                <form className={`${classes.form} authorization-form`} action="">
                   <FormControl margin="normal" required fullWidth>
                      <InputLabel htmlFor="email">Email</InputLabel>
-                     <Input id="email" type="email" name="email" autoComplete="email" autoFocus value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
+                     <Input 
+                        id="email" 
+                        type="email" 
+                        name="email" 
+                        autoComplete="email" 
+                        autoFocus 
+                        value={this.state.email} 
+                        onChange={this.handleEmailChange.bind(this)} 
+                     />
                      <Typography className={classes.errorMessage} component="span" variant="p">error</Typography>
                   </FormControl>
                   <FormControl margin="normal" required fullWidth>

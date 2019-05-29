@@ -39,10 +39,46 @@ class Log extends Component {
 }
 
 class Comments extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         newComment: ''
+      }
+   }
+
+   handleChange = (e) => {
+      //if((e.target.value != null) && (e.target.value !='')) {
+         this.setState({ newComment: e.target.value });
+      //}
+   }
+
+   successComment = (response) => {
+           // var responseText = JSON.stringify(response);
+      //alert(responseText);
+      //window.location.reload()
+      //location.reload();
+      //this.props.history.push(`/task/${this.props.td_number}`);
+	}
+
+   errorComment = (error) => {
+      alert(error);
+   }
+
+   handleClick = (e) => {
+      e.preventDefault();
+      var requestData = {
+         taskId: this.props.td_id,
+         text: this.state.newComment
+      };
+      // var responseText = JSON.stringify(requestData);
+      // alert(responseText)
+	  fetchPostData('api/task/addComment', requestData, this.successComment, this.errorComment);
+   }
+
    render() {
       return (
          <div className="tab__content">
-            {this.props.td.map((elem, index) =>
+            {this.props.td_comments.map((elem, index) =>
                <div className="comment__item" key={index}>
                   <p className="comment__author"><img src={`/api/user/getAvatar?userId=${elem.author.id}`} alt="avatar" /> {elem.author.fullName}</p>
                   <p className="comment__text">{elem.text}</p>
@@ -50,8 +86,15 @@ class Comments extends Component {
                </div>
             )}
             <div className="new-comment_wrap">
-               <textarea name="" id="" placeholder="Добавить комментарий..."></textarea>
-               <Button variant="contained" color="primary">Отправить</Button>
+               <textarea 
+                  name=""
+                  id="" 
+                  placeholder="Добавить комментарий..."
+                  //value={this.state.newComment} 
+                  onChange={this.handleChange}
+               >
+               </textarea>
+               <Button onClick={this.handleClick} variant="contained" color="primary">Отправить</Button>
             </div>
          </div>
       )
@@ -146,7 +189,9 @@ class Task extends Component {
          value: 0,
          openEditDialog: false,
          openAssigneeDialog: false,
-         openDeleteDialog: false
+         openDeleteDialog: false,
+         // newComment: '',
+         // newLog: ''
       }
       if (!isUserAuthenticated()) {
          this.props.history.push('/authorization');
@@ -328,7 +373,7 @@ class Task extends Component {
                      </Tabs>
 
                      {value === 0 && <Log td={task_d.logWorks} />}
-                     {value === 1 && <Comments td={task_d.comments} />}
+                     {value === 1 && <Comments td_comments={task_d.comments} td_id={task_d.id} td_number={task_d.number}/>}
                   </div>
                </Paper>
             </div>
