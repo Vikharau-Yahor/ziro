@@ -2,7 +2,7 @@
 Projects manangement and task tracking system
 
 ## Ziro Web hosting
-http://ziroweb.azurewebsites.net/
+http://testziro-001-site1.dtempurl.com/
 
 User creds:
 - testUser@mail.com / 523 (Role: User; Position: Software Engineer; Has task and 1 project)
