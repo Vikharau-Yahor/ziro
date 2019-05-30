@@ -29,7 +29,7 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
-        public void Save(User user, Task task, string text, double spentHours)
+        public LogWork Save(User user, Task task, string text, double spentHours)
         {
             var logWork = new LogWork
             {
@@ -41,7 +41,8 @@ namespace Ziro.Persistence.Repositories
             };
 
             _session.Save(logWork);
-        }
+			return logWork;
+		}
 
         private IQueryOver<LogWork, LogWork> mapOnDTO(IQueryOver<LogWork, LogWork> query)
 		{

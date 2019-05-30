@@ -57,20 +57,25 @@ namespace Ziro.Business.Services
 			return result;
 		}
 
-        public void AddComment(Guid userId, Guid taskId, string commentText)
+        public CommentDTO AddComment(Guid userId, Guid taskId, string commentText)
         {
             var user = _userRepository.Get(userId);
             var task = _taskRepository.Get(taskId);
 
-            _commentRepository.Save(user, task, commentText);
-        }
+			var savedComment = _commentRepository.Save(user, task, commentText);
+			var result = savedComment.ToDto();
+			return result;
 
-        public void AddLogWork(Guid userId, Guid taskId, string text, double spentHours)
+		}
+
+        public LogWorkDTO AddLogWork(Guid userId, Guid taskId, string text, double spentHours)
         {
             var user = _userRepository.Get(userId);
             var task = _taskRepository.Get(taskId);
 
-            _logWorkRepository.Save(user, task, text, spentHours);
+            var entity = _logWorkRepository.Save(user, task, text, spentHours);
+			var result = entity.ToDto();
+			return result;
         }
     }
 }

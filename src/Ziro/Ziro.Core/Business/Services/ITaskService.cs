@@ -9,7 +9,7 @@ namespace Ziro.Core.Business.Services
 		IList<ShortTaskDTO> GetShort(Guid userId);
 		TaskDetailsDTO GetDetails(Guid id);
 		TaskDetailsDTO GetDetails(string taskNumber);
-        void AddComment(Guid userId, Guid taskId, string commentText);
-        void AddLogWork(Guid userId, Guid taskId, string text, double spentHours);
+        CommentDTO AddComment(Guid userId, Guid taskId, string commentText);
+		LogWorkDTO AddLogWork(Guid userId, Guid taskId, string text, double spentHours);
     }
 }

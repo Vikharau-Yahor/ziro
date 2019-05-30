@@ -29,7 +29,7 @@ namespace Ziro.Persistence.Repositories
 			return result;
 		}
 
-        public void Save(User user, Task task, string commentText)
+        public Comment Save(User user, Task task, string commentText)
         {
             var comment = new Comment
             {
@@ -40,7 +40,8 @@ namespace Ziro.Persistence.Repositories
             };
 
             _session.Save(comment);
-        }
+			return comment;
+		}
 
 		private IQueryOver<Comment, Comment> mapOnDTO(IQueryOver<Comment, Comment> query)
 		{

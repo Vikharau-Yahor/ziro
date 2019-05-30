@@ -111,10 +111,10 @@ namespace Ziro.Web.Controllers.api
             var userId = CurrentUser.Id;
             var taskId = request.TaskId;
             var commentText = request.Text;
-            _taskService.AddComment(userId, taskId, commentText);
-            //var response = task.ToTaskDetails(_resourceProvider);
+            var savedComment = _taskService.AddComment(userId, taskId, commentText);
+			var response = savedComment.ToCommentResponse();
 
-            return SuccessResult();
+			return SuccessResult(response);
         }
 
         [Authorize(Roles = nameof(Roles.User))]
@@ -123,9 +123,10 @@ namespace Ziro.Web.Controllers.api
         {
             var userId = CurrentUser.Id;
             var taskId = request.TaskId;
-            _taskService.AddLogWork(userId, taskId, request.Text, request.SpentHours);
+			var savedLogWork = _taskService.AddLogWork(userId, taskId, request.Text, request.SpentHours);
+			var response = savedLogWork.ToLogWorkResponse();
 
-            return SuccessResult();
+			return SuccessResult(response);
         }
 
     }

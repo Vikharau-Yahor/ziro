@@ -8,7 +8,7 @@ namespace Ziro.Core.DataAccess.Repositories
 	public interface ICommentRepository
 	{
 		IEnumerable<CommentDTO> GetAll(Guid taskId);
-        void Save(User user, Task task, string commentText);
+		Comment Save(User user, Task task, string commentText);
 
     }
 }
