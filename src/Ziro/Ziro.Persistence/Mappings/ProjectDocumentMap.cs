@@ -12,7 +12,7 @@ namespace Ziro.Persistence.Mappings
 			Property(x => x.FileName, m => { m.Length(100); m.NotNullable(true); });
 			Property(x => x.Description, m => { m.Length(4000); m.NotNullable(true); });
 			Property(x => x.ContentType, m => { m.Length(100); m.NotNullable(true); });
-			Property(x => x.Content, m => { m.NotNullable(true); });
+			Property(x => x.ContentData, m => { m.Length(int.MaxValue); m.NotNullable(true); });
 			Property(x => x.UploadDate, m => { m.NotNullable(true); });
 			ManyToOne(x => x.Project, c => {
 				c.Cascade(Cascade.None);

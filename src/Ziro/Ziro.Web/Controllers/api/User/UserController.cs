@@ -46,6 +46,17 @@ namespace Ziro.Web.Controllers.api
 			return SuccessResult(response);
 		}
 
+        [Authorize(Roles = nameof(Roles.User))]
+        public IActionResult UploadAvatar(UploadAvatarRequest request)
+        {
+            var userId = CurrentUser.Id;
+            var dto = request.ToDTO(userId);
+
+            _avatarService.Save(dto);
+
+            return SuccessResult();
+        }
+
 		// /api/user/getAvatar?UserId=13DEA72F-7407-4463-8064-1D77532392A4
 		[Authorize(Roles = nameof(Roles.User))]
 		public IActionResult GetAvatar(UserAvaRequest request)
@@ -60,18 +71,7 @@ namespace Ziro.Web.Controllers.api
 			return File(ava.ImageData, ava.ContentType);
 		}
 
-        [Authorize(Roles = nameof(Roles.User))]
-        public IActionResult UploadAvatar(UploadAvatarRequest request)
-        {
-            var userId = CurrentUser.Id;
-            var dto = request.ToDTO(userId);
-
-            _avatarService.Save(dto);
-
-            return SuccessResult();
-        }
-
-        private AvatarDTO createAva(string path, Guid userId)
+		private AvatarDTO createAva(string path, Guid userId)
 		{
 			var image = System.IO.File.OpenRead(path);
 			byte[] data = new byte[(int)image.Length];

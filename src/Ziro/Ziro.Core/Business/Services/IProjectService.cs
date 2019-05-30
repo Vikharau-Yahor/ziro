@@ -9,5 +9,6 @@ namespace Ziro.Core.Business.Services
 	{
 		IList<ProjectViewDTO> GetProjects(Guid userId);
 		IList<ProjectInfoDTO> GetProjectsInfos(Guid userId);
+		void SaveProjectDocument(ProjectDocumentDTO document);
 	}
 }

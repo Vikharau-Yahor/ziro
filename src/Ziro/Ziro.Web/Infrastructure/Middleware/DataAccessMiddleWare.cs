@@ -24,7 +24,7 @@ namespace Ziro.Web.Infrastructure.Middleware
 			{
 				await _next.Invoke(context);
 			}
-			catch(Exception)
+			catch(Exception esx)
 			{
 				if (transaction.IsActive)
 					transaction.Rollback();
