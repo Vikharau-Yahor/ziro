@@ -18,6 +18,29 @@ import AssigneeWin from './AssigneeWin.jsx'
 import EditTaskForm from './EditTaskForm.jsx';
 
 class Log extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         newLog: '',
+         spentHours: null
+      }
+   }
+
+   handleChange = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      this.setState({[name]: value});
+    }
+
+   handleClick = (e) => {
+      e.preventDefault();
+      var requestData = {
+         taskId: this.props.td_id,
+         text: this.state.newLog,
+         spentHours: this.state.spentHours
+      };
+	  fetchPostData('api/task/addLogWork', requestData, this.successLog, this.errorLog);
+   }
    render() {
       return (
          <div className="tab__content">
@@ -30,7 +53,17 @@ class Log extends Component {
                </div>
             )}
             <div className="new-comment_wrap">
-               <textarea name="" id="" placeholder="Добавить комментарий..."></textarea>
+               <textarea 
+                  name="" 
+                  id="" 
+                  placeholder="Добавить лог..."
+                  value={this.state.newLog}
+                  ></textarea>
+               <input
+                  type="number" 
+                  placeholder="Затраченное время"
+                  value={this.state.spentHours}
+                  />
                <Button variant="contained" color="primary">Отправить</Button>
             </div>
          </div>
@@ -88,9 +121,9 @@ class Comments extends Component {
             <div className="new-comment_wrap">
                <textarea 
                   name=""
-                  id="" 
+                  id=""
                   placeholder="Добавить комментарий..."
-                  //value={this.state.newComment} 
+                  //value={this.state.newComment}
                   onChange={this.handleChange}
                >
                </textarea>
@@ -372,7 +405,7 @@ class Task extends Component {
                            label="Комментарии" />
                      </Tabs>
 
-                     {value === 0 && <Log td={task_d.logWorks} />}
+                     {value === 0 && <Log td_log={task_d.logWorks} td_id={task_d.id} td_number={task_d.number}/>}
                      {value === 1 && <Comments td_comments={task_d.comments} td_id={task_d.id} td_number={task_d.number}/>}
                   </div>
                </Paper>
