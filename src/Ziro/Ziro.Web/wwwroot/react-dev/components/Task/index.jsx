@@ -22,49 +22,68 @@ class Log extends Component {
       super(props);
       this.state = {
          newLog: '',
-         spentHours: null
+         spentHours: 0
       }
    }
 
-   handleChange = (e) => {
-      const name = e.target.name;
-      const value = e.target.value;
-      this.setState({[name]: value});
-    }
+   onChangeInput = (e) => {
+      //this.setState({ newLog: e.target.value });
+      //this.setState({ spentHours: e.target.value });
+      this.setState({[event.target.name]: event.target.value})
+   }
 
-   handleClick = (e) => {
+   onSuccsesAddedLog = (response) => {
+      // var responseText = JSON.stringify(response);
+      // alert(responseText);
+      this.props.td_addLog(response.data);
+	}
+
+   onErrorAddedLog = (error) => {
+      alert(error);
+   }
+
+   addLog = (e) => {
       e.preventDefault();
       var requestData = {
          taskId: this.props.td_id,
          text: this.state.newLog,
          spentHours: this.state.spentHours
       };
-	  fetchPostData('api/task/addLogWork', requestData, this.successLog, this.errorLog);
+      if((this.state.newLog.length > 0) && (this.state.spentHours > 0)) {
+         fetchPostData('api/task/addLogWork', requestData, this.onSuccsesAddedLog, this.onErrorAddedLog);
+         this.setState({newLog: ''})
+         this.setState({spentHours: 0})
+      } else {
+         console.log('error');
+      }
    }
    render() {
       return (
          <div className="tab__content">
-            {this.props.td.map((elem, index) =>
+            {this.props.td_log.map((elem, index) =>
                <div className="comment__item" key={index}>
                   <p className="comment__author"><img src={`/api/user/getAvatar?userId=${elem.author.id}`} alt="avatar" />{elem.author.fullName}</p>
                   <p className="comment__text">{elem.text}</p>
-                  <p className="comment__text">Заняло времени: {elem.spentTimeHours} часа</p>
+                  <p className="comment__text">Заняло времени: {elem.spentTimeHours} ч.</p>
                   <p className="comment__date">{elem.leavingDate}</p>
                </div>
             )}
             <div className="new-comment_wrap">
                <textarea 
-                  name="" 
-                  id="" 
+                  name="newLog" 
+                  id="newLog" 
                   placeholder="Добавить лог..."
                   value={this.state.newLog}
+                  onChange={this.onChangeInput}
                   ></textarea>
                <input
-                  type="number" 
+                  type="number"
+                  name="spentHours"
                   placeholder="Затраченное время"
                   value={this.state.spentHours}
+                  onChange={this.onChangeInput}
                   />
-               <Button variant="contained" color="primary">Отправить</Button>
+               <Button onClick={this.addLog} variant="contained" color="primary">Отправить</Button>
             </div>
          </div>
       )
@@ -79,33 +98,33 @@ class Comments extends Component {
       }
    }
 
-   handleChange = (e) => {
-      //if((e.target.value != null) && (e.target.value !='')) {
+   onChangeInput = (e) => {
+      console.log(e.target.value);
          this.setState({ newComment: e.target.value });
-      //}
    }
 
-   successComment = (response) => {
-           // var responseText = JSON.stringify(response);
-      //alert(responseText);
-      //window.location.reload()
-      //location.reload();
-      //this.props.history.push(`/task/${this.props.td_number}`);
+   onSuccsesAddedComment = (response) => {
+      // var responseText = JSON.stringify(response);
+      // alert(responseText);
+      this.props.td_addComment(response.data);
 	}
 
-   errorComment = (error) => {
+   onErrorAddedComment = (error) => {
       alert(error);
    }
 
-   handleClick = (e) => {
+   addComment = (e) => {
       e.preventDefault();
       var requestData = {
          taskId: this.props.td_id,
          text: this.state.newComment
       };
-      // var responseText = JSON.stringify(requestData);
-      // alert(responseText)
-	  fetchPostData('api/task/addComment', requestData, this.successComment, this.errorComment);
+      if(this.state.newComment.length > 0) {
+         fetchPostData('api/task/addComment', requestData, this.onSuccsesAddedComment, this.onErrorAddedComment);
+         this.setState({newComment: ''})
+      } else {
+         console.log('error');
+      }
    }
 
    render() {
@@ -123,11 +142,11 @@ class Comments extends Component {
                   name=""
                   id=""
                   placeholder="Добавить комментарий..."
-                  //value={this.state.newComment}
-                  onChange={this.handleChange}
+                  value={this.state.newComment}
+                  onChange={this.onChangeInput}
                >
                </textarea>
-               <Button onClick={this.handleClick} variant="contained" color="primary">Отправить</Button>
+               <Button onClick={this.addComment} variant="contained" color="primary">Отправить</Button>
             </div>
          </div>
       )
@@ -275,6 +294,17 @@ class Task extends Component {
       this.setState({ openDeleteDialog: false });
    };
 
+   addLog = (newLog) => {
+      let newTaskDetails = this.state.taskDetails; 
+      newTaskDetails.logWorks.push(newLog);
+      this.setState({ taskDetails: newTaskDetails})
+   }
+   addComment = (newComment) => {
+      let newTaskDetails = this.state.taskDetails; 
+      newTaskDetails.comments.push(newComment);
+      this.setState({ taskDetails: newTaskDetails})
+   }
+
    render() {
       const { classes } = this.props;
       var task_d = this.state.taskDetails;
@@ -405,8 +435,18 @@ class Task extends Component {
                            label="Комментарии" />
                      </Tabs>
 
-                     {value === 0 && <Log td_log={task_d.logWorks} td_id={task_d.id} td_number={task_d.number}/>}
-                     {value === 1 && <Comments td_comments={task_d.comments} td_id={task_d.id} td_number={task_d.number}/>}
+                     {value === 0 && <Log 
+                                       td_log={task_d.logWorks} 
+                                       td_id={task_d.id} 
+                                       td_number={task_d.number}
+                                       td_addLog={this.addLog}
+                                       />}
+                     {value === 1 && <Comments 
+                                       td_comments={task_d.comments} 
+                                       td_id={task_d.id}
+                                       td_number={task_d.number}
+                                       td_addComment={this.addComment}
+                                       />}
                   </div>
                </Paper>
             </div>
