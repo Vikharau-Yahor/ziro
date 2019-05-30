@@ -519,7 +519,7 @@ null
   "4":"Блокирующий"
 }
 ```
-#### 7) POST api/task/addLogWork - add log work record on behalf of current user
+#### 7) POST api/task/addLogWork - add log work record on behalf of current user and return saved log work data
 Role: User
 
 ***Request***:
@@ -534,9 +534,20 @@ Role: User
 ***Response***: 
 
 ```sh 
-"data": null
+"data":
+{
+  "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+  "author":
+  {
+    "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+    "fullName":"Шикайло Сергей"
+  },
+  "text":"Обсуждение задачи",
+  "leavingDate":"12.04.2019",
+  "spentTimeHours":1.5
+}
 ```
-#### 8) POST api/task/addComment - add comment on behalf of current user
+#### 8) POST api/task/addComment - add comment on behalf of current user and return saved comment data
 Role: User
 
 ***Request***:
@@ -550,7 +561,17 @@ Role: User
 ***Response***: 
 
 ```sh 
-"data": null
+"data":
+{
+  "id":"3575eb07-ec2f-4fef-aeb3-70e9e5868f41",
+  "author":
+  {
+    "id":"93a09976-6a3c-4af8-a9cc-d0921741ce87",
+    "fullName":"Шикайло Сергей"
+  },
+  "text":"Необходимо обсудить детали",
+  "leavingDate":"11.04.2019"
+}
 ```
 ### Projects API
 #### 1) GET api/project/getCurrentProjects - get current user projects
