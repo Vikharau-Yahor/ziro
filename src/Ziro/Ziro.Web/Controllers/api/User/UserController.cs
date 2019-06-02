@@ -63,7 +63,7 @@ namespace Ziro.Web.Controllers.api
 		{
 			var userId = request?.UserId ?? CurrentUser.Id;
 			//var image = System.IO.File.OpenRead(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\d542c9b3473fa0a2b6a8a8016ba8a20a.jpg");
-			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\QA.jpg", new Guid("F4CC4000-7DDC-4CB9-B09E-1E6879F48CF3"));
+			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\unknown2.jpg", new Guid("00000000-0000-0000-0000-000000000000"));
 			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\PM.jpg", new Guid("A32F9976-6A3C-4AF8-A9CC-D0921741CE87"));
 			//createAva(@"E:\Education\zaochka\DP\dev\ziro\src\Ziro\Ziro.Web\wwwroot\dist\Programmer.jpg", new Guid("93A09976-6A3C-4AF8-A9CC-D0921741CE87"));
 			var ava = _avatarService.GetByUserId(userId);

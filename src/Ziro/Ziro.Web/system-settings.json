@@ -6,6 +6,9 @@
 	},
 	"AllowedHosts": "*",
 	"UseCustomErrors": false,
-	"ConnectionString": "Server=(local);initial catalog=Ziro;Integrated Security=true"
+	"ConnectionString": "Server=(local);initial catalog=Ziro;Integrated Security=true",
+	//"ConnectionString": "Data Source=SQL6003.site4now.net;Initial Catalog=DB_A494C1_testziro;User Id=DB_A494C1_testziro_admin;Password=2223737qweasdzxc;"
+
+
 	//"ConnectionString": "Server=tcp:ziro.database.windows.net,1433;Initial Catalog=ZiroDB;Persist Security Info=False;User ID=shmurge;Password=2020327QWEasdzxc;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 }

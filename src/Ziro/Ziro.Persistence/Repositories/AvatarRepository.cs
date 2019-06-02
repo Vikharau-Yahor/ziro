@@ -33,7 +33,7 @@ namespace Ziro.Persistence.Repositories
 				.JoinAlias(x => x.User, () => userAlias)
 				.Where(x => userAlias.Id == userId);
 
-			var result = query.SingleOrDefault<Avatar>();
+			var result = query.SingleOrDefault<Avatar>() ?? Get(Guid.Empty);
 			return result;
 		}
 

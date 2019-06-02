@@ -1,0 +1,31 @@
+projs:
+Twitter 15A09976-6A3C-4AF8-A9CC-D0921741CE87 6
+Facebook 15F09976-6A3C-4AF8-A9CC-D0921741CE87 2
+Vkontakte 17A09976-6A3C-4AF8-A9CC-D0921741CE87
+Winamp 18A09976-6A3C-4AF8-A9CC-D0921741CE37 2
+Audacity 19A09976-633C-4AF8-A9CC-D0921741CE87 3
+Github 21A0F976-633C-4AF8-A9CC-D0921741CE87 2
+MS Visual Studio 22A03976-633C-4AF8-A9CC-D0921741CE87 2
+ЕРИП 23A03976-633C-4AF8-A9CC-D0921741CE87 1
+
+
+users:
+admin 6B2F9976-6A3C-4AF8-A9CC-D0921741CE87
+se (many tasks) Сергей 93A09976-6A3C-4AF8-A9CC-D0921741CE87 (Twitter, Winamp, Audacity)
+pm (many projs) Максим A32F9976-6A3C-4AF8-A9CC-D0921741CE87
+pm Назар 354C4000-7DDC-4CB9-B09E-1E6879F48CF3 (VS, ЕРИП, GitHub)
+qa Дарья F4CC4000-7DDC-4CB9-B09E-1E6879F48CF3 (Twitter, Winamp, Audacity, VS)
+qa Олег F4CC4300-7DDC-4CB9-B09E-1E6879F48CF3 (FB, Vkontakte, Github)
+ba Алена F42C4000-7DDC-4CB9-B09E-1E6879F48CF3 (FB, Twitter, Vk)
+ba Светлана 64554000-7DDC-4CB9-B09E-1E6879F48CF3 (Winamp, GitH, ERIP)
+se Сергей 22CC4090-7DDC-4CB9-B09E-1E6899F48CF3 (VS, Twitter, Winamp)
+se Радион 33CC4000-7DDC-4CB9-B09E-1E6879F48CF3 (Audacity, ERIP, FB)
+se Татьяна 645C4000-7DDC-4CB9-B09E-1E6879F48CF3 (Twitter, GitHub, VS)
+
+		Priorities:			Statuses:			Types:
+
+		Trivial = 0,    	Open = 0,			Task = 0,
+		Minor = 1,      	InProgress = 1, 	Bug = 1,
+		Major = 2,      	Review = 2,			Feature = 2,
+		Critical = 3,   	InTest = 3,			SubTask = 3
+		Blocker = 4     	Done = 4
