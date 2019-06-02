@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 //const website = 'http://ziroweb.azurewebsites.net';
+//const website = 'http://testziro-001-site1.dtempurl.com';
 const website = 'http://localhost:49763';
 
 export function fetchPostData(url, requestData, successFunc, errorFunc) {

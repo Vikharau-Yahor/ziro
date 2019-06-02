@@ -22,7 +22,7 @@ namespace Ziro.Web.Mappers
 				Id = dto.Id,
 				Number = dto.FullNumber,
 				Title = dto.Title,
-				Type = resProvider.GetLocalizedEnum((TaskTypes)dto.Priority),
+				Type = resProvider.GetLocalizedEnum((TaskTypes)dto.Type),
 				TypeNum = dto.Type,
 				Description = dto.Description,
 				Priority = resProvider.GetLocalizedEnum((Priorities)dto.Priority),
