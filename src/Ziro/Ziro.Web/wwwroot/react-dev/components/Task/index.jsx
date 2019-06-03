@@ -29,7 +29,7 @@ class Log extends Component {
    onChangeInput = (e) => {
       //this.setState({ newLog: e.target.value });
       //this.setState({ spentHours: e.target.value });
-      this.setState({[event.target.name]: event.target.value})
+      this.setState({[e.target.name]: e.target.value})
    }
 
    onSuccsesAddedLog = (response) => {

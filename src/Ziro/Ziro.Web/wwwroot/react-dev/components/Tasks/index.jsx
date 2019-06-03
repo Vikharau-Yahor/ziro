@@ -69,8 +69,14 @@ class Tasks extends Component {
       return (
          <div className="container flex">
             <div className="filter__block">
-               <p>Фильтры</p>
-               <Icon>filter_list</Icon>
+               {/* <p>Фильтры</p> */}
+               {/* <Icon>filter_list</Icon> */}
+               <Button className="filter__btn" variant="contained" color="primary">
+                  Все
+               </Button>
+               <Button className="filter__btn" variant="outlined" color="primary">
+                  Важные
+               </Button>
             </div>
             <Paper className="tasks__block">
                {this.state.tasks.map((elem, index) =>
