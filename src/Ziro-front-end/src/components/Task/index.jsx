@@ -15,12 +15,12 @@ const data = [ {
     'priority': 'низкий',
     'name': 'fix color submit button',
     'author': 'qa',
-    'description': 'Необходимо изменить цвет кнопки на афигенно-голубой',
+    'description': 'Необходимо изменить цвет кнопки на красный',
     'comments':
         {
             'id': '001',
             'author': 'egor vikharev',
-            'comment_text': 'qa ты чмо'
+            'comment_text': 'hi everyone!'
         }
     }
 ]
